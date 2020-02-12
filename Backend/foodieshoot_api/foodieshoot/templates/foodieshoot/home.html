@@ -1,0 +1,49 @@
+{% extends "foodieshoot/layout.html" %}{% load static %}
+<!-- prettier-ignore -->
+{% block headeradds %}{% endblock headeradds %}
+
+
+<!-- prettier-ignore -->
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-2 font-buk">Point, Shoot and Eat</h1>
+    <p class="lead">Find the calories underneath</p>
+    <a href="#basic-info" class="btn btn-lg bg-cust smooth-scroll hv-inv-red-blk" role="button">Learn More</a>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div id="basic-info" class="col-md-8 mb-4">
+            <h1 class="font-mts"><b>What is it for?</b></h1>
+            <br> The <span class="font-buk">FoodieShoot</span> is an app with the purpose of englobing object recognition to identify the food in your plate providing you with the caloric information for the food item.
+        </div>
+        <div class="col-md-4 mb-4">
+            <h2><b>How does it know?</b></h2>
+            <br> It uses the third-party end-to-end open source machine learning platform
+            <a class="btn btn-lg tensor-link hv-inv-gr-blk" href="https://www.tensorflow.org/"><img src="{% static 'foodieshoot/images/tf.png' %}" alt="TensorFlow" width="150"></a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <!-- Side links -->
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="{% url 'fs-home' %}" id='activepill' class="nav-link active bg-cust">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'fs-singup' %}" id="pill" class="nav-link">Sing Up</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'fs-download' %}" id="pill" class="nav-link">Download</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+<!-- prettier-ignore -->
+{% block footer %}{% include "foodieshoot/footer.html" %}{% endblock footer %}
+
+
+<!-- prettier-ignore -->
+{% block scripts %}{% endblock scripts%}

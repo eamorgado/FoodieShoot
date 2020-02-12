@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'BukhariRegular';
+    src: url('BukhariRegular.ttf') format('ttf'), url('BukhariRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BukhariAlternate';
+    src: url('BukhariAlternate.woff') format('woff'), url('BukhariAlternate.tff') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-buk {
+    font-family: "BukhariRegular", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-buck-alt {
+    font-family: "BukhariAlternate", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-mts {
+    font-family: "Monstserrat", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}

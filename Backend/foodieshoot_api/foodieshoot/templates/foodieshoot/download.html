@@ -1,0 +1,56 @@
+{% extends "foodieshoot/layout.html" %}{% load static %}
+<!-- prettier-ignore -->
+{% block headeradds %}{% endblock headeradds %}
+
+
+<!-- prettier-ignore -->
+{% block content %}
+<br>
+<div class="container">
+    <h1 class="font-buk">Sounds interesting <span style="color: red; font-size: 50px">?</span></h1>
+</div>
+<br>
+<div class="jumbotron">
+    <!-- nested columns -->
+    <div class="row">
+        <!-- first nested column -->
+        <div class="col-md">
+            <h3 class="display-4">Where can I get it?</h3>
+            <br>
+            <p>
+                As of this moment, the <span class="font-buk">FoodieShoot</span> app can only be obtained here, but we have plans to bring it closer to you.
+            </p>
+        </div>
+
+        <!-- second nested column -->
+        <div class="col-md">
+            <h3 class="display-4">What system do I need?</h3>
+            <br>
+            <p>
+                Currently, we only support <b>android</b> but iOS will arrive in a near future.
+            </p>
+        </div>
+
+        <!-- third nested column -->
+        <div class="col-md">
+            <h3 class="display-4">Here are the links</h3>
+            <br>
+            <p>
+                <a href="#" class="btn btn-lg bg-cust smooth-scroll" role="button">
+                    <img src="{% static 'foodieshoot/images/download.png' %}" alt="cloud" width="50">
+                    <span class=""><b>Download Now</b></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<br><br><br>{% endblock content %}
+
+
+
+<!-- prettier-ignore -->
+{% block footer %}{% include "foodieshoot/footer.html" %}{% endblock footer %}
+
+
+<!-- prettier-ignore -->
+{% block scripts %}{% endblock scripts%}

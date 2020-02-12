@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'BukhariRegular';
+    src: url('BukhariRegular.ttf') format('ttf'), url('BukhariRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BukhariAlternate';
+    src: url('BukhariAlternate.woff') format('woff'), url('BukhariAlternate.tff') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-buk {
+    font-family: "BukhariRegular", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-buck-alt {
+    font-family: "BukhariAlternate", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-mts {
+    font-family: "Monstserrat", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: "Monserrat", sans-serif;
+    font-size: 1rem;
+    color: black;
+}
+
+body {
+    font-family: "Monserrat", sans-serif;
+    font-size: 2rem;
+    color: black;
+    background-color: white;
+    text-align: center
+}
+
+.bg-cust {
+    background-color: rgba(244, 67, 54, 0.788235294117647);
+    background-color: #F44336;
+}
+
+header.div {
+    float: left;
+}
+
+.tensor-link {
+    background-color: #E6E6E6;
+}
+
+.hv-inv-red-blk {
+    background-color: red;
+    color: black;
+}
+
+.hv-inv-red-blk:hover {
+    background-color: black;
+    color: red;
+}
+
+.hv-inv-red-blk:hover img {
+    filter: invert(100%);
+}
+
+hv-inv-gr-blk {
+    background-color: gray;
+}
+
+hv-inv-gr-blk:hover {
+    filter: invert(100%);
+}
+
+#activepill {
+    background-color: red;
+    color: black;
+}
+
+#activepill:hover {
+    background-color: black;
+    color: white;
+}
+
+#pill {
+    color: grey;
+}
+
+#pill:hover {
+    color: red;
+}
