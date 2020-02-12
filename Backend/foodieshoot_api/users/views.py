@@ -2,26 +2,25 @@ from django.shortcuts import render, redirect, render_to_response
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
+def signin(request):
+    context = {'title': 'Sign In', 'signin': 'true',}
+    return render(request,'users/signin.html', context)
 
-def singin(request):
-    context = {'title': 'Sing In', 'singin': 'true',}
-    return render(request,'users/singin.html', context)
-
-
-def singup(request):
+def signup(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save() #Hashes password and saves it
             username = form.cleaned_data.get('username')
             messages.success(request,f'Your account has been created {username}! You are able to login')
-            return redirect('fs-singin')
+            return redirect('fs-signin')
     else:
         form = UserRegisterForm()
-    context = {'title': 'Sing Up', 'singup': 'true','form': form}
-    return render(request,'users/singup.html', context)
+    context = {'title': 'Sign Up', 'signup': 'true','form': form}
+    return render(request,'users/signup.html', context)
 
 
 @login_required
