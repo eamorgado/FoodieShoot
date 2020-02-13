@@ -25,7 +25,7 @@ SECRET_KEY = '3*__)1!rph^vd!9o!9eb@&a_kr9)!2w@ewrb45&(=^f9fj-&k%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','85.159.212.36']
 
 
 # Application definition
@@ -136,4 +136,4 @@ MEDIA_URL = '/media/'
 
 
 LOGIN_REDIRECT_URL = 'fs-home'
-LOGIN_URL = 'fs-singin'
+LOGIN_URL = 'fs-singin
