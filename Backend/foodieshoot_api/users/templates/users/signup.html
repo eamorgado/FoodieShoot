@@ -5,14 +5,13 @@
 
 <!-- prettier-ignore -->
 {% block content %}
-
 <br>
 <div class="container">
     <h1 class="font-buk">Hello There <span style="color: red; font-size: 50px">.</span></h1>
 </div>
 <br>
 <div class="jumbotron">
-    <h3 class="font-buk border-bottom mb-2">Join us</h3>
+    <h3 class="font-buk">Welcome back!</h3>
     <br>
     <div class="container content-section pl-2 pr-2">
         <form action="" method="POST">
@@ -26,11 +25,12 @@
                             </fieldset>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-outline-danger" type="submit">Sign Up</button>
+                            <button class="btn btn-outline-danger" type="submit">Sign In</button>
                         </div>
                         <div class="border-top pt-3">
+                            <small class="border-top pt-3"><a href="{% url 'password_reset' %}" class="ml-2" style="color: red;">Forgot Password?</a></small>
                             <small class="text-muted">
-            Already have an account? <a href="{% url 'fs-signin' %}" class="ml-2" style="color: red;">Sign In</a>
+            Don't have an account? <a href="{% url 'fs-singup' %}" class="ml-2" style="color: red;">Sign Up</a>
         </small>
                         </div>
                     </div>
