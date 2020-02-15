@@ -61,25 +61,25 @@
                                 {% endif %}
                                 <a href="{% url 'fs-profile' %}" class="nav-link">Profile</a>
                             </li>
-                            {% if singout %}
+                            {% if signout %}
                             <li class="nav-item active">
                                 <!-- prettier-ignore -->
                                 {% else %}
                                 <li class="nav-item">
                                     <!-- prettier-ignore -->
                                     {% endif %}
-                                    <a href="{% url 'fs-singout' %}" class="nav-link">Sing Out</a>
+                                    <a href="{% url 'fs-signout' %}" class="nav-link">Sign Out</a>
                                 </li>
                                 {% else %}
                                 <!-- prettier-ignore -->
-                                {% if singin %}
+                                {% if signin %}
                                 <li class="nav-item active">
                                     <!-- prettier-ignore -->
                                     {% else %}
                                     <li class="nav-item">
                                         <!-- prettier-ignore -->
                                         {% endif %}
-                                        <a href="{% url 'fs-singin' %}" class="nav-link">Sing In</a>
+                                        <a href="{% url 'fs-signin' %}" class="nav-link">Sign In</a>
                                     </li>
                                     {% endif %}
 
