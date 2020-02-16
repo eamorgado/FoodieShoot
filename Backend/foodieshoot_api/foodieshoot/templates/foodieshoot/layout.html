@@ -1,49 +1,135 @@
-{% extends "foodieshoot/layout.html" %}{% load static %}
-<!-- prettier-ignore -->
-{% block headeradds %}{% endblock headeradds %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" href="{% static 'foodieshoot/css/main.css' %}">
+    <link rel="icon" href="{% static 'foodieshoot/images/icon.png' %}" type="image/icon type"> {% if title %}
+    <title>FoodieShoot-{{ title }}</title>
+    {% else %}
+    <title>FoodieShoot</title>
+    {% endif %}
+</head>
+
+<body>
+    <!-- Header Showcase -->
+    <header id="showcase" class="page-header">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-cust">
+            <div class="container">
+                <a href="{% url 'fs-home' %}" class="navbar-brand"><img src="{% static 'foodieshoot/images/icon.png' %}" alt="icon" width="65">
+                    <h1 class="font-buk">FoodieShoot</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- left navigation links -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- active navigation link -->
+                        <!-- prettier-ignore -->
+                        {% if home %}
+                        <li class="nav-item active">
+                            <!-- prettier-ignore -->
+                            {% else %}
+                            <li class="nav-item">
+                                <!-- prettier-ignore -->
+                                {% endif %}
+                                <a class="nav-link" href="{% url 'fs-home' %}">Home
+                                <span class="sr-only"><i class="fas fa-concierge-bell"></i></span>
+                            </a>
+                            </li>
+
+                            <!-- prettier-ignore -->
+                            {% if download %}
+                            <li class="nav-item active">
+                                <!-- prettier-ignore -->
+                                {% else %}
+                                <li class="nav-item">
+                                    <!-- prettier-ignore -->
+                                    {% endif %}
+                                    <a href="{% url 'fs-download' %}" class="nav-link">Download</a>
+                                </li>
+
+                                {% if user.is_authenticated%} {% if profiles %}
+                                <li class="nav-item active"></li>
+                                {% else %}
+                                <li class="nav-item"></li>
+                                {% endif %}
+                                <a href="{% url 'fs-profile' %}" class="nav-link">Profile</a>
+                            </li>
+                            {% if signout %}
+                            <li class="nav-item active">
+                                <!-- prettier-ignore -->
+                                {% else %}
+                                <li class="nav-item">
+                                    <!-- prettier-ignore -->
+                                    {% endif %}
+                                    <a href="{% url 'fs-signout' %}" class="nav-link">Sign Out</a>
+                                </li>
+                                {% else %}
+                                <!-- prettier-ignore -->
+                                {% if signin %}
+                                <li class="nav-item active">
+                                    <!-- prettier-ignore -->
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <!-- prettier-ignore -->
+                                        {% endif %}
+                                        <a href="{% url 'fs-signin' %}" class="nav-link">Sign In</a>
+                                    </li>
+                                    {% endif %}
+
+                                    <!-- prettier-ignore -->
+                                    {% if about %}
+                                    <li class="nav-item active">
+                                        <!-- prettier-ignore -->
+                                        {% else %}
+                                        <li class="nav-item">
+                                            <!-- prettier-ignore -->
+                                            {% endif %}
+                                            <a class="nav-link" href="{% url 'fs-about' %}">About</a>
+                                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block headeradds %}{% endblock headeradds %}
+
+    </header>
+    <br><br><br><br>
 
 
-<!-- prettier-ignore -->
-{% block content %}
-<div class="jumbotron">
-    <h1 class="display-2 font-buk">Point, Shoot and Eat</h1>
-    <p class="lead">Find the calories underneath</p>
-    <a href="#basic-info" class="btn btn-lg bg-cust smooth-scroll hv-inv-red-blk" role="button">Learn More</a>
-</div>
+    <!-- Main area -->
 
-<div class="jumbotron">
-    <div class="row">
-        <div id="basic-info" class="col-md-8 mb-4">
-            <h1 class="font-mts"><b>What is it for?</b></h1>
-            <br> The <span class="font-buk">FoodieShoot</span> is an app with the purpose of englobing object recognition to identify the food in your plate providing you with the caloric information for the food item.
-        </div>
-        <div class="col-md-4 mb-4">
-            <h2><b>How does it know?</b></h2>
-            <br> It uses the third-party end-to-end open source machine learning platform
-            <a class="btn btn-lg tensor-link hv-inv-gr-blk" href="https://www.tensorflow.org/"><img src="{% static 'foodieshoot/images/tf.png' %}" alt="TensorFlow" width="150"></a>
-        </div>
-        <div class="col-md-4 mb-4">
-            <!-- Side links -->
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a href="{% url 'fs-home' %}" id='activepill' class="nav-link active bg-cust">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'fs-signup' %}" id="pill" class="nav-link">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'fs-download' %}" id="pill" class="nav-link">Download</a>
-                </li>
-            </ul>
-        </div>
+    <!--Flash messages-->
+    <!-- prettier-ignore -->
+    {% if messages %}
+    <br>
+    <!-- prettier-ignore -->
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible justify-content-end" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{ message }}
     </div>
-</div>
-{% endblock content %}
+    <!-- prettier-ignore -->
+    {% endfor %}
+    <!-- prettier-ignore -->
+    {% endif %}
+    <!-- prettier-ignore -->
+    {% block content %}{% endblock content %}
+    <!-- prettier-ignore -->
 
 
-<!-- prettier-ignore -->
-{% block footer %}{% include "foodieshoot/footer.html" %}{% endblock footer %}
+    <!-- prettier-ignore -->
+    {% block footer %}{% endblock footer %}
+    <!-- prettier-ignore -->
+    {% block scripts %}{% endblock scripts%}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 
-
-<!-- prettier-ignore -->
-{% block scripts %}{% endblock scripts%}
+</html>
