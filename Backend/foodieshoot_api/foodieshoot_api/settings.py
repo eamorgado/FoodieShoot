@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import json
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 with open('/etc/config.json') as config_file:
-    config = json.load(config_file)
+        config = json.load(config_file)
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -140,9 +140,12 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'fs-home'
 LOGIN_URL = 'fs-signin'
 
+
+DEFAULT_FROM_EMAIL = config.get('EMAIL_DEFAULT')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config['EMAIL_USER']
-EMAIL_HOST_PASSWORD = config['EMAIL_PASS']
+EMAIL_HOST_USER = config.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = config.get('EMAIL_PASS')
