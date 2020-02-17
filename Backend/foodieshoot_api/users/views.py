@@ -2,13 +2,12 @@ from django.shortcuts import render, redirect, render_to_response
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
 
 def signin(request):
     context = {'title': 'Sign In', 'signin': 'true',}
     return render(request,'users/signin.html', context)
-
 
 def signup(request):
     if request.method == 'POST':

@@ -28,9 +28,11 @@
                 <li class="nav-item">
                     <a href="{% url 'fs-home' %}" id='activepill' class="nav-link active bg-cust">Home</a>
                 </li>
+                {% if user.is_authenticated%} {% else %}
                 <li class="nav-item">
                     <a href="{% url 'fs-signup' %}" id="pill" class="nav-link">Sign Up</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'fs-download' %}" id="pill" class="nav-link">Download</a>
                 </li>
