@@ -67,6 +67,18 @@ header.div {
     color: red;
 }
 
+.hv-inv-red-blk:hover img {
+    filter: invert(100%);
+}
+
+hv-inv-gr-blk {
+    background-color: gray;
+}
+
+hv-inv-gr-blk:hover {
+    filter: invert(100%);
+}
+
 #activepill {
     background-color: red;
     color: black;
