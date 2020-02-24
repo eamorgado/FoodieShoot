@@ -27,7 +27,7 @@ SECRET_KEY = config['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['178.79.186.156']
+ALLOWED_HOSTS = ['192.168.1.78','178.79.186.156']
 
 
 # Application definition
@@ -141,7 +141,6 @@ LOGIN_REDIRECT_URL = 'fs-home'
 LOGIN_URL = 'fs-signin'
 
 
-DEFAULT_FROM_EMAIL = config.get('EMAIL_DEFAULT')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_SSL = False
