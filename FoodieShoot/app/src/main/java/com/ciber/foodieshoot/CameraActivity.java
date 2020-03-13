@@ -32,8 +32,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -66,11 +69,11 @@ public class CameraActivity extends AppCompatActivity {
     };
 
     private CameraDevice mCameraDevice;
-    private CameraDevice.StateCallback mCameraDeviceStateCallback = new CameraDevice.StateCallback() {
+    private CameraDevice.StateCallbawdsadsadsadsack mCameraDeviceStateCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice cameraDevice) {
             mCameraDevice = cameraDevice;
-            Toast.makeText(getApplicationContext(), "Camera connection successful", Toast.LENGTH_SHORT).show();
+            startPreview();
         }
 
         @Override
@@ -91,6 +94,8 @@ public class CameraActivity extends AppCompatActivity {
     private String mCameraId;
 
     private Size mPreviewSize;
+
+    private CaptureRequest.Builder mCaptureRequestBuilder;
 
     private static SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
@@ -210,6 +215,36 @@ public class CameraActivity extends AppCompatActivity {
             } else {
                 cameraManager.openCamera(mCameraId, mCameraDeviceStateCallback, mBackgroundHandler);
             }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startPreview() {
+        SurfaceTexture surfaceTexture = mTextureView.getSurfaceTexture();
+        surfaceTexture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
+        Surface previewSurface = new Surface(surfaceTexture);
+        try {
+            mCaptureRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            mCaptureRequestBuilder.addTarget(previewSurface);
+
+            mCameraDevice.createCaptureSession(Arrays.asList(previewSurface),
+                    new CameraCaptureSession.StateCallback() {
+                        @Override
+                        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                            try {
+                                cameraCaptureSession.setRepeatingRequest(mCaptureRequestBuilder.build(),
+                                        null, mBackgroundHandler);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+                            Toast.makeText(getApplicationContext(), "Error setting up camera preview", Toast.LENGTH_SHORT).show();
+                        }
+                    }, null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
