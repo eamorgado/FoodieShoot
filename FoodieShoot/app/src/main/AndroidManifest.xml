@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CameraActivity"
+            android:theme="@style/AppTheme.Fullscreen"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.FullscreenGrey"
             android:screenOrientation="portrait">
