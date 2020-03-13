@@ -37,7 +37,7 @@ public class CameraActivity extends AppCompatActivity {
     private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i1) {
-            Toast.makeText(getApplicationContext(), "TextureView is available", Toast.LENGTH_SHORT).show();
+            setupCamera(i, i1);
         }
 
         @Override
@@ -75,6 +75,10 @@ public class CameraActivity extends AppCompatActivity {
             mCameraDevice = null;
         }
     };
+    private HandlerThread mBackgroundHandlerThread;
+    private Handler mBackgroundHandler;
+
+    private String mCameraId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +92,10 @@ public class CameraActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(mTextureView.isAvailable()) {
+        startBackgroundThread();
 
+        if(mTextureView.isAvailable()) {
+            setupCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
@@ -98,6 +104,9 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         closeCamera();
+
+        stopBackgroundThread();
+
         super.onPause();
 
     }
@@ -117,10 +126,45 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void setupCamera(int width, int height) {
+        CameraManager cameraManager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
+        try {
+            for(String cameraId : cameraManager.getCameraIdList()) {
+                CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId);
+                if(cameraCharacteristics.get(CameraCharacteristics.LENS_FACING) ==
+                        cameraCharacteristics.LENS_FACING_FRONT) {
+                    continue;
+                }
+                mCameraId = cameraId;
+                return;
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void closeCamera() {
         if(mCameraDevice != null) {
             mCameraDevice.close();
             mCameraDevice = null;
         }
+    }
+
+    private void startBackgroundThread() {
+        mBackgroundHandlerThread = new HandlerThread("FoodieShoot");
+        mBackgroundHandlerThread.start();
+        mBackgroundHandler = new Handler(mBackgroundHandlerThread.getLooper());
+    }
+
+    private void stopBackgroundThread() {
+        mBackgroundHandlerThread.quitSafely();
+        try {
+            mBackgroundHandlerThread.join();
+            mBackgroundHandlerThread = null;
+            mBackgroundHandler = null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
