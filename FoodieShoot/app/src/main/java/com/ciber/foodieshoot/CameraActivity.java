@@ -69,7 +69,7 @@ public class CameraActivity extends AppCompatActivity {
     };
 
     private CameraDevice mCameraDevice;
-    private CameraDevice.StateCallbawdsadsadsadsack mCameraDeviceStateCallback = new CameraDevice.StateCallback() {
+    private CameraDevice.StateCallback mCameraDeviceStateCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice cameraDevice) {
             mCameraDevice = cameraDevice;
