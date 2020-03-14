@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.78','178.79.186.156']
 
@@ -35,6 +35,10 @@ ALLOWED_HOSTS = ['192.168.1.78','178.79.186.156']
 INSTALLED_APPS = [
     'foodieshoot.apps.FoodieshootConfig',
     'users.apps.UsersConfig',
+    'api.apps.ApiConfig',    
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'crispy_forms',
     'django_cleanup',
     'django.contrib.admin',
@@ -44,6 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
