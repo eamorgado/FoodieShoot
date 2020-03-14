@@ -22,9 +22,10 @@ public class SplashActivity extends Activity {
 
     private void showMainActivity() {
         Intent intent = new Intent(
-                SplashActivity.this,MainActivity.class
-        );
+                SplashActivity.this,CameraActivity.class);
         startActivity(intent);
         finish();
+
+
     }
 }
