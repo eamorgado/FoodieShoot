@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('',include('foodieshoot.urls')),
-    path('',include('users.urls'))
+    path('',include('users.urls')),
+    path('api/v1/',include('api.urls')),
 ]
 
 if settings.DEBUG:

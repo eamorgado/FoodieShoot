@@ -4,6 +4,8 @@ decorator==4.4.1
 Django==2.2.6
 django-cleanup==4.0.0
 django-crispy-forms==1.8.0
+django-rest-auth==0.9.5
+djangorestframework==3.11.0
 Pillow==6.1.0
 pytz==2019.1
 requests==2.21.0
