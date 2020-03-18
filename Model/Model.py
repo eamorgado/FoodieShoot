@@ -74,13 +74,19 @@ class ImageClassificationNN():
         print(self.model.summary)
         return self.model
 
-    def modelTrain(self,epochs=30):
-        out_folder = './checkpoints'
+    def modelTrain(self,epochs=30,hist_name='history_class.log',model_name='model_food101.hdf5'):
+        out_folder = os.path.join(os.getcwd(),'checkpoints')
         if not os.path.exists(out_folder):
             os.makedirs(out_folder)
+        
+        mn = os.path.splitext(model_name)[0]
+        out_folder = os.path.join(out_folder,mn)
+        if not os.path.exists(out_folder):
+            os.makedirs(out_folder)
+
         filepath = out_folder + '/model-{epoch:02d}-{val_accuracy:-2f}.hdf5'
         checkpointer = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=False, save_weights_only=False,save_frequency=1)
-        csv_logger = CSVLogger('history_3class.log')
+        csv_logger = CSVLogger(hist_name)
 
         self.history = self.model.fit(self.train_generator,
                         steps_per_epoch=self.nb_train_samples // batch_size,
@@ -90,10 +96,11 @@ class ImageClassificationNN():
                         verbose=1,
                         callbacks=[csv_logger, checkpointer])
         
-        self.model.save('model_food101.hdf5')
+        self.model.save(model_name)
         return self.history, self.model
 
     def modelPredictClass(self,model,images,food_list,show=True):
+        predictions = []
         for img in images:
             img = image.load_img(img, target_size=(299, 299))
             img = image.img_to_array(img)                    
@@ -104,8 +111,10 @@ class ImageClassificationNN():
             index = np.argmax(pred)
             food_list.sort()
             pred_value = food_list[index]
+            predictions.append(pred_value)
             if show:
                 plt.imshow(img[0])                           
                 plt.axis('off')
                 plt.title(pred_value)
                 plt.show()
+        return predictions
