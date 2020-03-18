@@ -1,15 +1,10 @@
-import os
+import os, sys
 import tarfile
 import requests 
 import collections
 from collections import defaultdict
 from shutil import copy, copytree, rmtree
 
-def download_url(url, save_path, chunk_size=128):
-    r = requests.get(url, stream=True)
-    with open(save_path, 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=chunk_size):
-            fd.write(chunk)
 
 class DataProcessor():
     def __init__(self):
@@ -70,8 +65,30 @@ class DataProcessor():
                     copy(os.path.join(src,food,i), os.path.join(dest,food,i))
             print('All done')
 
+    def dataCountDir(self,filename):
+        files = len([name for name in os.listdir(filename) if os.path.isfile(name)])
+        print ("File ",filename, " has ",files," samples")
+        return files
+    
+    def dataListDir(self,filename):
+        return [name for name in os.listdir(filename) if os.path.isfile(name)]
+
     def dataSorted(self,data_dir='food-101/images/'):
         return sorted(os.listdir(data_dir))
 
+    def dataMiniDataset(self,food_list,src,dest):
+        if os.path.exists(dest):
+            inp = str(input('Path already exists.\nDo you want to continue y/n (all data will be lost)'))
+            if inp == 'y':
+                print('Replacing data ...')
+                rmtree(dest)
+            else:
+                print('Operation canceled, terminating')
+                sys.exit()
+        os.makedirs(dest)
+
+        for food_item in food_list:
+            print('Copying images into ',food_item)
+            copytree(os.path.join(src,food_item), os.path.join(dest,food_item))
 
 
