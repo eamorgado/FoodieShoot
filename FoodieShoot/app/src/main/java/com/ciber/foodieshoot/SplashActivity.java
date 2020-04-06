@@ -22,7 +22,7 @@ public class SplashActivity extends Activity {
 
     private void showMainActivity() {
         Intent intent = new Intent(
-                SplashActivity.this,CameraActivity.class);
+                SplashActivity.this,ClassifierActivity.class);
         startActivity(intent);
         finish();
 
