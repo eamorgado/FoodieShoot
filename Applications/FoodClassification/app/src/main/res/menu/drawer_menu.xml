@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">//Select only one item at a time
+        <item android:id="@+id/nav_account"
+            android:icon="@drawable/icn_account"
+            android:title="Account"/>
+        <item android:id="@+id/nav_camera"
+            android:icon="@drawable/icn_camera"
+            android:title="Shoot"/>
+        <item android:id="@+id/nav_shots"
+            android:icon="@drawable/icn_foods"
+            android:title="My foodies"/>
+    </group>
+</menu>

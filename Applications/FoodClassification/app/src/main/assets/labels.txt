@@ -1,0 +1,102 @@
+Almond_7 cal per serve
+Almond cake_353 cal per slice
+Apple_93 cal per unit
+Apple pie_410 cal per slice
+Apricot_17 cal per unit
+Avocado_322 cal per unit
+Bacon_54 cal per slice
+Bagel_277 cal per unit
+Banana_105 cal per unit
+Beer_153 cal per bottle
+Biscuits_49 cal per unit
+Blueberry_1 cal per unit
+Bread_67 cal per slice
+Broccoli_13 cal per slice
+Burrito_434 per unit
+Cabbage_17 cal per unit
+Caesar salad_481 per unit
+Carrot_16 cal per unit
+Carrot cake_120 cal per slice
+Cheese_28 cal per slice
+Cheesecake_257 cal per slice
+Cherry
+Chicken curry
+Chicken wings
+Chocolate
+Chocolate cake
+Chocolate mousse
+Churros
+Cinimon
+Club sandwich
+Coca cola
+Coconut
+Coconut cake
+Coffee
+Crepes
+Croissant
+Cup cakes
+Donut
+Egg
+Eggrolls
+Falafel
+Fish and chips
+French fries
+Fried rice
+Frozen yogurt
+Garlic bread
+Gelatin
+Ginger
+Gingerbread
+Grape
+Green tea
+Grilled cheese sandwich
+Grilled salmon
+Hamburger
+Hazelnut
+Honey
+Hot dog
+Ice cream
+Iced tea
+Lasagna
+Lemonade
+Lettuce
+Lollipop
+Macaroni and cheese
+Macarons
+Marshmallow
+Meatballs
+Meatloaf
+Melon
+Milk
+Milkshake
+Muffin
+Nachos
+Omelet
+Onion
+Orange
+Pancakes
+Pasta
+Peanut
+Peanut butter
+Pear
+Pickles
+Pineapple
+Pizza
+Popcorn
+Pork ribs
+Potato
+Pretzel
+Pudding
+Raspberry
+Rice
+Shrimp
+Spaghetti bolognese
+Spaghetti carbonara
+Strawberry
+Steak
+Sushi
+Tacos
+Tomato
+Waffles
+Watermelon
+Wine

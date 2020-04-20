@@ -21,8 +21,9 @@
             <h2><b>How does it know?</b></h2>
             <br> It uses the third-party end-to-end open source machine learning platform
             <a class="btn btn-lg tensor-link hv-inv-gr-blk" href="https://www.tensorflow.org/"><img src="{% static 'foodieshoot/images/tf.png' %}" alt="TensorFlow" width="150"></a>
+            <br>to build an image recognition neural network.
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-6">
             <!-- Side links -->
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
@@ -35,6 +36,9 @@
                 {% endif %}
                 <li class="nav-item">
                     <a href="{% url 'fs-download' %}" id="pill" class="nav-link">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'fs-about' %}" id="pill" class="nav-link">Behind the scenes</a>
                 </li>
             </ul>
         </div>

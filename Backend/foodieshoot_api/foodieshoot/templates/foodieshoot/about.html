@@ -13,7 +13,43 @@
 <div class="jumbotron">
     <h3 class="font-buk">Here's us</h3>
 </div>
-<br><br><br><br> <br><br><br><br>{% endblock content %}
+
+<br><br>
+<div class="container">
+    <h1 class="font-buk">Behind the scenes</h1>
+</div>
+<br>
+<div class="jumbotron">
+    <div class="row">
+        <div id="basic-info" class="col-md-8 mb-4">
+            <h1 class="font-mts"><b>TensorFlow 2.0</b></h1>
+            <br>
+            We use TensorFlow 2.0 to allow us to use the <a href="https://www.tensorflow.org/lite" style="color: red">TF lite API</a> to convert our model to a compact and fast android compatible servable model
+        </div>
+        <div class="col-md-4 mb-4">
+            <h2><b>The data</b></h2>
+            <br>To build the model we collected food data (images) and assembled a dataset, you can get it 
+            <a href="{% url 'fs-download-dataset' %}" class="btn btn-lg bg-cust smooth-scroll hv-inv-red-blk" role="button">
+                    <span class=""><b>Here</b></span>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="container">
+            <h1><b></b>Building the model for transfer learning</b></h1>
+            <br>
+        </div>
+        <div class="col-md-8 mb-4">
+            We use TensorFlow 2.0's high-level Keras API to quickly build our image classification model. For transfer learning we started using InceptionV3 model however, since our goal is to build a portable android model, we moved to a MobileNet model, this kind of models are designed to be resource friendly and quick. 
+        </div>
+        <div class="col-md-4 mb-4">
+            Transfer learning speeds up training by enabling us to reuse existing pre-trained image classification models, only retraining the top layer of the network that determines the classes and image can belong to.
+        </div>
+    </div>
+    <br><br>
+</div>
+<br><br>{% endblock content %}
 
 
 

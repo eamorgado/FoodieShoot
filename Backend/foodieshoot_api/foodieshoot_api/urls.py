@@ -18,8 +18,11 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
+from foodieshoot import views as fviews
 
-
+handler404 = fviews.view_404
+handler500 = fviews.view_500
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -29,5 +32,3 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-    
-handler404 = 'foodieshoot.views.handler404'
