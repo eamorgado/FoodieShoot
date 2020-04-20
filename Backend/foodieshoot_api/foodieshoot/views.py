@@ -4,7 +4,8 @@ from django.views.static import serve
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext
-from .models import Apks
+from .models import Apks, ImageDataset
+from wsgiref.util import FileWrapper
 import struct
 
 
@@ -22,10 +23,11 @@ def about(request):
 
 
 #Custom 404 handler
-def handler404(request, exception, template_name="404.html"):
-    response = render_to_response(template_name)
-    response.status_code = 404
-    return response
+def view_404(request):
+    return render(request,"foodieshoot/404.html",status=404)
+
+def view_500(request):
+    return render(request,"foodieshoot/500.html",status=500)
 
 
 def download_apk(request,name=None,version=None):
@@ -50,6 +52,32 @@ def download_apk(request,name=None,version=None):
                     version = a_version
             except ValueError:
                 return HttpResponse('<h1>500<h1>')
-        return serve(request,file,document_root=settings.BASE_DIR)
+        filepath = settings.BASE_DIR + file
+        fsock = open(filepath,"rb")
+        response = HttpResponse(fsock,content_type='application/vnd.android.package-archive')
+        response['Content-Disposition'] = 'attachment; filename=FoodieShoot_' + str(version) + '.apk'
+        return response
+
+def download_dataset(request):
+    name = 'FoodieShoot_ImageBank'
+    all_files = ImageDataset.objects.filter(dataset_name=name)
+    if not all_files:
+        return HttpResponse('<h1>File does not exist<h1>')
+    else:
+        file = None
+        version = 0.0
+        for ap in all_files:
+            try:
+                a_version = float(ap.dataset_version)
+                if a_version >= version:
+                    file = ap.dataset_file.url
+                    version = a_version
+            except ValueError:
+                return HttpResponse('<h1>500<h1>')
+        filepath = settings.BASE_DIR + file
+        fsock = open(filepath,"rb")
+        response = HttpResponse(fsock,content_type='application/gzip')
+        response['Content-Disposition'] = 'attachment; filename=FoodieShoot_ImageBank.tar.gz'
+        return response
 
     

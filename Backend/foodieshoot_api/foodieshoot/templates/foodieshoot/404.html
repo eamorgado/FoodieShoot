@@ -5,21 +5,9 @@
 
 <!-- prettier-ignore -->
 {% block content %}
-<br>
 <div class="container">
-    <h1>Oops <span style="color: red; font-size: 50px">...</span></h1>
+    <img src="{% static 'foodieshoot/images/404.png' %}" alt="" width="100%">
 </div>
-<br>
-<div class="jumbotron">
-    <img src="{% static 'foodieshoot/images/404.png' %}" alt="">
-</div>
-<br><br><br><br> <br><br><br><br>{% endblock content %}
-
-
-
+{% endblock content %}
 <!-- prettier-ignore -->
 {% block footer %}{% include "foodieshoot/footer.html" %}{% endblock footer %}
-
-
-<!-- prettier-ignore -->
-{% block scripts %}{% endblock scripts%}

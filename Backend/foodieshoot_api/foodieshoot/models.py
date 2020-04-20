@@ -28,3 +28,19 @@ class Apks(models.Model):
         return '{} ---> {}'.format(self.apk_name,self.apk_version)
     class Meta:
         verbose_name_plural = 'Apks'
+
+
+def upload_location_dataset(instance,filename):
+    name = instance.dataset_name + '_' + instance.dataset_num_classes
+    return 'datasets/{}.tar.gz'.format(name)
+
+class ImageDataset(models.Model):
+    dataset_version = models.AutoField(primary_key=True)
+    dataset_num_classes = models.CharField(max_length=4)
+    dataset_name = models.CharField(max_length=255)
+    dataset_file = models.FileField(upload_to=upload_location_dataset,default='FoodieShoot_ImageBank.tar.gz')
+    dataset_date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return '{} V{} classes({})'.format(self.dataset_name,self.dataset_version,self.dataset_num_classes)
+    class Meta:
+        verbose_name_plural = 'Dataset'
