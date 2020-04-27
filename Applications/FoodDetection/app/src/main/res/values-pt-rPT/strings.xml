@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tfe_od_camera_error">Este dispositivo não suporta API Camara2.</string>
+    <string name="tfe_ic_model" translatable="false">Modelo:</string>
+    <string name="tfe_ic_device">Dispositivo:</string>
+    <string name="login_pass">Palavra passe</string>
+    <string name="login_forgot">Esqueceu palavra passe</string>
+    <string name="login_signup">Registar</string>
+    <string name="login_login">Entrar</string>
+    <string name="login_hello">Bem</string>
+    <string name="login_there" translatable="false">Vindo</string>
+    <string name="no_account_camera_back_text">Voltar ao início</string>
+    <string name="no_account_inference_time">Tempo de inferência</string>
+    <string name="login_username">" Nome do usuário"</string>
+</resources>

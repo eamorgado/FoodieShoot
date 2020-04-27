@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Frame"
+            android:text="@string/no_account_camera_frame"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Crop"
+            android:text="@string/no_account_crop"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Inference Time"
+            android:text="@string/no_account_inference_time"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Threads"
+            android:text="@string/no_account_threads"
             android:textColor="@android:color/black" />
 
         <LinearLayout

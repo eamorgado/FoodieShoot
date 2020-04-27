@@ -19,6 +19,7 @@ package com.ciber.foodieshoot.applications.detection;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
@@ -39,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Size;
+import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -94,14 +96,8 @@ public abstract class CameraActivity extends AppCompatActivity
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
     setContentView(R.layout.tfe_od_activity_camera);
-    /**
-     * Toolbar toolbar = findViewById(R.id.toolbar);
-     *     setSupportActionBar(toolbar);
-     *     getSupportActionBar().setDisplayShowTitleEnabled(false);
-     */
-
+    backToMain();
     if (hasPermission()) {
       setFragment();
     } else {
@@ -144,18 +140,18 @@ public abstract class CameraActivity extends AppCompatActivity
                 break;
               case BottomSheetBehavior.STATE_EXPANDED:
                 {
-                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_down);
+                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_arrowdown);
                 }
                 break;
               case BottomSheetBehavior.STATE_COLLAPSED:
                 {
-                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_up);
+                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_arrow_up);
                 }
                 break;
               case BottomSheetBehavior.STATE_DRAGGING:
                 break;
               case BottomSheetBehavior.STATE_SETTLING:
-                bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_up);
+                bottomSheetArrowImageView.setImageResource(R.drawable.icn_arrow_up);
                 break;
             }
           }
@@ -552,4 +548,23 @@ public abstract class CameraActivity extends AppCompatActivity
   protected abstract void setNumThreads(int numThreads);
 
   protected abstract void setUseNNAPI(boolean isChecked);
+
+
+  /**
+   * Method to go back if user has no account
+   */
+  protected void backToMain() {
+    ImageView imageView = (ImageView) findViewById(R.id.no_account_back);
+    //set the ontouch listener
+    imageView.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        Intent intent = new Intent(
+                CameraActivity.this, LoginPage.class);
+        startActivity(intent);
+        finish();
+        return false;
+      }
+    });
+  }
 }

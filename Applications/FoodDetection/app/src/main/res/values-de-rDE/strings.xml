@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tfe_ic_model">" Modell:"</string>
+    <string name="tfe_ic_device">" Gerät:"</string>
+    <string name="login_pass">Passwort</string>
+    <string name="login_forgot">" Passwort vergessen"</string>
+    <string name="login_signup">" Anmelden"</string>
+    <string name="login_login">" Einloggen"</string>
+    <string name="login_hello">" Herzlich"</string>
+    <string name="login_there">Willkommen</string>
+    <string name="no_account_camera_back_text">" Zurück nach Hause"</string>
+    <string name="no_account_inference_time">" Inferenzzeit"</string>
+    <string name="tfe_od_camera_error">" Dieses Gerät unterstützt die Camera2-API nicht."</string>
+    <string name="login_username">" Nutzername"</string>
+</resources>

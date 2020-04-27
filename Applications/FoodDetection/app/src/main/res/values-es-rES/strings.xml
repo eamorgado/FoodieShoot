@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_hello">Bien</string>
+    <string name="login_there">Venido</string>
+    <string name="login_pass">Contraseña</string>
+    <string name="login_forgot">" ¿Se te olvidó tu contraseña"</string>
+    <string name="login_signup">" Regístrate"</string>
+    <string name="login_login">" Iniciar sesión"</string>
+    <string name="tfe_ic_device">" Dispositivo:"</string>
+    <string name="tfe_ic_model">" Modelo:"</string>
+    <string name="tfe_od_camera_error">" Este dispositivo no es compatible con la API de Camera2."</string>
+    <string name="no_account_camera_back_text">Volver a la página de inicio</string>
+    <string name="no_account_inference_time">Tiempo de inferencia</string>
+    <string name="login_username">" Nombre de usuario"</string>
+</resources>

@@ -1,15 +1,29 @@
 <resources>
-    <string name="app_name">FoodieShoot</string>
+    <string name="app_name" translatable="false">FoodieShoot</string>
     <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
-    <string name="tfe_ic_model" translatable="false">Model:</string>
+    <string name="tfe_ic_model">Model:</string>
     <string-array name="tfe_ic_models" translatable="false">
         <item>Float_MobileNet</item>
     </string-array>
 
-    <string name="tfe_ic_device" translatable="false">Device:</string>
-    <string-array name="tfe_ic_devices" translatable="false">
+    <string name="tfe_ic_device">Device:</string>
+    <string-array name="tfe_ic_devices">
         <item>CPU</item>
-        <!-- TODO: Add GPU  -->
-
     </string-array>
+
+    <!-- Text camera no account -->
+    <string name="no_account_camera_back_text">Back to Home</string>
+    <string name="no_account_camera_frame" translatable="false">Frame</string>
+    <string name="no_account_crop" translatable="false">Crop</string>
+    <string name="no_account_inference_time">Inference Time</string>
+    <string name="no_account_threads" translatable="false">Threads</string>
+
+    <!-- Login Page strings -->
+    <string name="login_hello">Hello</string>
+    <string name="login_there">There</string>
+    <string name="login_username">Username</string>
+    <string name="login_pass">Password</string>
+    <string name="login_forgot">Forgot password</string>
+    <string name="login_signup">Sign up</string>
+    <string name="login_login">Login</string>
 </resources>

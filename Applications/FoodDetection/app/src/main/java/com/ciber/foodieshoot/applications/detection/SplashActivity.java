@@ -17,15 +17,13 @@ public class SplashActivity extends Activity {
             public void run() {
                 showMainActivity();
             }
-        }, 2000);
+        }, 1500);
     }
 
     private void showMainActivity() {
         Intent intent = new Intent(
-                SplashActivity.this,DetectorActivity.class);
+                SplashActivity.this, LoginPage.class);
         startActivity(intent);
         finish();
-
-
     }
 }
