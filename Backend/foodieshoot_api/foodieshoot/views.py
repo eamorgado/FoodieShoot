@@ -23,10 +23,10 @@ def about(request):
 
 
 #Custom 404 handler
-def view_404(request):
+def view_404(request,exception=None):
     return render(request,"foodieshoot/404.html",status=404)
 
-def view_500(request):
+def view_500(request,exception=None):
     return render(request,"foodieshoot/500.html",status=500)
 
 
