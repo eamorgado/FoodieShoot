@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     // Build off of nightly TensorFlow Lite
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
@@ -69,4 +69,10 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.0.0-alpha1'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+
+    //REST API library to make api calls in one line
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.google.code.gson:gson:2.4'
+
 }

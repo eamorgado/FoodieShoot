@@ -11,5 +11,14 @@
     <string name="login_there" translatable="false">Vindo</string>
     <string name="no_account_camera_back_text">Voltar ao início</string>
     <string name="no_account_inference_time">Tempo de inferência</string>
-    <string name="login_username">" Nome do usuário"</string>
+    <string name="login_username">Nome de utilizador ou email</string>
+    <string name="signup">Registrar</string>
+    <string name="signup_email" translatable="false">Email</string>
+    <string name="signup_username">Utilizador</string>
+    <string name="signup_first_name">Primeiro nome</string>
+    <string name="signup_last_name">" Apelido"</string>
+    <string name="signup_confirm_password">Confirme a Senha</string>
+    <string name="empty_field_error">Este campo não pode estar vazio</string>
+    <string name="credential_error">" Credenciais inválidas"</string>
+    <string name="invalid_email">"  E-mail inválido"</string>
 </resources>

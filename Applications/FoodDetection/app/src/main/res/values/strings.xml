@@ -21,9 +21,24 @@
     <!-- Login Page strings -->
     <string name="login_hello">Hello</string>
     <string name="login_there">There</string>
-    <string name="login_username">Username</string>
+    <string name="login_username">Username or email</string>
     <string name="login_pass">Password</string>
     <string name="login_forgot">Forgot password</string>
     <string name="login_signup">Sign up</string>
     <string name="login_login">Login</string>
+
+    <!-- Sign up -->
+    <string name="signup">Sign Up</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_first_name">First Name</string>
+    <string name="signup_last_name">Last Name</string>
+    <string name="signup_confirm_password">Confirm Password</string>
+
+
+
+    <!-- ERRORS  -->
+    <string name="empty_field_error">This field cannot be empty</string>
+    <string name="credential_error">Invalid credentials</string>
+    <string name="invalid_email">Invalid email</string>
 </resources>
