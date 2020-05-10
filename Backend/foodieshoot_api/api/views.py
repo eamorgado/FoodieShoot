@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from users.models import Profile
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from foodieshoot.models import FoodieShoots
 from api import serializers
-from api.serializers import RegistrationSerializer
+from api.serializers import RegistrationSerializer, UserLoginSerializer, UserLoginSerializerToken
 
 
 #REST packages
@@ -46,6 +47,33 @@ def resgistration_view(request):
             data['error'] = serializer.errors
         
         return Response(data)
+
+@api_view(['POST',])
+def login_view(request):
+    if request.method == 'POST':
+        if 'token' in request.data:
+            serializer = UserLoginSerializerToken(data=request.data)
+        else:
+            serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+            username = data["username"]
+            password = data["password"]
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request,user)
+            del data["password"]
+            data["status"] = 'success'
+        else:
+            data = {}
+            data["status"] = 'fail'
+            data["error"] = serializer.errors
+        return Response(data)
+
+class UserLogin(APIView):
+    serializer_class = UserLoginSerializer
+    def post(self,request):
+        return Response(UserLoginSerializer(data=request.data).data)
 
 #TEST ==> REMOVE AFTER
 #List all users even if request user is not authenticated
