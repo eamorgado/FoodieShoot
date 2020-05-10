@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Google sign in
+#    'social_django',
     #'allauth',
     #'allauth.account',
     #'allauth.socialaccount',
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
 
 ]
 
+#Tell django to use the first site/db as a default site 
 #SITE_ID = 1
 
 REST_FRAMEWORK = {
@@ -174,10 +176,11 @@ EMAIL_HOST_PASSWORD = config.get('EMAIL_PASS')
 
 
 #Add django allauth backend
-AUTHENTICATION_BACKENDS = (
+#AUTHENTICATION_BACKENDS = (
+#    'social_core.backends.google.GoogleOAuth2',
     #Needed to login by username in Django admin, regardless of 'allauth'
-    'django.contrib.auth.backends.ModelBackend',
+#    'django.contrib.auth.backends.ModelBackend',
 
     #'allauth' specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend'
-)
+#    'allauth.account.auth_backends.AuthenticationBackend'
+#)
