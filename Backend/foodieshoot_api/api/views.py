@@ -11,6 +11,7 @@ from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
 
@@ -34,11 +35,13 @@ def resgistration_view(request):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            token,_ = Token.objects.get_or_create(user=user)
             data['status'] = "success"
             data['email'] = user.email
             data['username'] = user.username
             data['first_name'] = user.first_name
             data['last_name'] = user.last_name
+            data['token'] = token.key
         else:
             data['error'] = serializer.errors
         
