@@ -17,13 +17,24 @@ from rest_framework.decorators import api_view
 #Registration view
 @api_view(['POST',])
 def resgistration_view(request):
+    args = ['email','username','first_name','last_name','password','password2']
     if request.method == 'POST':
+        flag = False
+        data = {'status': 'fail'}
+        for param in args:
+            if param not in request.data or (not request.data[param] or request.data[param][0] == ""):
+                flag = True
+                if 'error' not in data:
+                    data['error'] = {
+                        'form_data': {}
+                    }
+                data['error']['form_data'][param] = 'Param missing or empty'
+        if flag:
+            return Response(data)
         serializer = RegistrationSerializer(data=request.data)
-        data = {}
-
         if serializer.is_valid():
             user = serializer.save()
-            data['status'] = "Success"
+            data['status'] = "success"
             data['email'] = user.email
             data['username'] = user.username
             data['first_name'] = user.first_name
