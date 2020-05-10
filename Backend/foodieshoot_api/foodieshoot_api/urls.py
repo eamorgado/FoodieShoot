@@ -29,6 +29,10 @@ urlpatterns = [
     path('',include('foodieshoot.urls')),
     path('',include('users.urls')),
     path('api/v1/',include('api.urls')),
+
+
+    
+    #path('accounts/',include('allauth.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

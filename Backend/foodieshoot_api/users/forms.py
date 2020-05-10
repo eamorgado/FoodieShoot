@@ -19,6 +19,13 @@ class UserRegisterForm(UserCreationForm):
             'first_name': forms.fields.TextInput(attrs={'placeholder': 'First name'}),
             'last_name': forms.fields.TextInput(attrs={'placeholder': 'Last name'}),
         }
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError(u'Email addresses must be unique.')
+        return email
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
@@ -30,6 +37,13 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email',]
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError(u'Email addresses must be unique.')
+        return email
 
 
 class ProfileUpdateForm(forms.ModelForm):
