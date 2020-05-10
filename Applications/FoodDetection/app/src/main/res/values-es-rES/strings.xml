@@ -11,5 +11,14 @@
     <string name="tfe_od_camera_error">" Este dispositivo no es compatible con la API de Camera2."</string>
     <string name="no_account_camera_back_text">Volver a la página de inicio</string>
     <string name="no_account_inference_time">Tiempo de inferencia</string>
-    <string name="login_username">" Nombre de usuario"</string>
+    <string name="login_username">Nombre de usuario o correo electrónico</string>
+    <string name="signup">Regístrate</string>
+    <string name="signup_email" translatable="false">Correo electrónico</string>
+    <string name="signup_username">" Nombre de usuario"</string>
+    <string name="signup_first_name">" Nombre de pila"</string>
+    <string name="signup_last_name">Apellido</string>
+    <string name="signup_confirm_password">" Confirmar contraseña"</string>
+    <string name="empty_field_error">" Este campo no puede estar vacío"</string>
+    <string name="credential_error">" Credenciales no válidas"</string>
+    <string name="invalid_email">" Email inválido"</string>
 </resources>

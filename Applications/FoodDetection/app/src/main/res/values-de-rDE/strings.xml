@@ -11,5 +11,15 @@
     <string name="no_account_camera_back_text">" Zurück nach Hause"</string>
     <string name="no_account_inference_time">" Inferenzzeit"</string>
     <string name="tfe_od_camera_error">" Dieses Gerät unterstützt die Camera2-API nicht."</string>
-    <string name="login_username">" Nutzername"</string>
+    <string name="login_username">" Benutzername oder E-Mail-Adresse"</string>
+    <string name="signup">" Anmelden"</string>
+    <string name="signup_email" translatable="false">Email</string>
+    <string name="signup_username">Nutzername</string>
+    <string name="signup_first_name">Vorname</string>
+    <string name="signup_last_name">Nachname</string>
+    <string name="signup_password">" "</string>
+    <string name="signup_confirm_password">Kennwort bestätigen</string>
+    <string name="empty_field_error">" Dieses Feld kann nicht leer sein"</string>
+    <string name="credential_error">Ungültige Anmeldeinformationen</string>
+    <string name="invalid_email">Ungültige E-Mail</string>
 </resources>
