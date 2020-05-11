@@ -30,5 +30,7 @@
     <string name="calories_underneath">" Encuentra las calorías debajo"</string>
     <string name="point_shoot_and_eat">" Punto disparar y comer"</string>
     <string name="scroll_up_open">" Desplácese hacia arriba para tomar una foto"</string>
-    <string name="open_camera">" Cámara de apertura"</string>
+    <string name="open_camera">"  Cámara abierta"</string>
+    <string name="login_continue_no_account">" Continuar sin cuenta"</string>
+    <string name="keep_me_logged">Mantenme conectado</string>
 </resources>

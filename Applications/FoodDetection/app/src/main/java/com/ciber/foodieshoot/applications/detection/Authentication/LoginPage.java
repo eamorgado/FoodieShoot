@@ -1,5 +1,6 @@
 package com.ciber.foodieshoot.applications.detection.Authentication;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.SimpleGestureFilter;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
@@ -46,8 +50,8 @@ public class LoginPage extends AppCompatActivity {
     private Validators validator;
 
     //Rest api requests;
-    private RequestQueue request_object;
-    private JsonObjectRequest json_object;
+    //private RequestQueue request_object;
+    //private JsonObjectRequest json_object;
 
 
     @Override
@@ -60,8 +64,6 @@ public class LoginPage extends AppCompatActivity {
         //Initialize validator
         validator = new Validators(this);
 
-        //Prepare for rest requests
-        request_object = Volley.newRequestQueue(this);
         layout_auxiliar.stopProgress(PROGRESS_ID);
 
         //Change text view colors
@@ -142,54 +144,43 @@ public class LoginPage extends AppCompatActivity {
         String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGIN_PATH});
         Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
 
-        JSONObject parameters = new JSONObject(params);
-        json_object = new JsonObjectRequest(
-                Request.Method.POST,
-                endpoint,
-                parameters,
-                new Response.Listener<JSONObject>(){
-                    @Override
-                    public void onResponse(JSONObject response){
-                        Log.e(Configurations.REST_API,response.toString());
-                        //Parse response
-                        try {
-                            String status = response.get("status").toString();
-                            if(status.equals("success")){
-                                layout_auxiliar.setUserVars(response);
-                                layout_auxiliar.openActivity(Logged_Home.class);
-                            }
-                            //fail
-                            JSONObject jsonobject = (JSONObject) response.get("error");
-                            Iterator<String> keys = jsonobject.keys();
-                            while(keys.hasNext()){
-                                String key = keys.next();
-                                switch (key){
-                                    case "credentials":
-                                        ((EditText) findViewById(R.id.input_password)).setError(getString(R.string.credential_error)); break;
-                                    case "user": ((EditText) findViewById(R.id.input_email)).setError(getString(R.string.invalid_email)); break;
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layout_auxiliar.stopProgress(PROGRESS_ID);
-                            }
-                        }, 1500);
-
+        NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
+            @Override
+            public void parseResponse(JSONObject response) {
+                try{
+                    String status = response.get("status").toString();
+                    if(status.equals("success")){
+                        layout_auxiliar.setUserVars(response);
+                        Switch keep_me_logged = (Switch) findViewById(R.id.keep_me_logged);
+                        if(keep_me_logged.isChecked())
+                            Configurations.setToken(Configurations.USER.TOKEN.getValue());
+                        Configurations.sendNotification(getString(R.string.login_login),getString(R.string.login_success), NotificationManager.IMPORTANCE_DEFAULT);
+                        layout_auxiliar.openActivity(Logged_Home.class);
                     }
-                }, new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-                                error.printStackTrace();
-                                Log.e(Configurations.REST_AUTH_FAIL,error.toString());
-                            }
+                    //fail
+                    JSONObject jsonobject = (JSONObject) response.get("error");
+                    Iterator<String> keys = jsonobject.keys();
+                    while(keys.hasNext()){
+                        String key = keys.next();
+                        switch (key){
+                            case "credentials":
+                                ((EditText) findViewById(R.id.input_password)).setError(getString(R.string.credential_error)); break;
+                            case "user": ((EditText) findViewById(R.id.input_email)).setError(getString(R.string.invalid_email)); break;
                         }
-        );
-
-        request_object.add(json_object);
+                    }
+                }catch(JSONException e){e.printStackTrace();}
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() { layout_auxiliar.stopProgress(PROGRESS_ID);}
+                }, 1500);
+            }
+            @Override
+            public void handleError(VolleyError error) {
+                //TODO => improve error response with popup
+                error.printStackTrace();
+                Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+            }
+        });
     }
 }

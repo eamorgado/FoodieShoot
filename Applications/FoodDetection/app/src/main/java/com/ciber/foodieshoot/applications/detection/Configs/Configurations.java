@@ -1,6 +1,24 @@
 package com.ciber.foodieshoot.applications.detection.Configs;
 
-public final class Configurations {
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.preference.PreferenceManager;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import com.ciber.foodieshoot.applications.detection.R;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
+
+import static android.content.Context.MODE_PRIVATE;
+
+public class Configurations {
+    //Preferences
+    public static final String SHARED_PREFS = "sharedPreferences";
+
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
 
@@ -51,4 +69,56 @@ public final class Configurations {
         }
     }
 
+    public static void setToken(String token){
+        Context context = SplashActivity.getContextOfApplication();
+        SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER.TOKEN.getKey(),token);
+        editor.commit();
+    }
+
+    public static boolean checkToken(){
+        Context context = SplashActivity.getContextOfApplication();
+        SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
+        String token = preferences.getString(USER.TOKEN.getKey(),"");
+        if(token.equals(""))
+            return false;
+        USER.TOKEN.setValue(token);
+        return true;
+    }
+
+    public static void deleteToken(){
+        Context context = SplashActivity.getContextOfApplication();
+        SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(USER.TOKEN.getKey());
+        editor.apply();
+    }
+
+
+    //Notifications
+    private static void createNotificationChannel(int importance){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "user_channel";
+            String description = "Channel for user notifications";
+            NotificationChannel ch = new NotificationChannel("FoodieShoot_notify",name,importance);
+            ch.setDescription(description);
+            Context context = SplashActivity.getContextOfApplication();
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(ch);
+        }
+    }
+
+    public static void sendNotification(String title,String message,int priority){
+        Context context = SplashActivity.getContextOfApplication();
+        Configurations.createNotificationChannel(priority);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"FoodieShoot_notify")
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(priority);
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
+        manager.notify(1,builder.build());
+    }
 }

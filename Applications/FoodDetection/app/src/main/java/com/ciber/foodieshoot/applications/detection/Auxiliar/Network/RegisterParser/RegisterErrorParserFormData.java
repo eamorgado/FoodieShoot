@@ -1,4 +1,4 @@
-package com.ciber.foodieshoot.applications.detection.Auxiliar;
+package com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RegisterParser;
 
 import java.util.HashMap;
 import java.util.Map;
