@@ -1,12 +1,9 @@
 package com.ciber.foodieshoot.applications.detection.Authentication;
 
-import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -15,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,18 +25,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.SimpleGestureFilter;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -56,10 +49,6 @@ public class LoginPage extends AppCompatActivity {
     private RequestQueue request_object;
     private JsonObjectRequest json_object;
 
-    //Swipe up feature
-    private GestureDetector gdt;
-    private static final int MIN_SWIPPING_DISTANCE = 10;
-    private static final int THRESHOLD_VELOCITY = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +65,16 @@ public class LoginPage extends AppCompatActivity {
         layout_auxiliar.stopProgress(PROGRESS_ID);
 
         //Change text view colors
-        int[] ids = {R.id.there_login,R.id.forgot_pass};
-        String texts[] = {  " <font color=#FF0000><big>.</big></font>",
+        int[] ids = {R.id.forgot_pass};
+        String texts[] = { // " <font color=#FF0000><big>.</big></font>",
                 " <font color=#FF0000><big>?</big></font>"
         };
         layout_auxiliar.changeColor(ids,texts);
         forgotPasswordLink();
-        addBottomScroll();
         checkLogin();
         moveToSignUp();
         loginButtonPressed();
+        continueNoAccount();
     }
 
     private void checkLogin(){
@@ -122,37 +111,15 @@ public class LoginPage extends AppCompatActivity {
         });
     }
 
-    private void addBottomScroll(){
-        ImageView imageView = (ImageView) findViewById(R.id.continue_no_login);
-        gdt = new GestureDetector(new GestureListener());
-        imageView.setOnTouchListener(new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(final View view, final MotionEvent event) {
-                gdt.onTouchEvent(event);
-                return true;
-            } });
-    }
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener
-    {        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            if (e1.getX() - e2.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
-            {
-                Toast.makeText(getApplicationContext(), getString(R.string.open_camera), Toast.LENGTH_SHORT).show();
+    private void continueNoAccount(){
+        Button continue_no_account = (Button) findViewById(R.id.continue_no_account);
+        continue_no_account.setMovementMethod(LinkMovementMethod.getInstance());
+        continue_no_account.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
                 layout_auxiliar.openActivity(DetectorActivity.class);
-                return false;
             }
-            else if (e2.getX() - e1.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
-            {
-                Toast.makeText(getApplicationContext(), getString(R.string.open_camera), Toast.LENGTH_SHORT).show();
-                layout_auxiliar.openActivity(DetectorActivity.class);
-                return false;
-            }
-            return false;
-        }
+        });
     }
-
     private void loginButtonPressed(){
         Button login_button = (Button) findViewById(R.id.login);
         login_button.setMovementMethod(LinkMovementMethod.getInstance());
