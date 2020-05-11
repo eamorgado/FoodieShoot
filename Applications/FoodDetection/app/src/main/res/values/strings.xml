@@ -11,6 +11,8 @@
         <item>CPU</item>
     </string-array>
 
+    <string name="open_camera">Opening camera</string>
+
     <!-- Text camera no account -->
     <string name="no_account_camera_back_text">Back to Home</string>
     <string name="no_account_camera_frame" translatable="false">Frame</string>
@@ -26,6 +28,7 @@
     <string name="login_forgot">Forgot password</string>
     <string name="login_signup">Sign up</string>
     <string name="login_login">Login</string>
+    <string name="login_continue_no_account">Continue with no account</string>
 
     <!-- Sign up -->
     <string name="signup">Sign Up</string>
@@ -36,6 +39,10 @@
     <string name="signup_confirm_password">Confirm Password</string>
 
 
+    <!-- Logged Home  -->
+    <string name="point_shoot_and_eat">  Point shoot and eat</string>
+    <string name="calories_underneath">Find the calories underneath</string>
+    <string name="scroll_up_open">Scroll up to take shot</string>
 
     <!-- ERRORS  -->
     <string name="empty_field_error">This field cannot be empty</string>
@@ -47,5 +54,6 @@
     <string name="password_match">Passwords must match.</string>
     <string name="username_exists">A user with that username already exists.</string>
     <string name="email_exists">Email already exists.</string>
+
 
 </resources>

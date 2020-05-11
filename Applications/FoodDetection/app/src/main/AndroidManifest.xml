@@ -19,7 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Authenticated.Logged_Home"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -35,18 +34,36 @@
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenGrey" />
+
         <activity
             android:name=".Authentication.LoginPage"
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullscreenGrey"
+            android:theme="@style/AppTheme.FullscreenRed"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+
         <activity
             android:name=".Authentication.SignUp"
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullscreenGrey"
+            android:theme="@style/AppTheme.FullscreenRed"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Authenticated.Logged_Home"
+            android:label="FoodieShoot"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullscreenRed"
+            android:windowSoftInputMode="stateVisible|adjustPan" >
+
+        </activity>
+
+        <activity
+            android:name=".Authenticated.Camera.DetectorActivity"
+            android:label="FoodieShoot"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullscreenGrey" />
+
     </application>
 
 </manifest>

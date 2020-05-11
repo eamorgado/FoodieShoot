@@ -7,7 +7,22 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Authentication.LoginPage">
 
+    <ImageView
+        android:id="@+id/top_image2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="500dp"
+        android:maxHeight="500dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/login_back"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout2" />
+
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +43,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="invisible"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,17 +88,20 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="470dp">
+            android:layout_height="353dp"
+
+            android:paddingTop="20dp"
+            android:scaleType="fitCenter">
 
             <LinearLayout
                 android:id="@+id/signup_linearlayout1"
                 android:layout_width="match_parent"
-                android:layout_height="369dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:orientation="vertical"
-                android:paddingLeft="24dp"
-                android:paddingTop="56dp"
-                android:paddingRight="24dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
                 android:scaleType="fitCenter">
 
 
@@ -169,8 +190,8 @@
                     android:id="@+id/login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
                     android:fontFamily="@font/bukhari"
                     android:gravity="center"
                     android:text="@string/login_login"
@@ -192,7 +213,7 @@
             android:maxWidth="10dp"
             android:maxHeight="10dp"
             android:text="@string/login_signup"
-            android:textColor="@color/redBold"
+            android:textColor="@android:color/white"
             android:textSize="15sp">
 
         </Button>

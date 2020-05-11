@@ -27,4 +27,8 @@
     <string name="password_match">" Passwörter müssen übereinstimmen."</string>
     <string name="username_exists">" Ein Benutzer mit diesem Benutzernamen existiert bereits."</string>
     <string name="email_exists">" E-Mail existiert bereits."</string>
+    <string name="calories_underneath">" Finden Sie die Kalorien darunter"</string>
+    <string name="point_shoot_and_eat">" Punkt schießen und essen"</string>
+    <string name="scroll_up_open">" Scrollen Sie nach oben, um eine Aufnahme zu machen"</string>
+    <string name="open_camera">" Kamera öffnen"</string>
 </resources>
