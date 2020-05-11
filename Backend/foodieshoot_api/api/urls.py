@@ -15,5 +15,8 @@ urlpatterns = [
     path('account/register',views.resgistration_view, name='rest-v1-register'),
 
     #Login user
-    path('account/login',views.login_view,name='rest-v1-login')
+    path('account/login',views.login_view,name='rest-v1-login'),
+
+    #Logout
+    path('account/logout',views.RestLogout.as_view(),name='rest-v1-logout')
 ]

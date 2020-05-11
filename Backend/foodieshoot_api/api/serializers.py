@@ -83,30 +83,23 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=False,allow_blank=True)
     email = serializers.EmailField(label='Email',required=False,allow_blank=True)
     class Meta:
         model = User
-        fields = ['username','email','password',]
+        fields = ['email','password',]
         extra_kwargs = {
             'password': {'write_only': True}
         }
     def validate(self,data):
         email = data.get("email",None)
-        username = data.get("username",None)
         password = data["password"]
-        if not email and not username:
-            raise serializers.ValidationError({"user":["Username or email missing"]})
-            
-        user = User.objects.filter(
-            Q(email=email) |
-            Q(username=username)
-        ).distinct()
-
+        if not email:
+            raise serializers.ValidationError({"user":"Email missing"})
+        user = User.objects.filter(email=email)
         if user.exists() and user.count() == 1:
             user = user.first()
             if user.password != password:
-                raise serializers.ValidationError({"credentials":["Invalid credentials"]})
+                raise serializers.ValidationError({"credentials":"Invalid credentials"})
             token,_ = Token.objects.get_or_create(user=user)
             data['token'] = token.key
             data["username"] = user.username
@@ -114,7 +107,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             data["first_name"] = user.first_name
             data["last_name"] = user.last_name
         else:
-            raise serializers.ValidationError({"user":["User does not exist"]})
+            raise serializers.ValidationError({"user":"User does not exist"})
         return data
 
 class UserLoginSerializerToken(serializers.ModelSerializer):
@@ -125,10 +118,10 @@ class UserLoginSerializerToken(serializers.ModelSerializer):
     def validate(self,data):
         token = data["token"]
         if not token or token == "":
-            raise serializers.ValidationError({"token": ["Missing token"]})
+            raise serializers.ValidationError({"token": "Missing token"})
         user = Token.objects.get(key=token).user
         if not user:
-            raise serializers.ValidationError({"token": ["No user for token"]})
+            raise serializers.ValidationError({"token": "No user for token"})
         data["username"] = user.username
         data["password"] = user.password
         data["email"] = user.email
