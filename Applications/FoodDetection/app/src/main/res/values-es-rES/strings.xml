@@ -27,4 +27,8 @@
     <string name="password_match">" Las contraseñas deben coincidir."</string>
     <string name="username_exists">Un usuario con ese nombre ya existe.</string>
     <string name="email_exists">El Email ya existe.</string>
+    <string name="calories_underneath">" Encuentra las calorías debajo"</string>
+    <string name="point_shoot_and_eat">" Punto disparar y comer"</string>
+    <string name="scroll_up_open">" Desplácese hacia arriba para tomar una foto"</string>
+    <string name="open_camera">" Cámara de apertura"</string>
 </resources>

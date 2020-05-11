@@ -139,13 +139,13 @@ public class LoginPage extends AppCompatActivity {
         {
             if (e1.getX() - e2.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
             {
-                Toast.makeText(getApplicationContext(), "You have swipped left side", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.open_camera), Toast.LENGTH_SHORT).show();
                 layout_auxiliar.openActivity(DetectorActivity.class);
                 return false;
             }
             else if (e2.getX() - e1.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
             {
-                Toast.makeText(getApplicationContext(), "You have swipped right side", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.open_camera), Toast.LENGTH_SHORT).show();
                 layout_auxiliar.openActivity(DetectorActivity.class);
                 return false;
             }

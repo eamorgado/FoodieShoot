@@ -19,7 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Authenticated.Logged_Home"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -47,6 +46,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenGrey"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Authenticated.Logged_Home"
+            android:label="FoodieShoot"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullscreenGrey"
+            android:windowSoftInputMode="stateVisible|adjustPan" >
+
+        </activity>
     </application>
 
 </manifest>

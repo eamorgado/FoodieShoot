@@ -7,68 +7,98 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".Authentication.LoginPage">
 
-    <FrameLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signup-title"
+        android:layout_width="413dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/bukhari"
+        android:gravity="center"
+        android:includeFontPadding="true"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/point_shoot_eat"
+        android:layout_width="249dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bukhari"
+        android:text="@string/point_shoot_and_eat"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup-title" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="246dp"
+        android:layout_height="24dp"
+        android:text="@string/calories_underneath"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_shoot_eat" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="572dp"
+        android:layout_marginBottom="184dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ProgressBar
-                android:id="@+id/signup_progress"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="66dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/open_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="554dp"
+                    app:srcCompat="@drawable/login_back"
+                    android:scrollbars="vertical"/>
 
-    </FrameLayout>
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="86dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="237dp"
+                    android:layout_marginEnd="165dp"
+                    app:srcCompat="@drawable/scroll_up" />
 
-    <LinearLayout
-        android:id="@+id/signup_linearlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/signup-title"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:fontFamily="@font/bukhari"
-            android:gravity="center"
-            android:includeFontPadding="true"
-            android:text="@string/app_name"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/join_us_signup"
-            android:layout_width="match_parent"
-            android:layout_height="107dp"
-            android:fontFamily="@font/bukhari"
-            android:gravity="start|center_vertical"
-            android:includeFontPadding="false"
-            android:paddingLeft="@dimen/margin_default"
-            android:text="@string/signup"
-            android:textColor="@android:color/black"
-            android:textSize="60sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
