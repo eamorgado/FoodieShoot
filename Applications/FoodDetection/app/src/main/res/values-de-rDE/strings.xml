@@ -17,9 +17,14 @@
     <string name="signup_username">Nutzername</string>
     <string name="signup_first_name">Vorname</string>
     <string name="signup_last_name">Nachname</string>
-    <string name="signup_password">" "</string>
     <string name="signup_confirm_password">Kennwort bestätigen</string>
     <string name="empty_field_error">" Dieses Feld kann nicht leer sein"</string>
     <string name="credential_error">Ungültige Anmeldeinformationen</string>
     <string name="invalid_email">Ungültige E-Mail</string>
+    <string name="password_similar_user">Das Passwort ist dem Benutzernamen zu ähnlich.</string>
+    <string name="password_short">Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten.</string>
+    <string name="password_common">Dieses Passwort ist zu häufig.</string>
+    <string name="password_match">" Passwörter müssen übereinstimmen."</string>
+    <string name="username_exists">" Ein Benutzer mit diesem Benutzernamen existiert bereits."</string>
+    <string name="email_exists">" E-Mail existiert bereits."</string>
 </resources>
