@@ -28,6 +28,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
@@ -43,8 +45,18 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class LoginPage extends AppCompatActivity {
+    private final int PROGRESS_ID = R.id.login_progress;
+    private final String[] FIELD_KEYS = Configurations.USER.getLogingFields();
+    private final int[] FIELD_IDS = {R.id.input_email,R.id.input_password};
+
+    private LayoutAuxiliarMethods layout_auxiliar;
+    private Validators validator;
+
+    //Rest api requests;
     private RequestQueue request_object;
     private JsonObjectRequest json_object;
+
+    //Swipe up feature
     private GestureDetector gdt;
     private static final int MIN_SWIPPING_DISTANCE = 10;
     private static final int THRESHOLD_VELOCITY = 50;
@@ -53,48 +65,45 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Initiate auxiliar
+        layout_auxiliar = new LayoutAuxiliarMethods(this);
+
+        //Initialize validator
+        validator = new Validators(this);
+
         //Prepare for rest requests
         request_object = Volley.newRequestQueue(this);
-        stopProgress();
-        changeColor();
+        layout_auxiliar.stopProgress(PROGRESS_ID);
+
+        //Change text view colors
+        int[] ids = {R.id.there_login,R.id.forgot_pass};
+        String texts[] = {  " <font color=#FF0000><big>.</big></font>",
+                " <font color=#FF0000><big>?</big></font>"
+        };
+        layout_auxiliar.changeColor(ids,texts);
         forgotPasswordLink();
         addBottomScroll();
         checkLogin();
-        addSignUp();
+        moveToSignUp();
         loginButtonPressed();
     }
 
-    protected void checkLogin(){
-        if(Configurations.USER_KEY != null){
+    private void checkLogin(){
+        if(Configurations.USER.TOKEN.getValue() != null){
             Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
-            showMainActivity();
+            //Move to detection activity
+            layout_auxiliar.openActivity(DetectorActivity.class);
         }
     }
 
-    protected void addSignUp(){
+    private void moveToSignUp(){
         TextView sign_up = (TextView) findViewById(R.id.sign_up);
         sign_up.setMovementMethod(LinkMovementMethod.getInstance());
         sign_up.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                showSignUpPage();
+                layout_auxiliar.openActivity(SignUp.class);
             }
         });
-    }
-
-    /**
-     * Method to change colors for some components in login activity
-     */
-    protected void changeColor(){
-        int[] ids = {R.id.there_login,R.id.forgot_pass};
-        String texts[] = {  " <font color=#FF0000><big>.</big></font>",
-                            " <font color=#FF0000><big>?</big></font>"
-                        };
-        int i = 0;
-        for(int id : ids){
-            TextView view = (TextView)findViewById(id);
-            String s = view.getText().toString() + texts[i++];
-            view.setText(Html.fromHtml(s));
-        }
     }
 
     /**
@@ -105,14 +114,15 @@ public class LoginPage extends AppCompatActivity {
         forgot_link.setMovementMethod(LinkMovementMethod.getInstance());
         forgot_link.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.FORGOT_PASSWORD_PATH});
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                browserIntent.setData(Uri.parse(Configurations.FORGOT_PASSWORD_URL));
+                browserIntent.setData(Uri.parse(endpoint));
                 startActivity(browserIntent);
             }
         });
     }
 
-    protected void addBottomScroll(){
+    private void addBottomScroll(){
         ImageView imageView = (ImageView) findViewById(R.id.continue_no_login);
         gdt = new GestureDetector(new GestureListener());
         imageView.setOnTouchListener(new View.OnTouchListener()
@@ -130,72 +140,40 @@ public class LoginPage extends AppCompatActivity {
             if (e1.getX() - e2.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
             {
                 Toast.makeText(getApplicationContext(), "You have swipped left side", Toast.LENGTH_SHORT).show();
-                showMainActivity();
+                layout_auxiliar.openActivity(DetectorActivity.class);
                 return false;
             }
             else if (e2.getX() - e1.getX() > MIN_SWIPPING_DISTANCE && Math.abs(velocityX) > THRESHOLD_VELOCITY)
             {
                 Toast.makeText(getApplicationContext(), "You have swipped right side", Toast.LENGTH_SHORT).show();
-                showMainActivity();
+                layout_auxiliar.openActivity(DetectorActivity.class);
                 return false;
             }
             return false;
         }
     }
 
-    private void showMainActivity() {
-        Intent intent = new Intent(
-                LoginPage.this, DetectorActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    protected void showSignUpPage(){
-        Intent intent = new Intent(
-                LoginPage.this, SignUp.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void startProgress(){
-        ProgressBar pb = (ProgressBar) findViewById(R.id.login_progress);
-        pb.setVisibility(View.VISIBLE);
-    }
-
-    private void stopProgress(){
-        ProgressBar pb = (ProgressBar) findViewById(R.id.login_progress);
-        pb.setVisibility(View.INVISIBLE);
-    }
-    protected void loginButtonPressed(){
+    private void loginButtonPressed(){
         Button login_button = (Button) findViewById(R.id.login);
         login_button.setMovementMethod(LinkMovementMethod.getInstance());
         login_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startProgress();
-                if(verifyInputs()) buildJsonRequest();
-                stopProgress();
+                layout_auxiliar.startProgress(PROGRESS_ID);;
+                if(validator.verifyFields(FIELD_IDS)) makeLoginRequest();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        layout_auxiliar.stopProgress(PROGRESS_ID);
+                    }
+                }, 500);
             }
         });
     }
 
-    private boolean verifyInputs(){
-        int[] ids = {R.id.input_email,R.id.input_password};
-        int correct = 0;
-        for(int id : ids){
-            EditText text = (EditText) findViewById(id);
-            if(text.getText().toString().equals("")) text.setError(getString(R.string.empty_field_error));
-            else correct++;
-        }
-        return correct == ids.length;
-    }
-
-    private void buildJsonRequest(){
-        String endpoint = Configurations.SERVER_URL + "account/login";
-        String email = ((EditText) findViewById(R.id.input_email)).getText().toString().trim();
-        String password = ((EditText) findViewById(R.id.input_password)).getText().toString().trim();
-        Map<String,String> params = new HashMap<>();
-        params.put("email",email);
-        params.put("password",password);
+    private void makeLoginRequest(){
+        String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGIN_PATH});
+        Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
 
         JSONObject parameters = new JSONObject(params);
         json_object = new JsonObjectRequest(
@@ -205,14 +183,13 @@ public class LoginPage extends AppCompatActivity {
                 new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response){
-                        Log.e("Login Rest response",response.toString());
-                        //Convert response to map
+                        Log.e(Configurations.REST_API,response.toString());
+                        //Parse response
                         try {
                             String status = response.get("status").toString();
                             if(status.equals("success")){
-                                Intent intent = new Intent(LoginPage.this, Logged_Home.class);
-                                startActivity(intent);
-                                finish();
+                                layout_auxiliar.setUserVars(response);
+                                layout_auxiliar.openActivity(Logged_Home.class);
                             }
                             //fail
                             JSONObject jsonobject = (JSONObject) response.get("error");
@@ -232,7 +209,7 @@ public class LoginPage extends AppCompatActivity {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                stopProgress();
+                                layout_auxiliar.stopProgress(PROGRESS_ID);
                             }
                         }, 1500);
 
@@ -241,7 +218,7 @@ public class LoginPage extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error){
                                 error.printStackTrace();
-                                Log.e("Login Rest error response",error.toString());
+                                Log.e(Configurations.REST_AUTH_FAIL,error.toString());
                             }
                         }
         );

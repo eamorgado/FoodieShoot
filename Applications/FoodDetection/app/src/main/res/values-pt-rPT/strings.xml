@@ -21,4 +21,10 @@
     <string name="empty_field_error">Este campo não pode estar vazio</string>
     <string name="credential_error">" Credenciais inválidas"</string>
     <string name="invalid_email">"  E-mail inválido"</string>
+    <string name="password_similar_user">A senha é muito semelhante ao nome de usuário.</string>
+    <string name="password_short">Esta senha é muito curta. Ele deve conter pelo menos 8 caracteres.</string>
+    <string name="password_common">Essa senha é muito comum.</string>
+    <string name="password_match">" As senhas devem corresponder."</string>
+    <string name="username_exists">" Um usuário com esse nome já existe."</string>
+    <string name="email_exists">" E-mail já existe."</string>
 </resources>

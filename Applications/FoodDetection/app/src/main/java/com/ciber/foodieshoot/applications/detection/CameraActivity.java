@@ -52,6 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
+import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -558,6 +559,7 @@ public abstract class CameraActivity extends AppCompatActivity
     imageView.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
+        Configurations.USER.TOKEN.setValue(null);
         Intent intent = new Intent(
                 CameraActivity.this, LoginPage.class);
         startActivity(intent);

@@ -41,4 +41,11 @@
     <string name="empty_field_error">This field cannot be empty</string>
     <string name="credential_error">Invalid credentials</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="password_similar_user">The password is too similar to the username.</string>
+    <string name="password_short">This password is too short. It must contain at least 8 characters.</string>
+    <string name="password_common">This password is too common.</string>
+    <string name="password_match">Passwords must match.</string>
+    <string name="username_exists">A user with that username already exists.</string>
+    <string name="email_exists">Email already exists.</string>
+
 </resources>
