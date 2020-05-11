@@ -39,7 +39,6 @@ import com.ciber.foodieshoot.applications.detection.env.Logger;
 import com.ciber.foodieshoot.applications.detection.tflite.Classifier;
 import com.ciber.foodieshoot.applications.detection.tflite.TFLiteObjectDetectionAPIModel;
 import com.ciber.foodieshoot.applications.detection.tracking.MultiBoxTracker;
-import com.ciber.foodieshoot.applications.detection.Authenticated.Camera.CameraActivity;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;

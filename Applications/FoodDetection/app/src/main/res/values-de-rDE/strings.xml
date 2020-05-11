@@ -31,4 +31,6 @@
     <string name="point_shoot_and_eat">" Punkt schießen und essen"</string>
     <string name="scroll_up_open">" Scrollen Sie nach oben, um eine Aufnahme zu machen"</string>
     <string name="open_camera">" Kamera öffnen"</string>
+    <string name="login_continue_no_account">Fahren Sie ohne Konto fort</string>
+    <string name="keep_me_logged">Lass mich angemeldet</string>
 </resources>

@@ -31,4 +31,6 @@
     <string name="calories_underneath">Descobre as calorias no interior</string>
     <string name="scroll_up_open">" Role para cima para tirar uma foto"</string>
     <string name="open_camera">Abrir câmera</string>
+    <string name="login_continue_no_account">Continuar sem conta</string>
+    <string name="keep_me_logged">" Mantenha-me conectado"</string>
 </resources>

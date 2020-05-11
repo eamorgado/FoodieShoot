@@ -11,7 +11,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.core.app.NotificationCompat;
+
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
+import com.ciber.foodieshoot.applications.detection.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

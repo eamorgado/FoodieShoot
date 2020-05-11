@@ -2,102 +2,332 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="pixel_2_xl" />
+        <device id="pixel_3a_xl" />
+        <device id="pixel_3_xl" />
+        <device id="Nexus 5X" />
+        <locale>pt-rPT</locale>
+      </config>
     </shared>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5feddf7-c6e1-4a50-8887-765b590c084f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/5.6.4/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcsWorkingDirs/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_gridlayout_gridlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_1_0_alpha3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_7_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_7_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_6_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_4_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_3_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_28_1_android_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_truth_truth_1_0_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_java_diff_utils_diffutils_1_3_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_10_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_annotations_10_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_runtime_10_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_kxml_kxml2_2_3_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_18_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tensorflow_tensorflow_lite_0_0_0_nightly_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FoodDetection.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tensorflow-lite/tensorflow-lite.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/NetworkManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/RegisterParser/RegisterResponseValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/RestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_gridlayout_gridlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_gridlayout_gridlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_1_0_alpha3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_1_0_alpha3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_7_2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_7_2_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_7_2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_7_2_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_6_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_value_auto_value_annotations_1_6_3_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_4_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_4_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_3_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_3_3_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_28_1_android_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_28_1_android_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_truth_truth_1_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_truth_truth_1_0_1_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_java_diff_utils_diffutils_1_3_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_java_diff_utils_diffutils_1_3_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_10_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_10_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_annotations_10_0_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_annotations_10_0_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_runtime_10_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_runtime_10_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_18_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_18_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tensorflow_tensorflow_lite_0_0_0_nightly_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tensorflow_tensorflow_lite_0_0_0_nightly_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Camera/DetectorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Camera/DetectorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/SignUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/LayoutAuxiliarMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/LayoutAuxiliarMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/RegisterErrorParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/RegisterParser/RegisterErrorParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/RegisterErrorParserFormData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/RegisterParser/RegisterErrorParserFormData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/RegisterResponseParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/RegisterParser/RegisterResponseParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Configs/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Configs/Configurations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/cornered_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cornered_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-de-rDE/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-de-rDE/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-es-rES/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-es-rES/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-pt-rPT/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-pt-rPT/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/migrations/0002_auto_20200212_1925.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/migrations/0003_apks.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/migrations/0004_imagedataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/css/BukhariAlternate.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/css/BukhariAlternate.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/css/BukhariRegular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/css/BukhariRegular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/404.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/500.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/ciber_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/download.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/static/foodieshoot/images/tf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/download.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/templates/foodieshoot/layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot_api/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/foodieshoot_api/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/media/default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/media/profile_pics/eamorgado.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/autocomplete.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/changelists.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/fonts.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/forms.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/responsive_rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/vendor/select2/LICENSE-SELECT2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/vendor/select2/select2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/vendor/select2/select2.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/css/widgets.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/fonts/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/fonts/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/fonts/Roboto-Bold-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/fonts/Roboto-Light-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/fonts/Roboto-Regular-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/calendar-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/gis/move_vertex_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/gis/move_vertex_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-addlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-alert.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-calendar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-changelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-clock.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-deletelink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-no.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-unknown-alt.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-unknown.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-viewlink.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/icon-yes.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/inline-delete.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/selector-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/sorting-icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/tooltag-add.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/img/tooltag-arrowright.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/SelectBox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/SelectFilter2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/actions.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/admin/DateTimeShortcuts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/admin/RelatedObjectLookups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/autocomplete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/calendar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/cancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/change_form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/collapse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/collapse.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/core.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/inlines.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/inlines.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/jquery.init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/popup_response.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/prepopulate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/prepopulate.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/prepopulate_init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/timeparse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/urlify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/jquery/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/jquery/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/jquery/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/en.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/eu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/hi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/hr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/is.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/km.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ko.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/lv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/mk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/nb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/sr-Cyrl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/sr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/zh-CN.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/i18n/zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/select2.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/select2/select2.full.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/xregexp/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/xregexp/xregexp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/admin/js/vendor/xregexp/xregexp.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/BukhariAlternate.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/BukhariAlternate.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/BukhariRegular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/BukhariRegular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/font.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/404.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/500.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/500.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/ciber_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/download.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/foodieshoot/images/tf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/bootstrap-tweaks.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/font-awesome-4.0.3.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/css/prettify.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/css/jquery.json-view.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/img/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/img/grid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/js/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/js/highlight.pack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/docs/js/jquery.json-view.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/img/glyphicons-halflings-white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/img/glyphicons-halflings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/img/grid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/ajax-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/coreapi-0.1.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/csrf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/default.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/jquery-3.4.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/static/rest_framework/js/prettify-min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/migrations/0002_auto_20200212_2001.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/migrations/0003_auto_20200213_0055.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/signals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/password_reset.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/password_reset_complete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/password_reset_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/signin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/signout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/templates/users/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/users/views.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,6 +335,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="L2N4C19412011630" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -117,18 +348,28 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1bPW0fGoEQalTh0qLGQsEW9brRW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_XL_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-11T18:12:41.526Z" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -150,7 +391,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -227,5 +468,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/LoginPage.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
