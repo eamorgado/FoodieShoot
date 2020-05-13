@@ -12,10 +12,13 @@ urlpatterns = [
     path('account/register',views.resgistration_view, name='rest-v1-register'),
 
     #Login user
-    path('account/login',views.login_view,name='rest-v1-login'),
+    path('account/login',views.RestLogin.as_view(),name='rest-v1-login'),
 
     #Logout
     path('account/logout',views.RestLogout.as_view(),name='rest-v1-logout'),
+
+    #DeleteAccount
+    path('account/delete',views.RestDeleteUser.as_view(),name='rest-v1-deleteaccount'),
 
 
     #Foods

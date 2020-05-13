@@ -52,9 +52,8 @@ def resgistration_view(request):
         except Exception as e:
             return Response(status=status.HTTP_200_OK)
 
-@api_view(['POST',])
-def login_view(request):
-    if request.method == 'POST':
+class RestLogin(APIView):
+    def post(self,request):
         try:
             if 'token' in request.data:
                 serializer = UserLoginSerializerToken(data=request.data)
@@ -77,26 +76,46 @@ def login_view(request):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-
 class RestLogout(APIView):
-    permission_classes = (IsAuthenticated,)
     def get(self,request):
         try:
-            request.user.auth_token.delete()
+            token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+            user = Token.objects.get(key=token).user
+            user.auth_token.delete()
         except (AttributeError, ObjectDoesNotExist):
-            pass
-        logout(request)
-        data = {"status": "success"}
+            return Response({"status":"fail","error": "Error logging out"})
+        logout(user)
+        return Response({"status": "success"})
+    
+    def post(self,request):
+        try:
+            token = request.data.get('token')
+            user = Token.objects.get(key=token).user
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        
+        try:
+            user.auth_token.delete()
+        except (AttributeError, ObjectDoesNotExist):
+            return Response({"status":"fail","error": "Error logging out"})
+        logout(user)
+        return Response({"status": "success"})
 
-        return Response(data)
-
+class RestDeleteUser(APIView):
+    def post(self,request):
+        try:
+            token = request.data.get('token')
+            user = Token.objects.get(key=token).user
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        u = User.objects.get(username=user.username).delete()
+        return Response({"status":"success"})
 
 def getKeys():
     with open(os.path.join(settings.BASE_DIR,'nutrition_api.json')) as f:
         confs = json.load(f)
         id,key,endpoint = confs['NUTRITION_APP_ID'],confs['NUTRITION_APP_KEY'],confs['NUTRITION_APP_ENDPOINT']
         return id,key,endpoint
-
 def requestNutrition(food):
     id,key,endpoint = getKeys()
     headers = {
@@ -110,7 +129,6 @@ def requestNutrition(food):
 
     response = requests.post(endpoint,headers=headers,data=json.dumps(body))
     return response.text.encode('utf8')
-
 def getNutritionDesiredKeys():
     keys = {
         "serving_qty": "Serving quantity",
@@ -128,7 +146,6 @@ def getNutritionDesiredKeys():
         "nf_potassium": "Potassium"
     }
     return keys
-
 def processFood(food):
     response = json.loads(requestNutrition(food))
     if 'message' in response or 'foods' not in response:
