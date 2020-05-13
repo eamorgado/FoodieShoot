@@ -155,56 +155,164 @@ def savePost(user,title,location,data):
     post.save()
 
 #Nutrients
-@api_view(['POST',])
-def get_nutrients_for_foods(request):
-    if request.method == 'POST':
-        if 'token' in request.data:
+class GetFoodData(APIView):  
+    def post(self,request):
+        data = {'status': 'fail'}
+        try:
             serializer = UserLoginSerializerToken(data=request.data)
-            data = {'status': 'fail'}
-            if serializer.is_valid():
-                user_info = serializer.validated_data
-                username = user_info["username"]
-                user = User.objects.get(username=username)
-                #Request nutrients
-                if 'foods' in request.data:
-                    foods = request.data['foods']
-                    if not isinstance(foods,list):
-                        foods = [foods]
-                    
-                    response = []
-                    total_cals = 0
-                    for food in foods:
-                        processed = processFood(food)
-                        if 'error' not in processed:
-                            cals = processed['Total calories']
-                            total_cals += cals
-                            response.append(processed)
-                    if len(response) >= 1:
-                        data['total_calories'] = total_cals
-                        data['processed'] = response
-                        data["status"] = 'success'
-
-                        location = request.data['location'] if 'location' in request.data else None
-                        title = request.data['title'] if 'title' in request.data else None
-                        entry = {
-                            'total_calories': total_cals,
-                            'processed': response
-                        }
-                        savePost(user,title,location,entry)
-            else:
-                data["error"] = serializer.errors
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        
+        if serializer.is_valid():
+            user_info = serializer.validated_data
+            username = user_info["username"]
+            user = User.objects.get(username=username)
+        else:
+            data["error"] = serializer.errors
             return Response(data)
 
+        if 'foods' in request.data:
+            foods = request.data['foods']
+            if not isinstance(foods,list):
+                foods = [foods]
+            
+            response = []
+            total_cals = 0
+            for food in foods:
+                processed = processFood(food)
+                if 'error' not in processed:
+                    cals = processed['Total calories']
+                    total_cals += cals
+                    response.append(processed)
+                else:
+                    data["error"] = "Error processing food"
+                    return Response("error")
 
-#TEST ==> REMOVE AFTER
-#List all users even if request user is not authenticated
-class ListUser(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = serializers.UserSerializer
+            if len(response) >= 1:
+                data['contents'] = {
+                    'total_calories': total_cals,
+                    'processed':  response
+                }
+                data["status"] = 'success'
+                '''
+                location = request.data['location'] if 'location' in request.data else None
+                title = request.data['title'] if 'title' in request.data else None
+                entry = {
+                    'total_calories': total_cals,
+                    'processed': response
+                }
+                savePost(user,title,location,entry)
+                '''
+        else:
+            data["error"] = "Key foods not found"
+        return Response(data)
+        
+class SavePost(APIView):
+    def __savePost(self,user,title,location,entry):
+        if not location:
+            location = "Location unknown"
+        if not title:
+            title = "Title unknown"
+        if not entry:
+            entry = {"error": "No data"}
+        post = FoodPosts(
+            author=user,
+            title=title,
+            contents=json.dumps(entry),
+            location=location
+        )
+        post.save()
 
-class ListSingleUser(APIView):
-    permission_classes = (IsAuthenticated,)
+    def post(self,request):
+        data = {'status': 'fail'}
+        try:
+            serializer = UserLoginSerializerToken(data=request.data)
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        
+        if serializer.is_valid():
+            user_info = serializer.validated_data
+            username = user_info["username"]
+            user = User.objects.get(username=username)
+        else:
+            data["error"] = serializer.errors
+            return Response(data)
+
+        if 'save' in request.data and bool(request.data['save']):
+            location = request.data['location'] if 'location' in request.data else None
+            title = request.data['title'] if 'title' in request.data else None
+            contents = request.data['contents'] if 'contents' in request.data else None
+            self.__savePost(user,title,location,contents)
+            data['status'] = "success"
+        else:
+            data["error"] = "No save option given"
+        return Response(data)
+     
+
+class ListUserPosts(APIView):
+    #permission_classes = (IsAuthenticated,)
+    def __getPosts(self,user):
+        all_posts = FoodPosts.objects.filter(author=user)        
+        response = {
+            'size': len(all_posts)
+        }
+        posts = []
+        for post in all_posts:
+            contents = {
+                'title': post.title,
+                'location': post.location,
+                'date': post.date_shoot,
+                'contents': post.contents
+            }
+            posts.append(contents)
+        response['posts'] = posts
+        return response
 
     def get(self,request):
-        content = {'message': 'Hello'}
-        return Response(content)
+        try:
+            token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+            user = Token.objects.get(key=token).user
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        
+        response = self.__getPosts(user)
+        return Response(response)
+    
+    def post(self,request):
+        try:
+            token = request.data.get('token')
+            user = Token.objects.get(key=token).user
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+
+        response = self.__getPosts(user)
+        return Response(response)
+
+
+class DeletePost(APIView):
+    def __deletePost(self,user,post):
+        try:
+            p = FoodPosts.objects.get(author=user,date_shoot=post).delete()
+            return True
+        except Exception:
+            return False
+
+    def post(self,request):
+        try:
+            token = request.data.get('token')
+            user = Token.objects.get(key=token).user
+        except Exception:
+            return Response({"status":"fail","error": "Token missing or incorrect"})
+        
+        if 'delete' not in request.data:
+            return Response({"status":"fail","error": "No posts selected"})
+        posts_to_delete = request.data['delete']
+        if not isinstance(posts_to_delete,list):
+            posts_to_delete = [posts_to_delete]
+        
+        for post in posts_to_delete:
+            ok = self.__deletePost(user,post)
+            if not ok:
+                return Response({"status":"fail","error": "Failed to delete a post"})
+        return Response({"status":"success"})
+        

@@ -5,9 +5,6 @@ from . import views
 from rest_framework.authtoken.views import obtain_auth_token #drf request
 
 urlpatterns = [
-    path('',views.ListUser.as_view()),
-    path('list-user/',views.ListSingleUser.as_view(),name='rest-list-user'),
-
     #Request drf token
     path('account/api-token-auth',obtain_auth_token,name='api_token_auth'),
 
@@ -22,5 +19,14 @@ urlpatterns = [
 
 
     #Foods
-    path('foods/analyse',views.get_nutrients_for_foods,name='rest-v1-analysefood')
+    path('foods/analyse',views.GetFoodData.as_view(),name='rest-v1-analysefood'),
+
+    #List all posts for user
+    path('foods/posts/list',views.ListUserPosts.as_view(),name='rest-v1-getuserposts'),
+
+    #Save post
+    path('foods/posts/save',views.SavePost.as_view(),name='rest-v1-savepost'),
+
+    path('foods/posts/delete',views.DeletePost.as_view(),name='rest-v2-deletepost')
+
 ]
