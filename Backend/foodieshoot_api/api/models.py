@@ -12,7 +12,7 @@ class FoodPosts(models.Model):
     
 
     def __str__(self):
-        return '{} - {} -- {}'.format(self.author.self.title,self.date_shoot)
+        return '{} - {} -- {}'.format(self.author,self.title,self.date_shoot)
     
     class Meta:
         verbose_name_plural = 'FoodieShoots User Posts'

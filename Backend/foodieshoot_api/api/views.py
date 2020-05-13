@@ -4,10 +4,10 @@ from django.shortcuts import render
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from foodieshoot.models import FoodieShoots
 from api import serializers
 from api.serializers import RegistrationSerializer, UserLoginSerializer, UserLoginSerializerToken
 
+from api.models import FoodPosts
 
 #REST packages
 from rest_framework import generics, status
@@ -141,6 +141,19 @@ def processFood(food):
             content[v] = data[key]
     return content    
 
+def savePost(user,title,location,data):
+    if not location:
+        location = "Location unknown"
+    if not title:
+        title = "Title unknown"
+    post = FoodPosts(
+        author=user,
+        title=title,
+        contents=json.dumps(data),
+        location=location
+    )
+    post.save()
+
 #Nutrients
 @api_view(['POST',])
 def get_nutrients_for_foods(request):
@@ -149,7 +162,9 @@ def get_nutrients_for_foods(request):
             serializer = UserLoginSerializerToken(data=request.data)
             data = {'status': 'fail'}
             if serializer.is_valid():
-                _ = serializer.validated_data
+                user_info = serializer.validated_data
+                username = user_info["username"]
+                user = User.objects.get(username=username)
                 #Request nutrients
                 if 'foods' in request.data:
                     foods = request.data['foods']
@@ -168,6 +183,14 @@ def get_nutrients_for_foods(request):
                         data['total_calories'] = total_cals
                         data['processed'] = response
                         data["status"] = 'success'
+
+                        location = request.data['location'] if 'location' in request.data else None
+                        title = request.data['title'] if 'title' in request.data else None
+                        entry = {
+                            'total_calories': total_cals,
+                            'processed': response
+                        }
+                        savePost(user,title,location,entry)
             else:
                 data["error"] = serializer.errors
             return Response(data)
