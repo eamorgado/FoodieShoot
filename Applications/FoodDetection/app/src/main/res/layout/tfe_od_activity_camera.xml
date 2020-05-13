@@ -22,6 +22,7 @@
     android:background="#00000000">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
@@ -45,10 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="start|center_vertical"
                 android:fontFamily="@font/bukhari"
-                android:textColor="@android:color/darker_gray"
-                android:text="@string/no_account_camera_back_text" />
+                android:gravity="start|center_vertical"
+                android:text="@string/no_account_camera_back_text"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
         <FrameLayout
@@ -57,11 +58,31 @@
             android:layout_height="529dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="141dp"
-            tools:context="com.ciber.foodieshoot.applications.detection.CameraActivity" />
+            tools:context="com.ciber.foodieshoot.applications.detection.CameraActivity">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="165dp"
+                    android:layout_marginTop="396dp"
+                    android:layout_marginEnd="158dp"
+                    android:text="button" />
+            </RelativeLayout>
+        </FrameLayout>
 
     </RelativeLayout>
 
     <include
         android:id="@+id/bottom_sheet_layout"
         layout="@layout/tfe_od_layout_bottom_sheet" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
