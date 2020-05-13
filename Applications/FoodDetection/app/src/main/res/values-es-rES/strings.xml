@@ -33,4 +33,18 @@
     <string name="open_camera">"  Cámara abierta"</string>
     <string name="login_continue_no_account">" Continuar sin cuenta"</string>
     <string name="keep_me_logged">Mantenme conectado</string>
+    <string name="login_success">" El inicio de sesión fue exitoso"</string>
+    <string name="signup_success">El registro fue exitoso</string>
+    <string name="shots">Ver fotos guardadas</string>
+    <string name="profile">Perfil</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="about">Acerca de</string>
+    <string name="social">Social</string>
+    <string name="visit_site">Visitar sitio</string>
+    <string name="share">Teilen</string>
+    <string name="analyse">Analizar imagen</string>
+    <string name="fail_no_account">Tarea fallida, requiere autenticación</string>
+    <string name="analysing">Empezando a analizar imagen</string>
+    <string name="error">Error</string>
+    <string name="error_wait">Por favor espere e intente nuevamente</string>
 </resources>

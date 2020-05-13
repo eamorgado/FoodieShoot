@@ -2,6 +2,7 @@ package com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -32,8 +33,11 @@ public final class DisplayFoods {
     }
 
     public static void display(){
+        View v = (View)((Activity)context).findViewById(R.id.seperator);
+        v.setVisibility(View.GONE);
         TableLayout tl = (TableLayout) ((Activity)context).findViewById(R.id.table_predictions);
         tl.removeAllViews();
+        tl.setVisibility(View.GONE);
         int i = 0;
         if(!foods.isEmpty()){
             for(String food : foods){
@@ -52,6 +56,8 @@ public final class DisplayFoods {
             TextView tv = new TextView(context);
             tv.setText("Total cals: " + cals + " kcals");
             tl.addView(tv,i);
+            tl.setVisibility(View.VISIBLE);
+            v.setVisibility(View.VISIBLE);
         }
     }
 }

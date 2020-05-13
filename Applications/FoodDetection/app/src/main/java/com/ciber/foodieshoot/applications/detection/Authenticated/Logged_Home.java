@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
-import com.ciber.foodieshoot.applications.detection.Authenticated.Camera.DetectorActivity;
+import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -41,7 +41,7 @@ public class Logged_Home extends AppCompatActivity {
         open_camera.setMovementMethod(LinkMovementMethod.getInstance());
         open_camera.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                layout_auxiliar.openActivity(com.ciber.foodieshoot.applications.detection.Authenticated.Camera.DetectorActivity.class);
+                layout_auxiliar.openActivity(DetectorActivity.class);
             }
         });
     }

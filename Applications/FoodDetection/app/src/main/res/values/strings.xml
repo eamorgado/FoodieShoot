@@ -67,4 +67,19 @@
     <string name="social">Social</string>
     <string name="visit_site">Visit site</string>
     <string name="share">Share</string>
+
+
+    <!-- Analyse -->
+    <string name="analyse">Analyse Image</string>
+    <string name="fail_no_account">Task failed, requires authentication</string>
+    <string name="analysing">Starting to analyse image</string>
+    <string name="error">Error</string>
+    <string name="error_wait">Please wait and try again</string>
+    <string name="requires_auth">Requires authentication</string>
+    <string name="join">Want to join?</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
 </resources>

@@ -1,6 +1,4 @@
 package com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection;
-
-import com.ciber.foodieshoot.applications.detection.Authenticated.Camera.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.Food;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
 

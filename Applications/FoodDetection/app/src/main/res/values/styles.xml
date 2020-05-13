@@ -66,4 +66,11 @@
         <item name="colorPrimary">@color/redBold</item>
         <item name="colorPrimaryDark">@color/redBold</item>
     </style>
+    
+    
+    <!-- Popup style -->
+    <style name="AppTheme.Popup">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 </resources>

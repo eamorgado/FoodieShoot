@@ -21,7 +21,6 @@ import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
-import com.ciber.foodieshoot.applications.detection.Auxiliar.SimpleGestureFilter;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
@@ -50,6 +49,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //Initiate auxiliar
         layout_auxiliar = new LayoutAuxiliarMethods(this);
 

@@ -95,6 +95,9 @@ public class Configurations {
         editor.apply();
     }
 
+    public static boolean isAuthenticated(){
+        return USER.TOKEN.getValue() != null;
+    }
 
     //Notifications
     private static void createNotificationChannel(int importance){
