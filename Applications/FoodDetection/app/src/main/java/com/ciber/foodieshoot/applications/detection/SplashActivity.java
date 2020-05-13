@@ -67,6 +67,7 @@ public class SplashActivity extends Activity {
         String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.LOGIN_PATH;
         Map<String,String> params = new HashMap<>();
         params.put("token",token);
+
         NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
             @Override
             public void parseResponse(JSONObject response) {

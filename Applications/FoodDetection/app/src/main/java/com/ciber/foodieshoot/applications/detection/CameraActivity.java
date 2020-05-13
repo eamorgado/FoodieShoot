@@ -52,6 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.DisplayFoods;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
@@ -97,6 +98,9 @@ public abstract class CameraActivity extends AppCompatActivity
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setContentView(R.layout.tfe_od_activity_camera);
+
+    DisplayFoods.setContext(this);
+
     backToMain();
     if (hasPermission()) {
       setFragment();
