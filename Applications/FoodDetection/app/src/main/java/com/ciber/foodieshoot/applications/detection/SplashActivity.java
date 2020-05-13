@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
 import com.ciber.foodieshoot.applications.detection.Authentication.SignUp;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
@@ -36,6 +37,9 @@ public class SplashActivity extends Activity {
 
         //Initiate network manager
         NetworkManager.getInstance(this);
+
+        //read json file
+        FoodCalories.readFile(this);
 
         application_context = getApplicationContext();
         layout_auxiliar = new LayoutAuxiliarMethods(this);
@@ -87,6 +91,7 @@ public class SplashActivity extends Activity {
                 //TODO => improve error response with popup
                 error.printStackTrace();
                 Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                layout_auxiliar.openActivity(LoginPage.class);
             }
         });
     }

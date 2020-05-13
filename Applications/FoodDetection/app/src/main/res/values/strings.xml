@@ -59,4 +59,12 @@
     <string name="email_exists">Email already exists.</string>
 
 
+    <!-- Nav Bar -->
+    <string name="shots">See saved shots</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="social">Social</string>
+    <string name="visit_site">Visit site</string>
+    <string name="share">Share</string>
 </resources>

@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.util.TypedValue;
 
+import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
 import com.ciber.foodieshoot.applications.detection.env.BorderedText;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
@@ -147,12 +148,13 @@ public class MultiBoxTracker {
 
       final String labelString =
           !TextUtils.isEmpty(recognition.title)
-              ? String.format("%s %.2f", recognition.title, (100 * recognition.detectionConfidence))
+                  ? String.format("%s", FoodCalories.getTitle(recognition.title))
+              //? String.format("%s %.2f", FoodCalories.getTitle(recognition.title), (100 * recognition.detectionConfidence))
               : String.format("%.2f", (100 * recognition.detectionConfidence));
       //            borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.top,
       // labelString);
       borderedText.drawText(
-          canvas, trackedPos.left + cornerSize, trackedPos.top, labelString + "%", boxPaint);
+          canvas, trackedPos.left + cornerSize, trackedPos.top, labelString, boxPaint);
     }
   }
 

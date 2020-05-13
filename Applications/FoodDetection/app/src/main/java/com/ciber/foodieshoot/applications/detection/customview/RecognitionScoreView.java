@@ -22,6 +22,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import java.util.List;
+
+import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
 import com.ciber.foodieshoot.applications.detection.tflite.Classifier.Recognition;
 
 public class RecognitionScoreView extends View implements ResultsView {
@@ -59,7 +61,8 @@ public class RecognitionScoreView extends View implements ResultsView {
 
     if (results != null) {
       for (final Recognition recog : results) {
-        canvas.drawText(recog.getTitle() + ": " + recog.getConfidence(), x, y, fgPaint);
+        //recog.getConfidence()
+        canvas.drawText(FoodCalories.getTitle(recog.getTitle()), x, y, fgPaint);
         y += (int) (fgPaint.getTextSize() * 1.5f);
       }
     }

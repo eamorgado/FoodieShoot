@@ -25,10 +25,10 @@
             android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".DetectorActivity"
             android:label="FoodieShoot"
@@ -54,15 +54,19 @@
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenRed"
-            android:windowSoftInputMode="stateVisible|adjustPan" >
-
-        </activity>
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
 
         <activity
             android:name=".Authenticated.Camera.DetectorActivity"
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenGrey" />
+
+        <activity android:name=".Authenticated.Home"
+            android:label="FoodieShoot"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullscreenGrey">
+        </activity>
 
     </application>
 

@@ -3,6 +3,7 @@ package com.ciber.foodieshoot.applications.detection.Auxiliar.Network;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,6 +60,9 @@ public class NetworkManager {
                     }
                 }
         );
+        //request.setRetryPolicy(new DefaultRetryPolicy(3000,
+          //      DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            //    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         request_queue.add(request);
     }
 }
