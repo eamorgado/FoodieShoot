@@ -40,10 +40,6 @@ public class LoginPage extends AppCompatActivity {
     private LayoutAuxiliarMethods layout_auxiliar;
     private Validators validator;
 
-    //Rest api requests;
-    //private RequestQueue request_object;
-    //private JsonObjectRequest json_object;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

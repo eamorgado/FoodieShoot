@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -15,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 public class NetworkManager {
     private static final String TAG = "NetworkManager";
@@ -49,21 +51,21 @@ public class NetworkManager {
                         Log.d(TAG + ":", "Url: " + endpoint + " response: " + response.toString());
                         if (response.toString() != null)
                             listener.parseResponse(response);
+                        else
+                            listener.handleError(new VolleyError("Server timed out"));
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        if(error.networkResponse != null){
-                            Log.d(TAG + ": ","Error response code: " + error.networkResponse.statusCode);
-                            listener.handleError(error);
-                        }
+                        Log.d(TAG + ": ", "Error: " + error.toString());
+                        listener.handleError(new VolleyError(new TimeoutError()));
                     }
                 }
         );
 
-        int socketTimeout = 5000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        int socketTimeout = 3000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
     }

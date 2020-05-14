@@ -13,6 +13,13 @@ import androidx.core.app.NotificationManagerCompat;
 import com.ciber.foodieshoot.applications.detection.R;
 import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.URL;
+
 import static android.content.Context.MODE_PRIVATE;
 
 public class Configurations {
@@ -21,7 +28,8 @@ public class Configurations {
 
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
-
+    public static final String HOST = "192.168.1.78";
+    public static final int PORT = 8000;
     public static final String SERVER_URL = "http://192.168.1.78:8000";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
     public static final String REST_API = "/api/v1/";
@@ -123,5 +131,14 @@ public class Configurations {
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         manager.notify(1,builder.build());
+    }
+
+    public static boolean isHostAvailable() {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(Configurations.HOST, Configurations.PORT), 3000);
+            return true;
+        } catch (IOException e) {
+            return false; // Either timeout or unreachable or failed DNS lookup.
+        }
     }
 }
