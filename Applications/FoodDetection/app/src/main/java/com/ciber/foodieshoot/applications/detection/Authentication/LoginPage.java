@@ -156,8 +156,13 @@ public class LoginPage extends AppCompatActivity {
                         Switch keep_me_logged = (Switch) findViewById(R.id.keep_me_logged);
                         Configurations.deleteToken();
                         Configurations.authenticate();
-                        if(keep_me_logged.isChecked())
+                        layout_auxiliar.setUserVars(response);
+                        if(keep_me_logged.isChecked()){
+                            //NetworkManager.getInstance().saveProfileImage(true);
+                            Configurations.USER_KEEP = true;
                             Configurations.setToken(Configurations.USER.TOKEN.getValue());
+                        }
+                        NetworkManager.getInstance().setProfileImage();
                         Configurations.sendNotification(getString(R.string.login_login),getString(R.string.login_success), NotificationManager.IMPORTANCE_DEFAULT);
                         layout_auxiliar.openActivity(Logged_Home.class);
                     }

@@ -126,8 +126,12 @@ public class SignUp extends AppCompatActivity {
                         Log.e(Configurations.REST_AUTH_SUCCESS,"Success");
                         layout_auxiliar.setUserVars(response);
                         Switch keep_me_logged = (Switch) findViewById(R.id.keep_me_logged);
-                        if(keep_me_logged.isChecked())
+                        if(keep_me_logged.isChecked()){
+                            //NetworkManager.getInstance().saveProfileImage(true);
+                            Configurations.USER_KEEP = true;
                             Configurations.setToken(Configurations.USER.TOKEN.getValue());
+                        }
+                        NetworkManager.getInstance().setProfileImage();
                         Configurations.sendNotification(getString(R.string.signup),getString(R.string.signup_success), NotificationManager.IMPORTANCE_DEFAULT);
                         layout_auxiliar.openActivity(Logged_Home.class);
                     }

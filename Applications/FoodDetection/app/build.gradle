@@ -88,4 +88,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+
+    //Circular image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Swipe refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
 }
