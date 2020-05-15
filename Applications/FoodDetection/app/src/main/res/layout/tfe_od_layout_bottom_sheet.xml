@@ -36,6 +36,16 @@
         android:background="@android:color/darker_gray" />
 
     <Button
+        android:id="@+id/take_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/cornered_button"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bukhari"
+        android:text="@string/picture" />
+
+    <Button
         android:id="@+id/analyse_prediction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
