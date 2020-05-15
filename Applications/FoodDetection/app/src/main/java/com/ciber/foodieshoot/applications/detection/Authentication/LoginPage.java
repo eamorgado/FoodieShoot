@@ -158,9 +158,11 @@ public class LoginPage extends AppCompatActivity {
                         Configurations.authenticate();
                         layout_auxiliar.setUserVars(response);
                         if(keep_me_logged.isChecked()){
-                            NetworkManager.getInstance().saveProfileImage();
+                            //NetworkManager.getInstance().saveProfileImage(true);
+                            Configurations.USER_KEEP = true;
                             Configurations.setToken(Configurations.USER.TOKEN.getValue());
                         }
+                        NetworkManager.getInstance().setProfileImage();
                         Configurations.sendNotification(getString(R.string.login_login),getString(R.string.login_success), NotificationManager.IMPORTANCE_DEFAULT);
                         layout_auxiliar.openActivity(Logged_Home.class);
                     }

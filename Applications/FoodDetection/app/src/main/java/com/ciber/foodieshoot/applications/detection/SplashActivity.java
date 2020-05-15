@@ -46,6 +46,7 @@ public class SplashActivity extends Activity {
         application_context = this;
 
         Configurations.logout();
+        Configurations.deleteProfilePic(false);
 
         //Initiate network manager
         NetworkManager.getInstance(this);
@@ -103,7 +104,9 @@ public class SplashActivity extends Activity {
                         Configurations.authenticate();
                         layout_auxiliar.setUserVars(response);
                         Configurations.setToken(Configurations.USER.TOKEN.getValue());
-                        NetworkManager.getInstance().saveProfileImage();
+
+                        //NetworkManager.getInstance().saveProfileImage(true);
+                        NetworkManager.getInstance().setProfileImage();
                         SplashActivity.layout_auxiliar.openActivity(Logged_Home.class);
                     }
                     else{

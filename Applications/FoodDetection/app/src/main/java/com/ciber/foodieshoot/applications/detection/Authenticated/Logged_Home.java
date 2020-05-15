@@ -7,9 +7,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
@@ -24,6 +25,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,8 +33,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Logged_Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static Context app_context;
@@ -50,6 +50,7 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         app_context = this;
         //Initiate auxiliar
         layout_auxiliar = new LayoutAuxiliarMethods(this);
+
 
         //Set top nav
         drawer_layout = findViewById(R.id.drawer_home);
@@ -69,11 +70,6 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         top_nav.setNavigationItemSelectedListener(this);
         top_nav.setCheckedItem(R.id.nav_home);
 
-        //Set bottom nav
-        bottom_nav = findViewById(R.id.bottom_nav);
-        bottom_nav.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-
         View nav_view = top_nav.getHeaderView(0);
         TextView tv = null;
         if(Configurations.USER.USERNAME.getValue() != null){
@@ -88,19 +84,17 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         }
 
         ImageView iv = (ImageView) nav_view.findViewById(R.id.profile_pic);
-        if(iv != null){
-            ContextWrapper cw = new ContextWrapper(SplashActivity.getContextOfApplication());
-            File directory = cw.getDir("profile",Context.MODE_PRIVATE);
-            if(directory.exists()){
-                File path = new File(directory,"profile.png");
-                Log.i("ABSP file","" + path.getAbsolutePath(),null);
-                Bitmap btm = BitmapFactory.decodeFile(path.getAbsolutePath());
-                iv.setImageBitmap(btm);
-                if(path.exists()){
+        if(Configurations.USER_PROFILE != null)
+            iv.setImageDrawable(Configurations.USER_PROFILE);
+        else iv.setImageDrawable(getDrawable(R.drawable.default_profile));
 
-                }
-            }
-        }
+        //Set bottom nav
+        bottom_nav = findViewById(R.id.bottom_nav);
+        bottom_nav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        //boolean flag = true;
+
+        listenRefresh();
 
     }
 
@@ -196,5 +190,16 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         for (int i = 0; i < bottom_nav.getMenu().size();i++)
             bottom_nav.getMenu().getItem(i).setChecked(false);
         bottom_nav.getMenu().setGroupCheckable(0, true, true);
+    }
+
+    private void listenRefresh(){
+        final SwipeRefreshLayout refresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                layout_auxiliar.openActivity(Logged_Home.class);
+                refresh.setRefreshing(false);
+            }
+        });
     }
 }

@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -54,7 +59,8 @@ public class Configurations {
     public static final String REGISTER_PATH = "account/register";
     public static final String LOGOUT_PATH = "account/logout";
     public static final String PROFILE_PIC_PATH = "account/profile";
-
+    public static boolean USER_KEEP = false;
+    public static Drawable USER_PROFILE = null;
 
     public static enum USER{
         EMAIL("email",null),
@@ -126,22 +132,18 @@ public class Configurations {
         }
 
         //delete profile pic
-        ContextWrapper cw = new ContextWrapper(SplashActivity.getContextOfApplication());
-        File directory = cw.getDir("profile",Context.MODE_PRIVATE);
-        if(directory.exists()){
-            File path = new File(directory,"profile.png");
-            if(path.exists()){
-                if(path.delete())
-                    Log.i("Delete profile pic","Deleting profile pic, success",null);
-                else
-                    Log.i("Delete profile pic","Deleting profile pic, fail",null);
-            }
-        }
+        //Configurations.deleteProfilePic(true);
+
+        Configurations.USER_KEEP = false;
     }
 
     public static void deleteUservars(){
         for(USER user_val : USER.values())
             user_val.setValue(null);
+    }
+
+    public static void setProfile(Bitmap img){
+        Configurations.USER_PROFILE = new BitmapDrawable(SplashActivity.getContextOfApplication().getResources(),img);
     }
 
     public static boolean isAuthenticated(){return AUTHENTICATED;}
@@ -176,6 +178,7 @@ public class Configurations {
                                 String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_message);
 
                                 Configurations.sendNotification(logout,logout_message, NotificationManager.IMPORTANCE_DEFAULT);
+
                                 Intent intent = new Intent(SplashActivity.getContextOfApplication(),LoginPage.class);
                                 Logged_Home.getContextOfApplication().startActivity(intent);
                             }
@@ -272,6 +275,16 @@ public class Configurations {
             return true;
         } catch (IOException e) {
             return false; // Either timeout or unreachable or failed DNS lookup.
+        }
+    }
+
+    public static void deleteProfilePic(boolean user_keep_logged){
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root);
+        if(dir.exists()){
+            String img_name = user_keep_logged? "profile.png" : "profile_forget.png";
+            File img = new File(dir,img_name);
+            if(img.exists()) img.delete();
         }
     }
 }
