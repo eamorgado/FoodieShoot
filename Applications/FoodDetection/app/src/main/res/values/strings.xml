@@ -59,4 +59,49 @@
     <string name="email_exists">Email already exists.</string>
 
 
+    <!-- Nav Bar -->
+    <string name="shots">See saved shots</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="social">Social</string>
+    <string name="visit_site">Visit site</string>
+    <string name="share">Share</string>
+
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_camera">Camera</string>
+    <string name="bottom_nav_posts">Posts</string>
+
+    <string name="unable_to">Unable to</string>
+    <string name="logout_message">Logout complete</string>
+    <string name="logout_confirm">Are you sure you wat to logout? Your session data will be deleted.</string>
+
+    <string name="token_invalid_expired">Invalid or expired token</string>
+
+    <!-- Analyse -->
+    <string name="analyse">Analyse Image</string>
+    <string name="fail_no_account">Task failed, requires authentication</string>
+    <string name="analysing">Starting to analyse image</string>
+    <string name="error">Error</string>
+    <string name="error_wait">Please wait and try again</string>
+    <string name="requires_auth">Requires authentication</string>
+    <string name="join">Want to join?</string>
+
+
+    <!-- USER ACTIONS -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+
+
+    <!-- CONNECTION MESSAGES -->
+    <string name="server_connection">Connection status</string>
+    <string name="server_unavailable">Server is not available or internet is not enabled</string>
+    <string name="server_timeout">Timeout</string>
+
+
+    <string name="close_drawer">Close drawer</string>
+    <string name="open_drawer">Open drawer</string>
+
+
 </resources>

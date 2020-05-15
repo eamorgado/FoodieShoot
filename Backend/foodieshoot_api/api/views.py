@@ -1,11 +1,13 @@
+import os,json, requests
+from django.conf import settings
 from django.shortcuts import render
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
-from foodieshoot.models import FoodieShoots
 from api import serializers
 from api.serializers import RegistrationSerializer, UserLoginSerializer, UserLoginSerializerToken
 
+from api.models import FoodPosts
 
 #REST packages
 from rest_framework import generics, status
@@ -87,6 +89,112 @@ class RestLogout(APIView):
         data = {"status": "success"}
 
         return Response(data)
+
+
+def getKeys():
+    with open(os.path.join(settings.BASE_DIR,'nutrition_api.json')) as f:
+        confs = json.load(f)
+        id,key,endpoint = confs['NUTRITION_APP_ID'],confs['NUTRITION_APP_KEY'],confs['NUTRITION_APP_ENDPOINT']
+        return id,key,endpoint
+
+def requestNutrition(food):
+    id,key,endpoint = getKeys()
+    headers = {
+        'x-app-id': id,
+        'x-app-key': key,
+        'Content-Type': 'application/json'
+    }
+    body = {
+        'query': str(food)
+    }
+
+    response = requests.post(endpoint,headers=headers,data=json.dumps(body))
+    return response.text.encode('utf8')
+
+def getNutritionDesiredKeys():
+    keys = {
+        "serving_qty": "Serving quantity",
+        "serving_unit": "Serving unit",
+        "serving_weight_grams": "Serving weight (grams)",
+        "nf_calories": "Total calories",
+        "nf_total_fat": "Total fat",
+        "nf_saturated_fat": "Total saturated fat",
+        "nf_cholesterol": "Cholestrol",
+        "nf_sodium": "Sodium",
+        "nf_total_carbohydrate": 'Total carbs',
+        "nf_dietary_fiber": "Fiber",
+        "nf_sugars": "Sugar",
+        "nf_protein": "Protein",
+        "nf_potassium": "Potassium"
+    }
+    return keys
+
+def processFood(food):
+    response = json.loads(requestNutrition(food))
+    if 'message' in response or 'foods' not in response:
+        return {'error': 'error on sending request'}
+    data = response['foods'][0]
+    keys = getNutritionDesiredKeys()
+    content = {'name': food}
+    for key,v in keys.items():
+        if str(key) in data:
+            content[v] = data[key]
+    return content    
+
+def savePost(user,title,location,data):
+    if not location:
+        location = "Location unknown"
+    if not title:
+        title = "Title unknown"
+    post = FoodPosts(
+        author=user,
+        title=title,
+        contents=json.dumps(data),
+        location=location
+    )
+    post.save()
+
+#Nutrients
+@api_view(['POST',])
+def get_nutrients_for_foods(request):
+    if request.method == 'POST':
+        if 'token' in request.data:
+            serializer = UserLoginSerializerToken(data=request.data)
+            data = {'status': 'fail'}
+            if serializer.is_valid():
+                user_info = serializer.validated_data
+                username = user_info["username"]
+                user = User.objects.get(username=username)
+                #Request nutrients
+                if 'foods' in request.data:
+                    foods = request.data['foods']
+                    if not isinstance(foods,list):
+                        foods = [foods]
+                    
+                    response = []
+                    total_cals = 0
+                    for food in foods:
+                        processed = processFood(food)
+                        if 'error' not in processed:
+                            cals = processed['Total calories']
+                            total_cals += cals
+                            response.append(processed)
+                    if len(response) >= 1:
+                        data['total_calories'] = total_cals
+                        data['processed'] = response
+                        data["status"] = 'success'
+
+                        location = request.data['location'] if 'location' in request.data else None
+                        title = request.data['title'] if 'title' in request.data else None
+                        entry = {
+                            'total_calories': total_cals,
+                            'processed': response
+                        }
+                        savePost(user,title,location,entry)
+            else:
+                data["error"] = serializer.errors
+            return Response(data)
+
 
 #TEST ==> REMOVE AFTER
 #List all users even if request user is not authenticated

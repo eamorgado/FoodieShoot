@@ -11,6 +11,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -34,36 +35,22 @@
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenGrey" />
-
         <activity
             android:name=".Authentication.LoginPage"
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenRed"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-
+            android:windowSoftInputMode="stateHidden|adjustPan|adjustResize" />
         <activity
             android:name=".Authentication.SignUp"
             android:label="FoodieShoot"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.FullscreenRed"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-
+            android:windowSoftInputMode="stateHidden|adjustPan|adjustResize" />
         <activity
             android:name=".Authenticated.Logged_Home"
-            android:label="FoodieShoot"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullscreenRed"
-            android:windowSoftInputMode="stateVisible|adjustPan" >
-
-        </activity>
-
-        <activity
-            android:name=".Authenticated.Camera.DetectorActivity"
-            android:label="FoodieShoot"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullscreenGrey" />
-
+            android:theme="@style/Home"/>
     </application>
 
 </manifest>

@@ -17,6 +17,9 @@ package com.ciber.foodieshoot.applications.detection.tflite;
 
 import android.graphics.Bitmap;
 import android.graphics.RectF;
+
+import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
+
 import java.util.List;
 
 /** Generic interface for interacting with different recognition engines. */

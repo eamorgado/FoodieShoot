@@ -18,5 +18,9 @@ urlpatterns = [
     path('account/login',views.login_view,name='rest-v1-login'),
 
     #Logout
-    path('account/logout',views.RestLogout.as_view(),name='rest-v1-logout')
+    path('account/logout',views.RestLogout.as_view(),name='rest-v1-logout'),
+
+
+    #Foods
+    path('foods/analyse',views.get_nutrients_for_foods,name='rest-v1-analysefood')
 ]

@@ -59,11 +59,27 @@
         </item>
     </style>
 
+    <style name="Home" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <!-- Fade edge scroll -->
     <style name="ScrollEdge">
         <item name="colorAccent">@color/redBold</item>
         <item name="android:color">@color/redBold</item>
         <item name="colorPrimary">@color/redBold</item>
         <item name="colorPrimaryDark">@color/redBold</item>
+    </style>
+    
+    
+    <!-- Popup style -->
+    <style name="AppTheme.Popup">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 </resources>

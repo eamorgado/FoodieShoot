@@ -4,7 +4,6 @@ import django.contrib.auth.password_validation as validators
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.db.models import Q
-from foodieshoot.models import FoodieShoots
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -73,7 +72,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user = User(
             email=self.validated_data['email'],
             username=self.validated_data['username'],
-            first_name=self.validated_data['first_name'],
             last_name=self.validated_data['last_name'],
             password = self.validated_data['password']
         )

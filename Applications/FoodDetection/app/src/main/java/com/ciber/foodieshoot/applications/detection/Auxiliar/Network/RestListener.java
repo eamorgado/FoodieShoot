@@ -5,6 +5,7 @@ import com.android.volley.VolleyError;
 import org.json.JSONObject;
 
 public interface RestListener {
-    public void parseResponse(JSONObject response);
-    public void handleError(VolleyError error);
+    void parseResponse(JSONObject response);
+    void handleError(VolleyError error);
+    //void handleTimeout(VolleyError error);
 }

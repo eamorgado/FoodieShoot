@@ -3,30 +3,55 @@ package com.ciber.foodieshoot.applications.detection.Configs;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
 import com.ciber.foodieshoot.applications.detection.R;
 import com.ciber.foodieshoot.applications.detection.SplashActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.URL;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class Configurations {
+    private static boolean AUTHENTICATED = false;
     //Preferences
     public static final String SHARED_PREFS = "sharedPreferences";
 
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
-
+    public static final String HOST = "192.168.1.78";
+    public static final int PORT = 8000;
     public static final String SERVER_URL = "http://192.168.1.78:8000";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
+    public static final String LOGOUT_PATH="account/logout";
+
 
     public static enum USER{
         EMAIL("email",null),
@@ -70,6 +95,7 @@ public class Configurations {
     }
 
     public static void setToken(String token){
+        Configurations.deleteToken();
         Context context = SplashActivity.getContextOfApplication();
         SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -90,10 +116,109 @@ public class Configurations {
     public static void deleteToken(){
         Context context = SplashActivity.getContextOfApplication();
         SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove(USER.TOKEN.getKey());
-        editor.apply();
+        if(preferences.contains(USER.TOKEN.getKey())){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(USER.TOKEN.getKey());
+            editor.apply();
+        }
     }
+
+    public static void deleteUservars(){
+        for(USER user_val : USER.values())
+            user_val.setValue(null);
+    }
+
+    public static boolean isAuthenticated(){return AUTHENTICATED;}
+
+    public static void authenticate(){
+        AUTHENTICATED = true;
+    }
+
+    public static void logout(){
+        AUTHENTICATED = false;
+    }
+
+    public static void logoutRequest(){
+        if(!Configurations.isAuthenticated())
+            return;
+
+        //display confirm box
+        Runnable ok = new Runnable() {
+            @Override
+            public void run() {
+                String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGOUT_PATH});
+                NetworkManager.getInstance().getRequest(endpoint, new RestListener() {
+                    @Override
+                    public void parseResponse(JSONObject response) {
+                        try{
+                            String status = response.get("status").toString();
+                            if(status.equals("success")){
+                                Configurations.logout();
+                                Configurations.deleteToken();
+                                Configurations.deleteUservars();
+                                String logout = SplashActivity.getContextOfApplication().getString(R.string.logout);
+                                String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_message);
+
+                                Configurations.sendNotification(logout,logout_message, NotificationManager.IMPORTANCE_DEFAULT);
+                                Intent intent = new Intent(SplashActivity.getContextOfApplication(),LoginPage.class);
+                                Logged_Home.getContextOfApplication().startActivity(intent);
+                            }
+                            else{
+                                //Fails Check detail and error
+                                String logout = Logged_Home.getContextOfApplication().getString(R.string.logout);
+                                String logout_invalid_token = Logged_Home.getContextOfApplication().getString(R.string.unable_to) + " " + logout.toLowerCase();
+                                logout_invalid_token += ".\n" + Logged_Home.getContextOfApplication().getString(R.string.token_invalid_expired);
+                                Runnable dismiss = new Runnable() {
+                                    @Override
+                                    public void run() {}
+                                };
+                                Alert.infoUser(Logged_Home.getContextOfApplication(),logout,logout_invalid_token,Logged_Home.getContextOfApplication().getString(R.string.ok),dismiss);
+                            }
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                            //Check error
+                            Log.e(Configurations.REST_AUTH_FAIL,"Fail: "+e.toString());
+                        }
+                    }
+                    @Override
+                    public void handleError(VolleyError error) {
+                        Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                        Runnable dismiss = new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
+                            }
+                        };
+                        String message = SplashActivity.getContextOfApplication().getString(R.string.server_timeout) + " - " + SplashActivity.getContextOfApplication().getString(R.string.server_unavailable);
+                        Toast.makeText(Logged_Home.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        };
+
+        //don't logout
+        Runnable cancel = new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(Logged_Home.getContextOfApplication(),Logged_Home.class);
+                Logged_Home.getContextOfApplication().startActivity(intent);
+            }
+        };
+
+        String logout = SplashActivity.getContextOfApplication().getString(R.string.logout);
+        String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_confirm);
+        Alert.alertUser(
+                Logged_Home.getContextOfApplication(),
+                logout,
+                logout_message,
+                SplashActivity.getContextOfApplication().getString(R.string.yes),
+                SplashActivity.getContextOfApplication().getString(R.string.no),
+                ok,
+                cancel
+        );
+    }
+
+
 
 
     //Notifications
@@ -104,8 +229,11 @@ public class Configurations {
             NotificationChannel ch = new NotificationChannel("FoodieShoot_notify",name,importance);
             ch.setDescription(description);
             Context context = SplashActivity.getContextOfApplication();
-            NotificationManager manager = context.getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(ch);
+            try{
+                NotificationManager manager = context.getSystemService(NotificationManager.class);
+                manager.createNotificationChannel(ch);
+            }
+            catch(Exception e){}
         }
     }
 
@@ -120,5 +248,14 @@ public class Configurations {
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         manager.notify(1,builder.build());
+    }
+
+    public static boolean isHostAvailable() {
+        try (Socket socket = new Socket()) {
+            socket.connect(new InetSocketAddress(Configurations.HOST, Configurations.PORT), 3000);
+            return true;
+        } catch (IOException e) {
+            return false; // Either timeout or unreachable or failed DNS lookup.
+        }
     }
 }

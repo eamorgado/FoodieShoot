@@ -16,6 +16,7 @@
 
 package com.ciber.foodieshoot.applications.detection;
 
+import android.app.NotificationManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -31,6 +32,7 @@ import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
 
+import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.customview.OverlayView;
 import com.ciber.foodieshoot.applications.detection.env.BorderedText;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
@@ -181,53 +183,57 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
           @Override
           public void run() {
             LOGGER.i("Running detection on image " + currTimestamp);
-            final long startTime = SystemClock.uptimeMillis();
-            final List<Classifier.Recognition> results = detector.recognizeImage(croppedBitmap);
-            lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
+            try{
+              final long startTime = SystemClock.uptimeMillis();
+              final List<Classifier.Recognition> results = detector.recognizeImage(croppedBitmap);
+              lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
 
-            cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-            final Canvas canvas = new Canvas(cropCopyBitmap);
-            final Paint paint = new Paint();
-            paint.setColor(Color.RED);
-            paint.setStyle(Style.STROKE);
-            paint.setStrokeWidth(2.0f);
+              cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
+              final Canvas canvas = new Canvas(cropCopyBitmap);
+              final Paint paint = new Paint();
+              paint.setColor(Color.RED);
+              paint.setStyle(Style.STROKE);
+              paint.setStrokeWidth(2.0f);
 
-            float minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
-            switch (MODE) {
-              case TF_OD_API:
-                minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
-                break;
-            }
-
-            final List<Classifier.Recognition> mappedRecognitions =
-                new LinkedList<Classifier.Recognition>();
-
-            for (final Classifier.Recognition result : results) {
-              final RectF location = result.getLocation();
-              if (location != null && result.getConfidence() >= minimumConfidence) {
-                canvas.drawRect(location, paint);
-
-                cropToFrameTransform.mapRect(location);
-
-                result.setLocation(location);
-                mappedRecognitions.add(result);
+              float minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
+              switch (MODE) {
+                case TF_OD_API:
+                  minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
+                  break;
               }
+
+              final List<Classifier.Recognition> mappedRecognitions =
+                      new LinkedList<Classifier.Recognition>();
+
+              for (final Classifier.Recognition result : results) {
+                final RectF location = result.getLocation();
+                if (location != null && result.getConfidence() >= minimumConfidence) {
+                  canvas.drawRect(location, paint);
+
+                  cropToFrameTransform.mapRect(location);
+
+                  result.setLocation(location);
+                  mappedRecognitions.add(result);
+                }
+              }
+
+              tracker.trackResults(mappedRecognitions, currTimestamp);
+              trackingOverlay.postInvalidate();
+
+              computingDetection = false;
+
+              runOnUiThread(
+                      new Runnable() {
+                        @Override
+                        public void run() {
+                          showFrameInfo(previewWidth + "x" + previewHeight);
+                          showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
+                          showInference(lastProcessingTimeMs + "ms");
+                        }
+                      });
+            }catch(ArrayIndexOutOfBoundsException e){
+              Configurations.sendNotification(getString(R.string.error),getString(R.string.error_wait), NotificationManager.IMPORTANCE_DEFAULT);
             }
-
-            tracker.trackResults(mappedRecognitions, currTimestamp);
-            trackingOverlay.postInvalidate();
-
-            computingDetection = false;
-
-            runOnUiThread(
-                new Runnable() {
-                  @Override
-                  public void run() {
-                    showFrameInfo(previewWidth + "x" + previewHeight);
-                    showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
-                    showInference(lastProcessingTimeMs + "ms");
-                  }
-                });
           }
         });
   }
