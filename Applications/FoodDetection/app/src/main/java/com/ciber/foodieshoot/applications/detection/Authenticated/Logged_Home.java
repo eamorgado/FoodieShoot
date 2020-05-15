@@ -13,14 +13,26 @@ import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMetho
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Logged_Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static Context app_context;
@@ -61,6 +73,35 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         bottom_nav = findViewById(R.id.bottom_nav);
         bottom_nav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+
+        View nav_view = top_nav.getHeaderView(0);
+        TextView tv = null;
+        if(Configurations.USER.USERNAME.getValue() != null){
+            tv = (TextView) nav_view.findViewById(R.id.text_user);
+            if(tv != null)
+                tv.setText(Configurations.USER.USERNAME.getValue());
+        }
+        if(Configurations.USER.EMAIL.getValue() != null){
+            tv = (TextView) nav_view.findViewById(R.id.text_email);
+            if(tv != null)
+                tv.setText(Configurations.USER.EMAIL.getValue());
+        }
+
+        ImageView iv = (ImageView) nav_view.findViewById(R.id.profile_pic);
+        if(iv != null){
+            ContextWrapper cw = new ContextWrapper(SplashActivity.getContextOfApplication());
+            File directory = cw.getDir("profile",Context.MODE_PRIVATE);
+            if(directory.exists()){
+                File path = new File(directory,"profile.png");
+                Log.i("ABSP file","" + path.getAbsolutePath(),null);
+                Bitmap btm = BitmapFactory.decodeFile(path.getAbsolutePath());
+                iv.setImageBitmap(btm);
+                if(path.exists()){
+
+                }
+            }
+        }
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -114,8 +155,13 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
                 flag = true;
                 Configurations.logoutRequest();
                 break;
+            case R.id.nav_about:
+                unselectAllBottom();
+                selected = new AboutFragment();
+                break;
             case R.id.nav_open_site:
                 flag = true;
+                unselectAllBottom();
                 String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL});
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
                 browserIntent.setData(Uri.parse(endpoint));
@@ -143,5 +189,12 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
 
     public NavigationView getTopNav(){
         return top_nav;
+    }
+
+    private void unselectAllBottom(){
+        bottom_nav.getMenu().setGroupCheckable(0,false,false);
+        for (int i = 0; i < bottom_nav.getMenu().size();i++)
+            bottom_nav.getMenu().getItem(i).setChecked(false);
+        bottom_nav.getMenu().setGroupCheckable(0, true, true);
     }
 }

@@ -100,9 +100,10 @@ public class SplashActivity extends Activity {
                     //Server is responsive => request auth
                     String status = response.get("status").toString();
                     if(status.equals("success")){
-                        SplashActivity.layout_auxiliar.setUserVars(response);
                         Configurations.authenticate();
+                        layout_auxiliar.setUserVars(response);
                         Configurations.setToken(Configurations.USER.TOKEN.getValue());
+                        NetworkManager.getInstance().saveProfileImage();
                         SplashActivity.layout_auxiliar.openActivity(Logged_Home.class);
                     }
                     else{

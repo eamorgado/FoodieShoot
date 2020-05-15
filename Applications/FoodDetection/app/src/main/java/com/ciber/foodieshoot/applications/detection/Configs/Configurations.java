@@ -3,6 +3,7 @@ package com.ciber.foodieshoot.applications.detection.Configs;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -27,6 +28,7 @@ import com.ciber.foodieshoot.applications.detection.SplashActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -50,7 +52,8 @@ public class Configurations {
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
-    public static final String LOGOUT_PATH="account/logout";
+    public static final String LOGOUT_PATH = "account/logout";
+    public static final String PROFILE_PIC_PATH = "account/profile";
 
 
     public static enum USER{
@@ -120,6 +123,19 @@ public class Configurations {
             SharedPreferences.Editor editor = preferences.edit();
             editor.remove(USER.TOKEN.getKey());
             editor.apply();
+        }
+
+        //delete profile pic
+        ContextWrapper cw = new ContextWrapper(SplashActivity.getContextOfApplication());
+        File directory = cw.getDir("profile",Context.MODE_PRIVATE);
+        if(directory.exists()){
+            File path = new File(directory,"profile.png");
+            if(path.exists()){
+                if(path.delete())
+                    Log.i("Delete profile pic","Deleting profile pic, success",null);
+                else
+                    Log.i("Delete profile pic","Deleting profile pic, fail",null);
+            }
         }
     }
 
