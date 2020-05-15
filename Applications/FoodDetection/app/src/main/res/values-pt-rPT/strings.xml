@@ -47,4 +47,17 @@
     <string name="analysing">Começando a analisar a imagem</string>
     <string name="error">Erro</string>
     <string name="error_wait">Aguarde e tente novamente</string>
+    <string name="bottom_nav_home">Início</string>
+    <string name="bottom_nav_camera">" Câmera"</string>
+    <string name="bottom_nav_posts">Postagens</string>
+    <string name="requires_auth">" Requer autenticação"</string>
+    <string name="join">Quer se juntar?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="ok">Ok</string>
+    <string name="server_connection">Status da conexão</string>
+    <string name="server_unavailable">O servidor não está disponível ou a internet não está ativada</string>
+    <string name="server_timeout">Tempo esgotado</string>
+    <string name="open_drawer">Gaveta aberta</string>
+    <string name="close_drawer">" Fechar gaveta"</string>
 </resources>

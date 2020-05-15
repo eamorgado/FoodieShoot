@@ -47,4 +47,17 @@
     <string name="analysing">Bild analysieren</string>
     <string name="error">Error</string>
     <string name="error_wait">Bitte warten Sie und versuchen Sie es erneut</string>
+    <string name="bottom_nav_home">" Startseite"</string>
+    <string name="bottom_nav_camera">Kamera</string>
+    <string name="bottom_nav_posts">" Beiträge"</string>
+    <string name="requires_auth">" Erfordert eine Authentifizierung"</string>
+    <string name="join">" Möchtest du mitmachen?"</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="ok">Ok</string>
+    <string name="server_connection">Verbindungsstatus</string>
+    <string name="server_unavailable">Server ist nicht verfügbar oder Internet ist nicht aktiviert</string>
+    <string name="server_timeout">" Auszeit"</string>
+    <string name="open_drawer">Offene Schublade</string>
+    <string name="close_drawer">Schublade schließen</string>
 </resources>

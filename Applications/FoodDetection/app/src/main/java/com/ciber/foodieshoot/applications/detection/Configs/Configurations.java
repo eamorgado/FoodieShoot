@@ -3,15 +3,29 @@ package com.ciber.foodieshoot.applications.detection.Configs;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
 import com.ciber.foodieshoot.applications.detection.R;
 import com.ciber.foodieshoot.applications.detection.SplashActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -36,6 +50,7 @@ public class Configurations {
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
+    public static final String LOGOUT_PATH="account/logout";
 
 
     public static enum USER{
@@ -108,6 +123,11 @@ public class Configurations {
         }
     }
 
+    public static void deleteUservars(){
+        for(USER user_val : USER.values())
+            user_val.setValue(null);
+    }
+
     public static boolean isAuthenticated(){return AUTHENTICATED;}
 
     public static void authenticate(){
@@ -117,6 +137,89 @@ public class Configurations {
     public static void logout(){
         AUTHENTICATED = false;
     }
+
+    public static void logoutRequest(){
+        if(!Configurations.isAuthenticated())
+            return;
+
+        //display confirm box
+        Runnable ok = new Runnable() {
+            @Override
+            public void run() {
+                String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGOUT_PATH});
+                NetworkManager.getInstance().getRequest(endpoint, new RestListener() {
+                    @Override
+                    public void parseResponse(JSONObject response) {
+                        try{
+                            String status = response.get("status").toString();
+                            if(status.equals("success")){
+                                Configurations.logout();
+                                Configurations.deleteToken();
+                                Configurations.deleteUservars();
+                                String logout = SplashActivity.getContextOfApplication().getString(R.string.logout);
+                                String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_message);
+
+                                Configurations.sendNotification(logout,logout_message, NotificationManager.IMPORTANCE_DEFAULT);
+                                Intent intent = new Intent(SplashActivity.getContextOfApplication(),LoginPage.class);
+                                Logged_Home.getContextOfApplication().startActivity(intent);
+                            }
+                            else{
+                                //Fails Check detail and error
+                                String logout = Logged_Home.getContextOfApplication().getString(R.string.logout);
+                                String logout_invalid_token = Logged_Home.getContextOfApplication().getString(R.string.unable_to) + " " + logout.toLowerCase();
+                                logout_invalid_token += ".\n" + Logged_Home.getContextOfApplication().getString(R.string.token_invalid_expired);
+                                Runnable dismiss = new Runnable() {
+                                    @Override
+                                    public void run() {}
+                                };
+                                Alert.infoUser(Logged_Home.getContextOfApplication(),logout,logout_invalid_token,Logged_Home.getContextOfApplication().getString(R.string.ok),dismiss);
+                            }
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                            //Check error
+                            Log.e(Configurations.REST_AUTH_FAIL,"Fail: "+e.toString());
+                        }
+                    }
+                    @Override
+                    public void handleError(VolleyError error) {
+                        Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                        Runnable dismiss = new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
+                            }
+                        };
+                        String message = SplashActivity.getContextOfApplication().getString(R.string.server_timeout) + " - " + SplashActivity.getContextOfApplication().getString(R.string.server_unavailable);
+                        Toast.makeText(Logged_Home.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        };
+
+        //don't logout
+        Runnable cancel = new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(Logged_Home.getContextOfApplication(),Logged_Home.class);
+                Logged_Home.getContextOfApplication().startActivity(intent);
+            }
+        };
+
+        String logout = SplashActivity.getContextOfApplication().getString(R.string.logout);
+        String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_confirm);
+        Alert.alertUser(
+                Logged_Home.getContextOfApplication(),
+                logout,
+                logout_message,
+                SplashActivity.getContextOfApplication().getString(R.string.yes),
+                SplashActivity.getContextOfApplication().getString(R.string.no),
+                ok,
+                cancel
+        );
+    }
+
+
+
 
     //Notifications
     private static void createNotificationChannel(int importance){

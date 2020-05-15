@@ -44,7 +44,7 @@ public class LayoutAuxiliarMethods{
         return ((EditText)((Activity)context).findViewById(id)).getText().toString().trim();
     }
 
-    public String buildUrl(String[] paths){
+    public static String buildUrl(String[] paths){
         String url = "";
         for(String path : paths) url += path;
         return url;

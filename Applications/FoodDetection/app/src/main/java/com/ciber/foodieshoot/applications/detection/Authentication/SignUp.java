@@ -114,7 +114,7 @@ public class SignUp extends AppCompatActivity {
 
 
     private void makeRegisterRequest(){
-        String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.REGISTER_PATH});
+        String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.REGISTER_PATH});
         Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
         Context context = this;
         NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {

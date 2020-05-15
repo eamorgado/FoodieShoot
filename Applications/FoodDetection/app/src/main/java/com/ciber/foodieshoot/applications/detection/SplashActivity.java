@@ -5,6 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.NoConnectionError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
@@ -127,8 +131,19 @@ public class SplashActivity extends Activity {
                         SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
                     }
                 };
-                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
-                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                if(error.networkResponse == null && (error instanceof TimeoutError || error instanceof NoConnectionError)){
+                    Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                    Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                }
+                else{
+                    String login = SplashActivity.getContextOfApplication().getString(R.string.login_login);
+                    String login_invalid_token = SplashActivity.getContextOfApplication().getString(R.string.unable_to) + " " + login.toLowerCase();
+                    login_invalid_token += ".\n" + SplashActivity.getContextOfApplication().getString(R.string.token_invalid_expired);
+                    Configurations.logout();
+                    Configurations.deleteToken();
+                    Configurations.deleteUservars();
+                    Alert.infoUser(SplashActivity.getContextOfApplication(),login,login_invalid_token,SplashActivity.getContextOfApplication().getString(R.string.ok),dismiss);
+                }
             }
         });
     }

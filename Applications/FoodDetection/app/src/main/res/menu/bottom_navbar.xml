@@ -4,14 +4,14 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/home_icon"
-            android:title="Home"/>
+            android:title="@string/bottom_nav_home"/>
         <item
             android:id="@+id/bottom_camera"
             android:icon="@drawable/camera_icon"
-            android:title="Camera"/>
+            android:title="@string/bottom_nav_camera"/>
         <item
             android:id="@+id/bottom_posts"
             android:icon="@drawable/shots_icon"
-            android:title="Posts"/>
+            android:title="@string/bottom_nav_posts"/>
     </group>
 </menu>

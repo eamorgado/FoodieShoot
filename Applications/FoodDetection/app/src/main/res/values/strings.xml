@@ -68,6 +68,15 @@
     <string name="visit_site">Visit site</string>
     <string name="share">Share</string>
 
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_camera">Camera</string>
+    <string name="bottom_nav_posts">Posts</string>
+
+    <string name="unable_to">Unable to</string>
+    <string name="logout_message">Logout complete</string>
+    <string name="logout_confirm">Are you sure you wat to logout? Your session data will be deleted.</string>
+
+    <string name="token_invalid_expired">Invalid or expired token</string>
 
     <!-- Analyse -->
     <string name="analyse">Analyse Image</string>
@@ -91,7 +100,8 @@
     <string name="server_timeout">Timeout</string>
 
 
-    <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="open_drawer">Open drawer</string>
+
 
 </resources>

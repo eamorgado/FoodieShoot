@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.NoConnectionError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
@@ -101,7 +102,7 @@ public class LoginPage extends AppCompatActivity {
         forgot_link.setMovementMethod(LinkMovementMethod.getInstance());
         forgot_link.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.FORGOT_PASSWORD_PATH});
+                String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.FORGOT_PASSWORD_PATH});
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
                 browserIntent.setData(Uri.parse(endpoint));
                 startActivity(browserIntent);
@@ -142,7 +143,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void makeLoginRequest(){
-        String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGIN_PATH});
+        String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGIN_PATH});
         Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
 
         NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
@@ -193,8 +194,19 @@ public class LoginPage extends AppCompatActivity {
                         Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
                     }
                 };
-                String message = getString(R.string.server_timeout) + " - " + getString(R.string.server_unavailable);
-                Toast.makeText(LoginPage.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
+                if(error.networkResponse == null && (error instanceof TimeoutError || error instanceof NoConnectionError)){
+                    String message = getString(R.string.server_timeout) + " - " + getString(R.string.server_unavailable);
+                    Toast.makeText(LoginPage.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
+                }
+                else{
+                    String login = LoginPage.getContextOfApplication().getString(R.string.login_login);
+                    String login_invalid_token = LoginPage.getContextOfApplication().getString(R.string.unable_to) + " " + login.toLowerCase();
+                    login_invalid_token += ".\n" + LoginPage.getContextOfApplication().getString(R.string.token_invalid_expired);
+                    Configurations.logout();
+                    Configurations.deleteToken();
+                    Configurations.deleteUservars();
+                    Alert.infoUser(LoginPage.getContextOfApplication(),login,login_invalid_token,LoginPage.getContextOfApplication().getString(R.string.ok),dismiss);
+                }
             }
         });
     }
