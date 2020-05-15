@@ -18,6 +18,7 @@ package com.ciber.foodieshoot.applications.detection;
 
 import android.Manifest;
 import android.app.Fragment;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -39,19 +40,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.text.method.LinkMovementMethod;
 import android.util.Size;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.DisplayFoods;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
@@ -97,6 +103,11 @@ public abstract class CameraActivity extends AppCompatActivity
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setContentView(R.layout.tfe_od_activity_camera);
+
+    //Prepare for prediction cals display
+    DisplayFoods.setContext(this);
+    analysePrediction();
+
     backToMain();
     if (hasPermission()) {
       setFragment();
@@ -559,13 +570,53 @@ public abstract class CameraActivity extends AppCompatActivity
     imageView.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
-        Configurations.USER.TOKEN.setValue(null);
-        Intent intent = new Intent(
-                CameraActivity.this, LoginPage.class);
+        Intent intent;
+        if(!Configurations.isAuthenticated())
+          intent = new Intent(CameraActivity.this, LoginPage.class);
+        else
+          intent = new Intent(CameraActivity.this, Logged_Home.class);
         startActivity(intent);
         finish();
         return false;
       }
     });
+  }
+
+  protected void analysePrediction(){
+      Button analyse = (Button) findViewById(R.id.analyse_prediction);
+      analyse.setMovementMethod(LinkMovementMethod.getInstance());
+      analyse.setOnClickListener(new View.OnClickListener(){
+          public void onClick(View v){
+              //Analyse pressed
+              if(!Configurations.isAuthenticated()) {
+                Configurations.sendNotification(getString(R.string.analyse),getString(R.string.fail_no_account), NotificationManager.IMPORTANCE_DEFAULT);
+                //set ok
+                Runnable ok = new Runnable() {
+                  @Override
+                  public void run() {
+                    Intent intent = new Intent(CameraActivity.this,LoginPage.class);
+                    startActivity(intent);
+                    finish();
+                  }
+                };
+                //set cancel
+                Runnable cancel = new Runnable() {
+                  @Override
+                  public void run() {}
+                };
+                String message = getString(R.string.requires_auth) + "\n" + getString(R.string.join);
+                Alert.alertUser(
+                        CameraActivity.this,
+                        getString(R.string.requires_auth),
+                        message,getString(R.string.yes),
+                        getString(R.string.no),
+                        ok,
+                        cancel
+                );
+              }
+              else
+                  Configurations.sendNotification(getString(R.string.analyse),getString(R.string.analysing), NotificationManager.IMPORTANCE_DEFAULT);
+          }
+      });
   }
 }

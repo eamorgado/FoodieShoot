@@ -18,6 +18,7 @@ import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListene
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.R;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -30,6 +31,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -112,7 +114,7 @@ public class SignUp extends AppCompatActivity {
 
 
     private void makeRegisterRequest(){
-        String endpoint = layout_auxiliar.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.REGISTER_PATH});
+        String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.REGISTER_PATH});
         Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
         Context context = this;
         NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
@@ -149,9 +151,21 @@ public class SignUp extends AppCompatActivity {
 
             @Override
             public void handleError(VolleyError error) {
-                error.printStackTrace();
                 Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                Runnable dismiss = new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
+                    }
+                };
+                String message = getString(R.string.server_timeout) + " - " + getString(R.string.server_unavailable);
+                Toast.makeText(SplashActivity.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        layout_auxiliar.openActivity(LoginPage.class);
     }
 }

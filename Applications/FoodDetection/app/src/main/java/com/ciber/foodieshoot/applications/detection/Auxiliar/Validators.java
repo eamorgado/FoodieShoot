@@ -1,9 +1,11 @@
 package com.ciber.foodieshoot.applications.detection.Auxiliar;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.widget.EditText;
 
+import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.R;
 
 import java.util.ArrayList;
