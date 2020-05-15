@@ -26,6 +26,7 @@ public class Alert {
                     }
                 })
                 .setIcon(c.getResources().getDrawable(R.drawable.logo))
+                .setCancelable(false)
                 .show();
     }
 
@@ -39,6 +40,7 @@ public class Alert {
                     }
                 })
                 .setIcon(c.getResources().getDrawable(R.drawable.logo))
+                .setCancelable(false)
                 .show();
     }
 }

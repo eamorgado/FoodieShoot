@@ -78,8 +78,20 @@
     <string name="requires_auth">Requires authentication</string>
     <string name="join">Want to join?</string>
 
+
+    <!-- USER ACTIONS -->
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="ok">Ok</string>
 
+
+    <!-- CONNECTION MESSAGES -->
+    <string name="server_connection">Connection status</string>
+    <string name="server_unavailable">Server is not available or internet is not enabled</string>
+    <string name="server_timeout">Timeout</string>
+
+
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.ciber.foodieshoot.applications.detection.Authentication;
 
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
@@ -25,6 +28,7 @@ import com.ciber.foodieshoot.applications.detection.Auxiliar.Validators;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +37,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class LoginPage extends AppCompatActivity {
+    private static Context app_context;
     private final int PROGRESS_ID = R.id.login_progress;
     private final String[] FIELD_KEYS = Configurations.USER.getLogingFields();
     private final int[] FIELD_IDS = {R.id.input_email,R.id.input_password};
@@ -48,7 +53,7 @@ public class LoginPage extends AppCompatActivity {
 
         //Initiate auxiliar
         layout_auxiliar = new LayoutAuxiliarMethods(this);
-
+        app_context = this;
         //Initialize validator
         validator = new Validators(this);
 
@@ -60,19 +65,22 @@ public class LoginPage extends AppCompatActivity {
                 " <font color=#FF0000><big>?</big></font>"
         };
         layout_auxiliar.changeColor(ids,texts);
+
+        //Add forgot password functionality
         forgotPasswordLink();
-        checkLogin();
+
+        //Add move to sign up page
         moveToSignUp();
+
+        //Initiate login action
         loginButtonPressed();
+
+        //jump to no account camera
         continueNoAccount();
     }
 
-    private void checkLogin(){
-        if(Configurations.USER.TOKEN.getValue() != null){
-            Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
-            //Move to detection activity
-            layout_auxiliar.openActivity(DetectorActivity.class);
-        }
+    public static Context getContextOfApplication(){
+        return app_context;
     }
 
     private void moveToSignUp(){
@@ -110,6 +118,11 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Verify if input is given
+     * If so initiate login request and validation
+     */
     private void loginButtonPressed(){
         Button login_button = (Button) findViewById(R.id.login);
         login_button.setMovementMethod(LinkMovementMethod.getInstance());
@@ -140,12 +153,15 @@ public class LoginPage extends AppCompatActivity {
                     if(status.equals("success")){
                         layout_auxiliar.setUserVars(response);
                         Switch keep_me_logged = (Switch) findViewById(R.id.keep_me_logged);
+                        Configurations.deleteToken();
+                        Configurations.authenticate();
                         if(keep_me_logged.isChecked())
                             Configurations.setToken(Configurations.USER.TOKEN.getValue());
                         Configurations.sendNotification(getString(R.string.login_login),getString(R.string.login_success), NotificationManager.IMPORTANCE_DEFAULT);
                         layout_auxiliar.openActivity(Logged_Home.class);
                     }
-                    //fail
+
+                    //fail -> display errors
                     JSONObject jsonobject = (JSONObject) response.get("error");
                     Iterator<String> keys = jsonobject.keys();
                     while(keys.hasNext()){
@@ -156,7 +172,12 @@ public class LoginPage extends AppCompatActivity {
                             case "user": ((EditText) findViewById(R.id.input_email)).setError(getString(R.string.invalid_email)); break;
                         }
                     }
-                }catch(JSONException e){e.printStackTrace();}
+                }catch(JSONException e){
+                    e.printStackTrace();
+                    //Check error
+                    Log.e(Configurations.REST_AUTH_FAIL,"Fail: "+e.toString());
+                }
+
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -165,9 +186,15 @@ public class LoginPage extends AppCompatActivity {
             }
             @Override
             public void handleError(VolleyError error) {
-                //TODO => improve error response with popup
-                error.printStackTrace();
                 Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                Runnable dismiss = new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
+                    }
+                };
+                String message = getString(R.string.server_timeout) + " - " + getString(R.string.server_unavailable);
+                Toast.makeText(LoginPage.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
             }
         });
     }

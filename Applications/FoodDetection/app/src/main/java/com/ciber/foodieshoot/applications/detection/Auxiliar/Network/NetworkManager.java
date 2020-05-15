@@ -12,6 +12,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
 import org.json.JSONObject;
 
@@ -35,7 +36,7 @@ public class NetworkManager {
 
     public static synchronized NetworkManager getInstance(){
         if(instance == null)
-            throw new IllegalStateException(NetworkManager.class.getSimpleName() + " is not initialized, call getInstance(...) first");
+            NetworkManager.getInstance(SplashActivity.getContextOfApplication());
         return instance;
     }
 

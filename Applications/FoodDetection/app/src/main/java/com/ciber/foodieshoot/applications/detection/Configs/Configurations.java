@@ -23,6 +23,7 @@ import java.net.URL;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Configurations {
+    private static boolean AUTHENTICATED = false;
     //Preferences
     public static final String SHARED_PREFS = "sharedPreferences";
 
@@ -35,6 +36,7 @@ public class Configurations {
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
+
 
     public static enum USER{
         EMAIL("email",null),
@@ -78,6 +80,7 @@ public class Configurations {
     }
 
     public static void setToken(String token){
+        Configurations.deleteToken();
         Context context = SplashActivity.getContextOfApplication();
         SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -98,13 +101,21 @@ public class Configurations {
     public static void deleteToken(){
         Context context = SplashActivity.getContextOfApplication();
         SharedPreferences preferences = context.getSharedPreferences(Configurations.SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove(USER.TOKEN.getKey());
-        editor.apply();
+        if(preferences.contains(USER.TOKEN.getKey())){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove(USER.TOKEN.getKey());
+            editor.apply();
+        }
     }
 
-    public static boolean isAuthenticated(){
-        return USER.TOKEN.getValue() != null;
+    public static boolean isAuthenticated(){return AUTHENTICATED;}
+
+    public static void authenticate(){
+        AUTHENTICATED = true;
+    }
+
+    public static void logout(){
+        AUTHENTICATED = false;
     }
 
     //Notifications
@@ -115,8 +126,11 @@ public class Configurations {
             NotificationChannel ch = new NotificationChannel("FoodieShoot_notify",name,importance);
             ch.setDescription(description);
             Context context = SplashActivity.getContextOfApplication();
-            NotificationManager manager = context.getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(ch);
+            try{
+                NotificationManager manager = context.getSystemService(NotificationManager.class);
+                manager.createNotificationChannel(ch);
+            }
+            catch(Exception e){}
         }
     }
 

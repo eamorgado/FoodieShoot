@@ -55,8 +55,11 @@ public class FoodCalories {
     }
 
     public static String getTitle(String title){
-        Food food = FoodCalories.getFood(title);
-        title += "_[" + food.getCalories() + " kcals, " + food.getQuantity() + " " + food.getUnit() + "]";
-        return  title;
+        if (title != null) {
+            Food food = FoodCalories.getFood(title);
+            title += "_[" + food.getCalories() + " kcals, " + food.getQuantity() + " " + food.getUnit() + "]";
+            return  title;
+        }
+        return "Unknown";
     }
 }

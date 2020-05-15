@@ -59,6 +59,15 @@
         </item>
     </style>
 
+    <style name="Home" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <!-- Fade edge scroll -->
     <style name="ScrollEdge">
         <item name="colorAccent">@color/redBold</item>
