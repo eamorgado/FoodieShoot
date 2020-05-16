@@ -59,6 +59,10 @@ public class FoodPostAnalyse {
         return instance.server_post_response;
     }
 
+    public JSONObject getContentJson() throws JSONException {
+        return instance.analysis_response.convertJsonContents();
+    }
+
     @NonNull
     @Override
     public String toString() {

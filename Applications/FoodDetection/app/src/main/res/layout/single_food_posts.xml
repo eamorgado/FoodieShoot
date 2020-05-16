@@ -17,10 +17,6 @@
             android:gravity="start"
             android:paddingEnd="10dp"
             android:text="Name:"
-            app:layout_constraintEnd_toStartOf="@id/preview_contents"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintRight_toLeftOf="@+id/preview_save"
-            app:layout_constraintStart_toStartOf="parent"
             />
         <TextView
             android:id="@+id/preview_contents"
@@ -29,6 +25,5 @@
             android:gravity="end"
             android:text="Contents"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/preview_description"
             />
  </androidx.constraintlayout.widget.ConstraintLayout>

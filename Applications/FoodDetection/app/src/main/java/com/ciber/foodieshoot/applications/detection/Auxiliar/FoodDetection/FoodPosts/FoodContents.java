@@ -31,13 +31,23 @@ public class FoodContents {
         return  processed;
     }
 
+    public JSONObject convertJson() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("total_calories",total_calories);
+        JSONArray processed_array = new JSONArray();
+        for(SingleFoodInfo food : processed)
+            processed_array.put(food.convertJson());
+        json.put("processed",processed_array);
+        return json;
+    }
+
     @Override
     public String toString() {
         String s = "{Total Calories: " + total_calories +", Processed: [";
         int i = 0;
         for(SingleFoodInfo food : processed){
             s += food.toString();
-            if(i++ < processed.size()) s += ", ";
+            if(i++ < (processed.size() - 1)) s += ", ";
         }
         s += "]}";
         return s;

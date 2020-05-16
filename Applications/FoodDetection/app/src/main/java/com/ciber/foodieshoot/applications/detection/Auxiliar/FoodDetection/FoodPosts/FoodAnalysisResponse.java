@@ -19,6 +19,10 @@ public class FoodAnalysisResponse {
     public String getStatus(){return status;}
     public FoodContents getContents(){return contents;}
 
+    public JSONObject convertJsonContents() throws JSONException {
+        return contents.convertJson();
+    }
+
     @Override
     public String toString() {
         return "{Status: " + status + ", Contents: {" + contents.toString() + "}}";

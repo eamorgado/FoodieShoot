@@ -64,6 +64,7 @@ public class Configurations {
     public static final String PROFILE_PIC_PATH = "account/profile";
 
     public static final  String FOODS_ANALYSE = "foods/analyse";
+    public static final String POST_SAVE_PATH = "foods/posts/save";
 
     public static boolean USER_KEEP = false;
     public static Drawable USER_PROFILE = null;
