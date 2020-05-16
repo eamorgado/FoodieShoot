@@ -50,15 +50,21 @@ public class Configurations {
 
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
+
     public static final String HOST = "192.168.1.78";
     public static final int PORT = 8000;
+
     public static final String SERVER_URL = "http://192.168.1.78:8000";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
+
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
     public static final String LOGOUT_PATH = "account/logout";
     public static final String PROFILE_PIC_PATH = "account/profile";
+
+    public static final  String FOODS_ANALYSE = "foods/analyse";
+
     public static boolean USER_KEEP = false;
     public static Drawable USER_PROFILE = null;
 

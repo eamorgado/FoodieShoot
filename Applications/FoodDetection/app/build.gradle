@@ -79,6 +79,7 @@ dependencies {
     //JSON parser
     implementation 'com.fasterxml.jackson.core:jackson-core:2.7.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.7.2'
+    implementation 'org.apache.commons:commons-lang3:3.6'
 
 
     //Nav bar
