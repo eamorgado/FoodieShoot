@@ -1,5 +1,7 @@
 package com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts;
 
+import androidx.annotation.NonNull;
+
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 
 import org.json.JSONArray;
@@ -7,43 +9,41 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class FoodPostAnalyse {
-    private FoodAnalysisResponse analysis_response = null;
-    private String server_post_response = null;
-    private FoodPostAnalyse instance = null;
+    private static FoodAnalysisResponse analysis_response;
+    private static String server_post_response;
+    private static FoodPostAnalyse instance;
 
     private FoodPostAnalyse(){}
 
-    public FoodPostAnalyse getInstance(){
+    public static synchronized FoodPostAnalyse getInstance(){
         if(instance == null)
             instance = new FoodPostAnalyse();
         return instance;
     }
 
-    private void newPostAnalysis(JSONObject response) throws JSONException {
-        com.google.gson.Gson gson = new com.google.gson.Gson();
-        analysis_response = gson.fromJson(response.toString(),FoodAnalysisResponse.class);
+    public void newPostAnalysis(JSONObject response) throws JSONException {
+        instance.analysis_response = new FoodAnalysisResponse(response);
         if(wasSuccessful()){
-            server_post_response = response.get("contents").toString();
+            instance.server_post_response = response.get("contents").toString();
         }
     }
 
-    private boolean wasSuccessful(){
-        return analysis_response.getStatus().equals("success");
+    public boolean wasSuccessful(){
+        return instance.analysis_response.getStatus().equals("success");
     }
 
-    private double getTotalCalories(){
-        return analysis_response.getContents().getTotalCalories();
+    public float getTotalCalories(){
+        return instance.analysis_response.getContents().getTotalCalories();
     }
 
-    private List<SingleFoodInfo> getAllProcessedFoods(){
-        return analysis_response.getContents().getProcessed();
+    public List<SingleFoodInfo> getAllProcessedFoods(){
+        return instance.analysis_response.getContents().getProcessed();
     }
 
-    private JSONObject preprocessAnalysisRequest(ArrayList<String> foods) throws JSONException {
+    public JSONObject preprocessAnalysisRequest(ArrayList<String> foods) throws JSONException {
         JSONObject request = new JSONObject();
         request.put(Configurations.USER.TOKEN.getKey(),Configurations.USER.TOKEN.getValue());
 
@@ -53,5 +53,19 @@ public class FoodPostAnalyse {
             jarray.put(food);
         request.put("foods",jarray);
         return  request;
+    }
+
+    public String getServerResponse(){
+        return instance.server_post_response;
+    }
+
+    public JSONObject getContentJson() throws JSONException {
+        return instance.analysis_response.convertJsonContents();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return instance.analysis_response.toString();
     }
 }

@@ -1,55 +1,56 @@
 package com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts;
 
-import java.util.HashMap;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "total_calories",
-        "processed"
-})
 public class FoodContents {
-    @JsonProperty("total_calories")
-    private Double totalCalories;
-    @JsonProperty("processed")
-    private List<SingleFoodInfo> processed = null;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private float total_calories;
+    private List<SingleFoodInfo> processed;
 
-    @JsonProperty("total_calories")
-    public Double getTotalCalories() {
-        return totalCalories;
+
+    FoodContents(JSONObject contents) throws JSONException {
+        total_calories = (float)contents.getDouble("total_calories");
+        processed = new ArrayList<>();
+
+        JSONArray processed_arr = contents.getJSONArray("processed");
+        for(int i = 0; i < processed_arr.length(); i++){
+            processed.add(new SingleFoodInfo(processed_arr.getJSONObject(i)));
+        }
+    }
+    public float getTotalCalories() {
+        return total_calories;
     }
 
-    @JsonProperty("total_calories")
-    public void setTotalCalories(Double totalCalories) {
-        this.totalCalories = totalCalories;
+    public List<SingleFoodInfo> getProcessed(){
+        return  processed;
     }
 
-    @JsonProperty("processed")
-    public List<SingleFoodInfo> getProcessed() {
-        return processed;
+    public JSONObject convertJson() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("total_calories",total_calories);
+        JSONArray processed_array = new JSONArray();
+        for(SingleFoodInfo food : processed)
+            processed_array.put(food.convertJson());
+        json.put("processed",processed_array);
+        return json;
     }
 
-    @JsonProperty("processed")
-    public void setProcessed(List<SingleFoodInfo> processed) {
-        this.processed = processed;
+    @Override
+    public String toString() {
+        String s = "{Total Calories: " + total_calories +", Processed: [";
+        int i = 0;
+        for(SingleFoodInfo food : processed){
+            s += food.toString();
+            if(i++ < (processed.size() - 1)) s += ", ";
+        }
+        s += "]}";
+        return s;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 }

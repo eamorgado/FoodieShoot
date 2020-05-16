@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.ciber.foodieshoot.applications.detection.Authenticated.Posts.PostsPreview;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
@@ -96,6 +97,18 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
 
         listenRefresh();
 
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if(extras != null){
+            if(extras.containsKey("Redirect")){
+                switch (i.getStringExtra("Redirect")){
+                    case "Posts":
+                        top_nav.setCheckedItem(R.id.nav_shots);
+                        bottom_nav.getMenu().findItem(R.id.bottom_posts).setChecked(true);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PostFragment()).commit();
+                }
+            }
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -144,6 +157,9 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
             case R.id.nav_shots:
                 selected = new PostFragment();
                 bottom_nav.getMenu().findItem(R.id.bottom_posts).setChecked(true);
+                break;
+            case R.id.nav_profile:
+                layout_auxiliar.openActivity(PostsPreview.class);
                 break;
             case R.id.nav_logout:
                 flag = true;

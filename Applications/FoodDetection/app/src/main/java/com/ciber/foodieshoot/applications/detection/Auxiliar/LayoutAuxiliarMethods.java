@@ -57,6 +57,13 @@ public class LayoutAuxiliarMethods{
         ((Activity)this.context).finish();
     }
 
+    public void openActivityExtra(final Class<? extends Activity> destination, String red){
+        Intent intent = new Intent(this.context,destination);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Redirect",red);
+        context.startActivity(intent);
+        ((Activity)this.context).finish();
+    }
     //Color change
     /**
      * Method to change colors for some components in activity

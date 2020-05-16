@@ -55,6 +55,31 @@ public class NetworkManager {
         return instance;
     }
 
+
+    public void postRequestFromJson(String endpoint, JSONObject params, final RestListener listener){
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                endpoint,
+                params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        listener.parseResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        listener.handleError(error);
+                    }
+                }
+        );
+        int socketTimeout = 3000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(policy);
+        request_queue.add(request);
+    }
+
     public void postRequest(String endpoint, Map<String,? extends Object> params, final RestListener listener){
         JSONObject parameters = new JSONObject(params);
         JsonObjectRequest request = new JsonObjectRequest(

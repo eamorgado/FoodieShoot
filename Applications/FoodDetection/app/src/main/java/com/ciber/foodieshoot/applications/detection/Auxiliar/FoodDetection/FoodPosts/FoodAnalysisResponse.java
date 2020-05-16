@@ -1,54 +1,31 @@
 package com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "status",
-        "contents"
-})
 public class FoodAnalysisResponse {
-    @JsonProperty("status")
     private String status;
-    @JsonProperty("contents")
     private FoodContents contents;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
+    FoodAnalysisResponse(JSONObject response) throws JSONException {
+        status = response.getString("status");
+        contents = new FoodContents(response.getJSONObject("contents"));
     }
 
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
+    public String getStatus(){return status;}
+    public FoodContents getContents(){return contents;}
+
+    public JSONObject convertJsonContents() throws JSONException {
+        return contents.convertJson();
     }
 
-    @JsonProperty("contents")
-    public FoodContents getContents() {
-        return contents;
+    @Override
+    public String toString() {
+        return "{Status: " + status + ", Contents: {" + contents.toString() + "}}";
     }
 
-    @JsonProperty("contents")
-    public void setContents(FoodContents contents) {
-        this.contents = contents;
-    }
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 }

@@ -17,6 +17,7 @@
 package com.ciber.foodieshoot.applications.detection;
 
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -232,7 +233,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         }
                       });
             }catch(ArrayIndexOutOfBoundsException e){
-              Configurations.sendNotification(getString(R.string.error),getString(R.string.error_wait), NotificationManager.IMPORTANCE_DEFAULT);
+              Intent intent = new Intent(getApplicationContext(), DetectorActivity.class);
+              startActivity(intent);
+              finish();
             }
           }
         });
