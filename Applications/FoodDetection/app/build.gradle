@@ -96,4 +96,7 @@ dependencies {
     //Swipe refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
+    //Collapsible post
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 }

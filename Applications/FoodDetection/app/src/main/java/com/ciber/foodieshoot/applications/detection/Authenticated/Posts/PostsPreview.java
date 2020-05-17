@@ -1,6 +1,7 @@
 package com.ciber.foodieshoot.applications.detection.Authenticated.Posts;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,8 +24,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.android.volley.NoConnectionError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts.FoodPostAnalyse;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts.SingleFoodInfo;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
@@ -142,17 +146,26 @@ public class PostsPreview extends AppCompatActivity {
                                 String status = response.getString("status");
                                 if(status.equals("success")){
                                     Log.i("POST_SAVED_SUCC","Post saved with success " + response.toString());
-                                    layout_auxiliar.openActivity(Logged_Home.class);
+                                    String post_saved = "Post saved";
+                                    Toast.makeText(SplashActivity.getContextOfApplication(),post_saved,Toast.LENGTH_LONG);
+                                    layout_auxiliar.openActivityExtra(Logged_Home.class,"Posts");
                                 }
-                                String post_saved = "Post saved";
-                                Toast.makeText(SplashActivity.getContextOfApplication(),post_saved,Toast.LENGTH_LONG);
-                                layout_auxiliar.openActivityExtra(Logged_Home.class,"Posts");
                             }catch (JSONException je){}
                         }
 
                         @Override
                         public void handleError(VolleyError error) {
                             Log.e("POST_SAVE_ERROR_VOLEY",error.toString());
+                            Runnable dismiss = new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                                    Intent i = new Intent(SplashActivity.getContextOfApplication(),DetectorActivity.class);
+                                    startActivity(i);
+                                }
+                            };
+                            Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                            Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
                         }
                     });
                 } catch (JSONException e) {
