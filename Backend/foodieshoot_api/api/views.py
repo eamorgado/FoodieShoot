@@ -4,10 +4,16 @@ from django.shortcuts import render
 from users.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
+
+from django.http import HttpResponse
+
 from api import serializers
 from api.serializers import RegistrationSerializer, UserLoginSerializer, UserLoginSerializerToken
 
 from api.models import FoodPosts
+from users.models import Profile
+
+from collections import Counter
 
 #REST packages
 from rest_framework import generics, status
@@ -74,7 +80,10 @@ class RestLogin(APIView):
                 data["error"] = serializer.errors
             return Response(data)
         except Exception as e:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            data = {
+                'invalid': 'Invalid or expired token'
+            }
+            return Response(data,status=status.HTTP_400_BAD_REQUEST)
 
 class RestLogout(APIView):
     def get(self,request):
@@ -84,7 +93,7 @@ class RestLogout(APIView):
             user.auth_token.delete()
         except (AttributeError, ObjectDoesNotExist):
             return Response({"status":"fail","error": "Error logging out"})
-        logout(user)
+        logout(request)
         return Response({"status": "success"})
     
     def post(self,request):
@@ -110,6 +119,23 @@ class RestDeleteUser(APIView):
             return Response({"status":"fail","error": "Token missing or incorrect"})
         u = User.objects.get(username=user.username).delete()
         return Response({"status":"success"})
+
+
+class RestProfile(APIView):
+    def get(self,request):
+        try:
+            token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+            user = Token.objects.get(key=token).user
+        except (AttributeError):
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
+        profile = Profile.objects.get(user=user)
+        filepath = settings.BASE_DIR + profile.image.url
+        fsock = open(filepath,'rb').read()
+
+        response = HttpResponse(fsock,content_type='image/png')
+        response['Content-Disposition'] = 'attachment; filename=profile.png'
+        return response
 
 def getKeys():
     with open(os.path.join(settings.BASE_DIR,'nutrition_api.json')) as f:
@@ -137,7 +163,7 @@ def getNutritionDesiredKeys():
         "nf_calories": "Total calories",
         "nf_total_fat": "Total fat",
         "nf_saturated_fat": "Total saturated fat",
-        "nf_cholesterol": "Cholestrol",
+        "nf_cholesterol": "Cholesterol",
         "nf_sodium": "Sodium",
         "nf_total_carbohydrate": 'Total carbs',
         "nf_dietary_fiber": "Fiber",
@@ -152,10 +178,16 @@ def processFood(food):
         return {'error': 'error on sending request'}
     data = response['foods'][0]
     keys = getNutritionDesiredKeys()
-    content = {'name': food}
+    content = {'Name': food}
     for key,v in keys.items():
         if str(key) in data:
-            content[v] = data[key]
+            if data[key] != None:
+                if key == 'serving_unit':
+                    content[v] = data[key].split('(')[0]
+                else:
+                    content[v] = data[key]
+            else:
+                content[v] = 0.0
     return content    
 
 def savePost(user,title,location,data):
@@ -189,17 +221,20 @@ class GetFoodData(APIView):
             return Response(data)
 
         if 'foods' in request.data:
+            print(request.data)
             foods = request.data['foods']
             if not isinstance(foods,list):
                 foods = [foods]
-            
+            count = Counter(foods)
+            print(count)
             response = []
             total_cals = 0
-            for food in foods:
+            for food,occurences in count.items():
                 processed = processFood(food)
                 if 'error' not in processed:
                     cals = processed['Total calories']
                     total_cals += cals
+                    processed["Occurrences"] = occurences
                     response.append(processed)
                 else:
                     data["error"] = "Error processing food"
@@ -269,7 +304,7 @@ class SavePost(APIView):
 class ListUserPosts(APIView):
     #permission_classes = (IsAuthenticated,)
     def __getPosts(self,user):
-        all_posts = FoodPosts.objects.filter(author=user)        
+        all_posts = FoodPosts.objects.filter(author=user).order_by('-date_shoot')       
         response = {
             'size': len(all_posts)
         }

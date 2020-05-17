@@ -14,6 +14,9 @@ urlpatterns = [
     #Login user
     path('account/login',views.RestLogin.as_view(),name='rest-v1-login'),
 
+    #User profile
+    path('account/profile',views.RestProfile.as_view(),name='rest-v1-profile-pic'),
+
     #Logout
     path('account/logout',views.RestLogout.as_view(),name='rest-v1-logout'),
 
@@ -30,6 +33,6 @@ urlpatterns = [
     #Save post
     path('foods/posts/save',views.SavePost.as_view(),name='rest-v1-savepost'),
 
-    path('foods/posts/delete',views.DeletePost.as_view(),name='rest-v2-deletepost')
+    path('foods/posts/delete',views.DeletePost.as_view(),name='rest-v2-deletepost'),
 
 ]
