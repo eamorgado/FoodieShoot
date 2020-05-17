@@ -160,7 +160,12 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
                 bottom_nav.getMenu().findItem(R.id.bottom_posts).setChecked(true);
                 break;
             case R.id.nav_profile:
-                layout_auxiliar.openActivity(PostsPreview.class);
+                flag = true;
+                unselectAllBottom();
+                String endpoint_p = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.PROFILE_PATH});
+                Intent browserIntent_p = new Intent(Intent.ACTION_VIEW);
+                browserIntent_p.setData(Uri.parse(endpoint_p));
+                startActivity(browserIntent_p);
                 break;
             case R.id.nav_logout:
                 flag = true;
