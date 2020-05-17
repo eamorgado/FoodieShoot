@@ -1,5 +1,7 @@
 package com.ciber.foodieshoot.applications.detection.Authenticated;
 
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,9 +38,12 @@ import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PostFragment extends Fragment {
     @Nullable
@@ -124,6 +129,7 @@ public class PostFragment extends Fragment {
         ll.addView(cl_post);
 
         inflater.inflate(R.layout.view_seperator,ll,true);
+
         int j = 0;
         List<SingleFoodInfo> foods = post.getContents().getProcessed();
         for(SingleFoodInfo food : foods){
@@ -136,6 +142,70 @@ public class PostFragment extends Fragment {
             if((i++ < foods.size()-1) && foods.size() > 1)
                 inflater.inflate(R.layout.view_seperator,ll,true);
         }
+
+        //Add delete func
+        ((TextView)rl.findViewById(R.id.post_raw_date)).setText(post.getRawDate());
+        bt = (Button) rl.findViewById(R.id.post_delete);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RelativeLayout rl = (RelativeLayout) v.getParent();
+                TextView tv = (TextView) rl.findViewById(R.id.post_raw_date);
+                String raw_date = tv.getText().toString();
+                //delete
+                Runnable delete = new Runnable() {
+                    @Override
+                    public void run() {
+                        String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.POST_DELETE_PATH;
+                        Map<String,String> params = new HashMap<>();
+                        params.put("token",Configurations.USER.TOKEN.getValue());
+                        params.put("delete",raw_date);
+                        NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
+                            @Override
+                            public void parseResponse(JSONObject response) {
+                                try{
+                                    if(response.getString("status").equals("success")){
+                                        Configurations.sendNotification("Post delete","Post deleted with success", NotificationManager.IMPORTANCE_DEFAULT);
+                                        Intent intent = new Intent(Logged_Home.getContextOfApplication(),Logged_Home.class);
+                                        intent.putExtra("Redirect","Posts");
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Intent intent = new Intent(Logged_Home.getContextOfApplication(),Logged_Home.class);
+                                        intent.putExtra("Redirect","Posts");
+                                        startActivity(intent);
+                                    }
+                                }catch (JSONException e){}
+                            }
+                            @Override
+                            public void handleError(VolleyError error) {
+                                Runnable dismiss = new Runnable() {
+                                    @Override
+                                    public void run() {}
+                                };
+                                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                            }
+                        });
+                    }
+                };
+
+                Runnable cancel = new Runnable() {
+                    @Override
+                    public void run() {}
+                };
+                String message = "Are you sure you want to delete this post? (Action irreversible)";
+                Alert.alertUser(
+                        Logged_Home.getContextOfApplication(),
+                        "Post delete",
+                        message,getString(R.string.yes),
+                        getString(R.string.no),
+                        delete,
+                        cancel
+                );
+
+            }
+        });
+
         //add to layout
         if(i % 2 == 0)
             cv.setBackgroundColor(getResources().getColor(R.color.red_trasparent));

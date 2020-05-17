@@ -67,11 +67,10 @@ public class Configurations {
     public static final  String FOODS_ANALYSE = "foods/analyse";
     public static final String POST_SAVE_PATH = "foods/posts/save";
     public static final String POST_LIST_PATH = "foods/posts/list";
+    public static final String POST_DELETE_PATH = "foods/posts/delete";
 
     public static boolean USER_KEEP = false;
     public static Drawable USER_PROFILE = null;
-
-    public static FoodPostList user_posts;
 
     public static enum USER{
         EMAIL("email",null),

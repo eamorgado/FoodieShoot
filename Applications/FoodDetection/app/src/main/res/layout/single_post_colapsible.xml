@@ -154,6 +154,13 @@
                 android:textSize="15sp"
                 android:layout_below="@+id/posts_sc_rl_ll"
                 />
+
+            <TextView
+                android:id="@+id/post_raw_date"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"/>
+
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
