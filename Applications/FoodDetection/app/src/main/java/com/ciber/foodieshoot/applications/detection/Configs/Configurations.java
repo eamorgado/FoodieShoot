@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts.FoodPostList;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
@@ -65,9 +66,12 @@ public class Configurations {
 
     public static final  String FOODS_ANALYSE = "foods/analyse";
     public static final String POST_SAVE_PATH = "foods/posts/save";
+    public static final String POST_LIST_PATH = "foods/posts/list";
 
     public static boolean USER_KEEP = false;
     public static Drawable USER_PROFILE = null;
+
+    public static FoodPostList user_posts;
 
     public static enum USER{
         EMAIL("email",null),

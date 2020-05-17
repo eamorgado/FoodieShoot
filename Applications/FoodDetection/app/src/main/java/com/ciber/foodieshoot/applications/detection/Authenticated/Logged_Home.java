@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -213,6 +214,16 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                //Find id
+                Menu menu = top_nav.getMenu();
+                for(int i = 0; i < menu.size();i++){
+                    MenuItem item = menu.getItem(i);
+                    if(item.isChecked() && item.getItemId() == R.id.nav_shots){
+                        layout_auxiliar.openActivityExtra(Logged_Home.class,"Posts");
+                        refresh.setRefreshing(false);
+                        return;
+                    }
+                }
                 layout_auxiliar.openActivity(Logged_Home.class);
                 refresh.setRefreshing(false);
             }

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/posts_card_collaps"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:saveEnabled="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/posts_card_cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/posts_card_title_location_ll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            android:weightSum="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/posts_scroll_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/post_expand_ll">
+
+
+            <TextView
+                android:id="@+id/posts_card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:gravity="start"
+                android:paddingEnd="10dp"
+                android:singleLine="false"
+                android:text="Title: "
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/posts_card_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="10dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:paddingEnd="10dp"
+                android:text="Location: "
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/posts_card_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:gravity="start"
+                android:paddingEnd="10dp"
+                android:text="Date: "
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/post_expand_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/posts_card_title_location_ll"
+            app:layout_constraintEnd_toEndOf="parent">
+            <Button
+                android:id="@+id/posts_expand"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/arrow_down_post"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/posts_scroll_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:fadingEdgeLength="25dp"
+            android:requiresFadingEdge="vertical"
+            android:scaleType="fitCenter"
+            android:theme="@style/ScrollEdge"
+            app:layout_constraintTop_toBottomOf="@+id/posts_card_title_location_ll"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/posts_sc_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/posts_sc_rl_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp"
+                    android:orientation="vertical">
+
+                    <!--Post goes here -->
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/post_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:background="@drawable/cornered_button"
+                    android:fontFamily="@font/bukhari"
+                    android:text="Save"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/posts_sc_rl_ll"
+                    />
+            </RelativeLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
