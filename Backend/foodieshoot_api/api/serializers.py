@@ -127,4 +127,3 @@ class UserLoginSerializerToken(serializers.ModelSerializer):
         data["last_name"] = user.last_name
         return data
         
-        
