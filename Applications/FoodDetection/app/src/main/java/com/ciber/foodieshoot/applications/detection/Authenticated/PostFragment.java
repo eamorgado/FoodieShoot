@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,13 +104,15 @@ public class PostFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ConstraintLayout cl = (ConstraintLayout) v.getParent().getParent().getParent();
+                CardView cv = (CardView) cl.getParent();
                 RelativeLayout rl = (RelativeLayout) cl.findViewById(R.id.posts_sc_rl);
                 if(rl.getVisibility() == View.VISIBLE){
-                    //TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                    TransitionManager.beginDelayedTransition(cv, new AutoTransition());
                     rl.setVisibility(View.GONE);
                     v.setBackground(Logged_Home.getContextOfApplication().getDrawable(R.drawable.arrow_down_post));
                 }
                 else{
+                    TransitionManager.beginDelayedTransition(cv, new AutoTransition());
                     rl.setVisibility(View.VISIBLE);
                     v.setBackground(Logged_Home.getContextOfApplication().getDrawable(R.drawable.arrow_up_post));
                 }
