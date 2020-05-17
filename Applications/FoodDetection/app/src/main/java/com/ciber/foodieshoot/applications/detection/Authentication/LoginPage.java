@@ -199,19 +199,8 @@ public class LoginPage extends AppCompatActivity {
                         Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
                     }
                 };
-                if(error.networkResponse == null && (error instanceof TimeoutError || error instanceof NoConnectionError)){
-                    String message = getString(R.string.server_timeout) + " - " + getString(R.string.server_unavailable);
-                    Toast.makeText(LoginPage.getContextOfApplication(),message,Toast.LENGTH_LONG).show();
-                }
-                else{
-                    String login = LoginPage.getContextOfApplication().getString(R.string.login_login);
-                    String login_invalid_token = LoginPage.getContextOfApplication().getString(R.string.unable_to) + " " + login.toLowerCase();
-                    login_invalid_token += ".\n" + LoginPage.getContextOfApplication().getString(R.string.token_invalid_expired);
-                    Configurations.logout();
-                    Configurations.deleteToken();
-                    Configurations.deleteUservars();
-                    Alert.infoUser(LoginPage.getContextOfApplication(),login,login_invalid_token,LoginPage.getContextOfApplication().getString(R.string.ok),dismiss);
-                }
+                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
             }
         });
     }

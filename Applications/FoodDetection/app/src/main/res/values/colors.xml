@@ -12,4 +12,5 @@
     <color name="tfe_semi_transparent">#66000000</color>
 
     <color name="access_button">#424141</color>
+    <color name="red_trasparent">#08F44336</color>
 </resources>

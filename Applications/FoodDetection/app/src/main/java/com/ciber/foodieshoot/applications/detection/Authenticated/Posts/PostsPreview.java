@@ -164,15 +164,8 @@ public class PostsPreview extends AppCompatActivity {
                                     startActivity(i);
                                 }
                             };
-                            if(error.networkResponse == null && (error instanceof TimeoutError || error instanceof NoConnectionError)){
-                                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
-                                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
-                            }
-                            else{
-                                String login = SplashActivity.getContextOfApplication().getString(R.string.error);
-                                String login_invalid_token = SplashActivity.getContextOfApplication().getString(R.string.token_invalid_expired);
-                                Alert.infoUser(SplashActivity.getContextOfApplication(),login,login_invalid_token,SplashActivity.getContextOfApplication().getString(R.string.ok),dismiss);
-                            }
+                            Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                            Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
                         }
                     });
                 } catch (JSONException e) {
