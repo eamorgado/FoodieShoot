@@ -43,6 +43,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.util.Size;
 import android.view.MotionEvent;
 import android.view.Surface;
@@ -56,20 +57,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Authenticated.Posts.PostsPreview;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.DetectedFoods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.DisplayFoods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts.FoodPostAnalyse;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+=======
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+>>>>>>> 6818928a5efcc331abf154de684fb12d01c2d187
 
 public abstract class CameraActivity extends AppCompatActivity
     implements OnImageAvailableListener,
@@ -611,8 +626,10 @@ public abstract class CameraActivity extends AppCompatActivity
                 //set cancel
                 Runnable cancel = new Runnable() {
                   @Override
-                  public void run() {}
+                  public void run() {
+                  }
                 };
+
                 String message = getString(R.string.requires_auth) + "\n" + getString(R.string.join);
                 Alert.alertUser(
                         CameraActivity.this,
@@ -623,8 +640,60 @@ public abstract class CameraActivity extends AppCompatActivity
                         cancel
                 );
               }
-              else
-                  Configurations.sendNotification(getString(R.string.analyse),getString(R.string.analysing), NotificationManager.IMPORTANCE_DEFAULT);
+              else{
+                Configurations.sendNotification(getString(R.string.analyse),getString(R.string.analysing), NotificationManager.IMPORTANCE_DEFAULT);
+                //Check to see if there are any prefictions
+                if(DisplayFoods.foods.isEmpty()){
+                  String no_food_data = "No food to analyse";
+                  Configurations.sendNotification(getString(R.string.analyse),no_food_data, NotificationManager.IMPORTANCE_DEFAULT);
+                  Toast.makeText(SplashActivity.getContextOfApplication(),no_food_data,Toast.LENGTH_LONG);
+                }else{
+                  ArrayList<String> foods = new ArrayList<>();
+                  for(String food : DisplayFoods.foods) foods.add(food);
+                  //Build request
+                  try {
+                    JSONObject request = FoodPostAnalyse.getInstance().preprocessAnalysisRequest(foods);
+                    String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.FOODS_ANALYSE;
+                    NetworkManager.getInstance().postRequestFromJson(endpoint, request, new RestListener() {
+                      @Override
+                      public void parseResponse(JSONObject response) {
+                        try{
+                          FoodPostAnalyse.getInstance().newPostAnalysis(response);
+                          if(FoodPostAnalyse.getInstance().wasSuccessful()){
+                            //Show foods
+                            String try_again = "Success post";
+                            Configurations.sendNotification(getString(R.string.analyse),try_again, NotificationManager.IMPORTANCE_DEFAULT);
+                            Log.i("POST_PREVIEW_CAMERA",FoodPostAnalyse.getInstance().getServerResponse(),null);
+                            Toast.makeText(Logged_Home.getContextOfApplication(),try_again,Toast.LENGTH_LONG);
+                            Intent intent = new Intent(Logged_Home.getContextOfApplication(), PostsPreview.class);
+                            startActivity(intent);
+                            finish();
+                          }else{
+                            //Try again
+                            String try_again = "Try again fail";
+                            Configurations.sendNotification(getString(R.string.analyse),try_again, NotificationManager.IMPORTANCE_DEFAULT);
+                            Toast.makeText(Logged_Home.getContextOfApplication(),try_again,Toast.LENGTH_LONG);
+                          }
+                        }catch (JSONException e){
+                          Log.e("POST_PREVIEW",e.getMessage());
+                          String try_again = "Error sending request";
+                          Configurations.sendNotification(getString(R.string.analyse),try_again, NotificationManager.IMPORTANCE_DEFAULT);
+                          Toast.makeText(Logged_Home.getContextOfApplication(),try_again,Toast.LENGTH_LONG);
+                        }
+                      }
+
+                      @Override
+                      public void handleError(VolleyError error) {
+                        String try_again = "Timeout";
+                        Configurations.sendNotification(getString(R.string.analyse),try_again, NotificationManager.IMPORTANCE_DEFAULT);
+                        Toast.makeText(Logged_Home.getContextOfApplication(),try_again,Toast.LENGTH_LONG);
+                      }
+                    });
+                  } catch (JSONException e) {
+                    e.printStackTrace();
+                  }
+                }
+              }
           }
       });
   }

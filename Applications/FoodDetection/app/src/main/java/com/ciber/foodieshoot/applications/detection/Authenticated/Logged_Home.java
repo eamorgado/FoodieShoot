@@ -7,20 +7,34 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.ciber.foodieshoot.applications.detection.Authenticated.Posts.PostsPreview;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
+import com.ciber.foodieshoot.applications.detection.SplashActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.File;
 
 public class Logged_Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static Context app_context;
@@ -38,6 +52,7 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         app_context = this;
         //Initiate auxiliar
         layout_auxiliar = new LayoutAuxiliarMethods(this);
+
 
         //Set top nav
         drawer_layout = findViewById(R.id.drawer_home);
@@ -57,10 +72,44 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
         top_nav.setNavigationItemSelectedListener(this);
         top_nav.setCheckedItem(R.id.nav_home);
 
+        View nav_view = top_nav.getHeaderView(0);
+        TextView tv = null;
+        if(Configurations.USER.USERNAME.getValue() != null){
+            tv = (TextView) nav_view.findViewById(R.id.text_user);
+            if(tv != null)
+                tv.setText(Configurations.USER.USERNAME.getValue());
+        }
+        if(Configurations.USER.EMAIL.getValue() != null){
+            tv = (TextView) nav_view.findViewById(R.id.text_email);
+            if(tv != null)
+                tv.setText(Configurations.USER.EMAIL.getValue());
+        }
+
+        ImageView iv = (ImageView) nav_view.findViewById(R.id.profile_pic);
+        if(Configurations.USER_PROFILE != null)
+            iv.setImageDrawable(Configurations.USER_PROFILE);
+        else iv.setImageDrawable(getDrawable(R.drawable.default_profile));
+
         //Set bottom nav
         bottom_nav = findViewById(R.id.bottom_nav);
         bottom_nav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        //boolean flag = true;
+
+        listenRefresh();
+
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        if(extras != null){
+            if(extras.containsKey("Redirect")){
+                switch (i.getStringExtra("Redirect")){
+                    case "Posts":
+                        top_nav.setCheckedItem(R.id.nav_shots);
+                        bottom_nav.getMenu().findItem(R.id.bottom_posts).setChecked(true);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PostFragment()).commit();
+                }
+            }
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -110,12 +159,25 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
                 selected = new PostFragment();
                 bottom_nav.getMenu().findItem(R.id.bottom_posts).setChecked(true);
                 break;
+            case R.id.nav_profile:
+                flag = true;
+                unselectAllBottom();
+                String endpoint_p = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.PROFILE_PATH});
+                Intent browserIntent_p = new Intent(Intent.ACTION_VIEW);
+                browserIntent_p.setData(Uri.parse(endpoint_p));
+                startActivity(browserIntent_p);
+                break;
             case R.id.nav_logout:
                 flag = true;
                 Configurations.logoutRequest();
                 break;
+            case R.id.nav_about:
+                unselectAllBottom();
+                selected = new AboutFragment();
+                break;
             case R.id.nav_open_site:
                 flag = true;
+                unselectAllBottom();
                 String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL});
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW);
                 browserIntent.setData(Uri.parse(endpoint));
@@ -143,5 +205,33 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
 
     public NavigationView getTopNav(){
         return top_nav;
+    }
+
+    private void unselectAllBottom(){
+        bottom_nav.getMenu().setGroupCheckable(0,false,false);
+        for (int i = 0; i < bottom_nav.getMenu().size();i++)
+            bottom_nav.getMenu().getItem(i).setChecked(false);
+        bottom_nav.getMenu().setGroupCheckable(0, true, true);
+    }
+
+    private void listenRefresh(){
+        final SwipeRefreshLayout refresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //Find id
+                Menu menu = top_nav.getMenu();
+                for(int i = 0; i < menu.size();i++){
+                    MenuItem item = menu.getItem(i);
+                    if(item.isChecked() && item.getItemId() == R.id.nav_shots){
+                        layout_auxiliar.openActivityExtra(Logged_Home.class,"Posts");
+                        refresh.setRefreshing(false);
+                        return;
+                    }
+                }
+                layout_auxiliar.openActivity(Logged_Home.class);
+                refresh.setRefreshing(false);
+            }
+        });
     }
 }

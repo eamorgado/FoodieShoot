@@ -79,6 +79,7 @@ dependencies {
     //JSON parser
     implementation 'com.fasterxml.jackson.core:jackson-core:2.7.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.7.2'
+    implementation 'org.apache.commons:commons-lang3:3.6'
 
 
     //Nav bar
@@ -87,5 +88,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    //Circular image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Swipe refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    //Collapsible post
+    implementation 'androidx.cardview:cardview:1.0.0'
 
 }

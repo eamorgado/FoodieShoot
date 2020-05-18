@@ -3,9 +3,14 @@ package com.ciber.foodieshoot.applications.detection.Configs;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
+import com.ciber.foodieshoot.applications.detection.Auxiliar.FoodDetection.FoodPosts.FoodPostList;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMethods;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
@@ -27,6 +33,8 @@ import com.ciber.foodieshoot.applications.detection.SplashActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -43,15 +51,28 @@ public class Configurations {
 
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
+
     public static final String HOST = "192.168.1.78";
     public static final int PORT = 8000;
+
     public static final String SERVER_URL = "http://192.168.1.78:8000";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
+
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
     public static final String REGISTER_PATH = "account/register";
-    public static final String LOGOUT_PATH="account/logout";
+    public static final String LOGOUT_PATH = "account/logout";
+    public static final String PROFILE_PIC_PATH = "account/profile";
+    public static final String PROFILE_PATH = "/profile/";
 
+    public static final  String FOODS_ANALYSE = "foods/analyse";
+    public static final String POST_SAVE_PATH = "foods/posts/save";
+    public static final String POST_LIST_PATH = "foods/posts/list";
+    public static final String POST_DELETE_PATH = "foods/posts/delete";
+
+
+    public static boolean USER_KEEP = false;
+    public static Drawable USER_PROFILE = null;
 
     public static enum USER{
         EMAIL("email",null),
@@ -121,11 +142,20 @@ public class Configurations {
             editor.remove(USER.TOKEN.getKey());
             editor.apply();
         }
+
+        //delete profile pic
+        //Configurations.deleteProfilePic(true);
+
+        Configurations.USER_KEEP = false;
     }
 
     public static void deleteUservars(){
         for(USER user_val : USER.values())
             user_val.setValue(null);
+    }
+
+    public static void setProfile(Bitmap img){
+        Configurations.USER_PROFILE = new BitmapDrawable(SplashActivity.getContextOfApplication().getResources(),img);
     }
 
     public static boolean isAuthenticated(){return AUTHENTICATED;}
@@ -160,6 +190,7 @@ public class Configurations {
                                 String logout_message = SplashActivity.getContextOfApplication().getString(R.string.logout_message);
 
                                 Configurations.sendNotification(logout,logout_message, NotificationManager.IMPORTANCE_DEFAULT);
+
                                 Intent intent = new Intent(SplashActivity.getContextOfApplication(),LoginPage.class);
                                 Logged_Home.getContextOfApplication().startActivity(intent);
                             }
@@ -256,6 +287,16 @@ public class Configurations {
             return true;
         } catch (IOException e) {
             return false; // Either timeout or unreachable or failed DNS lookup.
+        }
+    }
+
+    public static void deleteProfilePic(boolean user_keep_logged){
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root);
+        if(dir.exists()){
+            String img_name = user_keep_logged? "profile.png" : "profile_forget.png";
+            File img = new File(dir,img_name);
+            if(img.exists()) img.delete();
         }
     }
 }

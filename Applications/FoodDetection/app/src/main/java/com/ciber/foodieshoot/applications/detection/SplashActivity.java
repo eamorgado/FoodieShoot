@@ -46,6 +46,7 @@ public class SplashActivity extends Activity {
         application_context = this;
 
         Configurations.logout();
+        Configurations.deleteProfilePic(false);
 
         //Initiate network manager
         NetworkManager.getInstance(this);
@@ -100,9 +101,12 @@ public class SplashActivity extends Activity {
                     //Server is responsive => request auth
                     String status = response.get("status").toString();
                     if(status.equals("success")){
-                        SplashActivity.layout_auxiliar.setUserVars(response);
                         Configurations.authenticate();
+                        layout_auxiliar.setUserVars(response);
                         Configurations.setToken(Configurations.USER.TOKEN.getValue());
+
+                        //NetworkManager.getInstance().saveProfileImage(true);
+                        NetworkManager.getInstance().setProfileImage();
                         SplashActivity.layout_auxiliar.openActivity(Logged_Home.class);
                     }
                     else{
@@ -131,19 +135,8 @@ public class SplashActivity extends Activity {
                         SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
                     }
                 };
-                if(error.networkResponse == null && (error instanceof TimeoutError || error instanceof NoConnectionError)){
-                    Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
-                    Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
-                }
-                else{
-                    String login = SplashActivity.getContextOfApplication().getString(R.string.login_login);
-                    String login_invalid_token = SplashActivity.getContextOfApplication().getString(R.string.unable_to) + " " + login.toLowerCase();
-                    login_invalid_token += ".\n" + SplashActivity.getContextOfApplication().getString(R.string.token_invalid_expired);
-                    Configurations.logout();
-                    Configurations.deleteToken();
-                    Configurations.deleteUservars();
-                    Alert.infoUser(SplashActivity.getContextOfApplication(),login,login_invalid_token,SplashActivity.getContextOfApplication().getString(R.string.ok),dismiss);
-                }
+                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
             }
         });
     }
