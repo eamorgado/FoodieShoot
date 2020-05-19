@@ -60,8 +60,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Home"
             android:windowSoftInputMode="stateHidden|adjustPan|adjustResize"/>
-        
-        <service android:name="$Authenticated.Posts.FetchAddressIntentService"
+
+        <service android:name=".Authenticated.Posts.FetchAddressService"/>
+
     </application>
 
 </manifest>

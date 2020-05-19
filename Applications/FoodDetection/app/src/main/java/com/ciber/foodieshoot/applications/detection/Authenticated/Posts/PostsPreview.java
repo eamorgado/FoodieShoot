@@ -3,12 +3,16 @@ package com.ciber.foodieshoot.applications.detection.Authenticated.Posts;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PersistableBundle;
+import android.os.ResultReceiver;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,10 +48,18 @@ import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
 import com.ciber.foodieshoot.applications.detection.SplashActivity;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,13 +70,20 @@ public class PostsPreview extends AppCompatActivity {
 
     private LayoutAuxiliarMethods layout_auxiliar;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
-    private TextView textLatLong;
+    FusedLocationProviderClient client;
+    AddressResultReceiver resultReceiver;
+    String address;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_preview);
         layout_auxiliar = new LayoutAuxiliarMethods(this);
+
+
+        client = LocationServices.getFusedLocationProviderClient(this);
+        resultReceiver = new AddressResultReceiver(null);
+
         displayFoods();
         save();
         discard();
@@ -132,6 +151,7 @@ public class PostsPreview extends AppCompatActivity {
         save.setMovementMethod(LinkMovementMethod.getInstance());
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 if(ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED){
@@ -141,8 +161,23 @@ public class PostsPreview extends AppCompatActivity {
                             REQUEST_CODE_LOCATION_PERMISSION
                     );
                 }else {
+                    client.getLastLocation()
+                            .addOnSuccessListener(new OnSuccessListener<Location>() {
+                                @Override
+                                public void onSuccess(Location location) {
+                                    if(location != null) {
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
                     getCurrentLocation();
                 }
+
                 String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.POST_SAVE_PATH;
                 JSONObject request = new JSONObject();
                 //get title
@@ -150,19 +185,13 @@ public class PostsPreview extends AppCompatActivity {
                 EditText text = (EditText) ll.findViewById(R.id.preview_title_save);
                 String title = text.getText().toString();
                 //get location
-                /**
-                 * PUT LOCATION HERE (COVERTED TO PLACE FROM LATITUDE AND LONG
-                 * String location = ....
-                 */
+                String location = address;
                 try {
                     request.put("token", Configurations.USER.TOKEN.getValue());
                     request.put("save","True");
                     request.put("contents",new JSONObject(FoodPostAnalyse.getInstance().getServerResponse()));
                     if(!title.equals("")) request.put("title",title);
-                    /**
-                     * Make check for location
-                     * if(location found) request.put("location",location);
-                     */
+                    request.put("location",location);
                     NetworkManager.getInstance().postRequestFromJson(endpoint, request, new RestListener() {
                         @Override
                         public void parseResponse(JSONObject response) {
@@ -201,40 +230,78 @@ public class PostsPreview extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
-            getCurrentLocation();
-
-        }else {
-            Toast.makeText(this, "Permission denied!" ,Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void getCurrentLocation() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        LocationServices.getFusedLocationProviderClient(PostsPreview.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback(){
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
 
+        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+        settingsClient.checkLocationSettings(builder.build())
+                .addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(PostsPreview.this)
-                                .removeLocationUpdates(this);
-                        if(locationResult != null && locationResult.getLocations().size() > 0) {
-                            int latestLocationIndex = locationResult.getLocations().size() - 1;
-                            double latitude =
-                                    locationResult.getLocations().get(latestLocationIndex).getLatitude();
-                            double longitude =
-                                    locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof ResolvableApiException) {
+                            try {
+                                ResolvableApiException resolvable = (ResolvableApiException) e;
+                                resolvable.startResolutionForResult(PostsPreview.this, 10);
+                            } catch (IntentSender.SendIntentException ex) {
+                            }
                         }
                     }
-                }, Looper.getMainLooper());
+                });
+
+        LocationCallback locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                if (locationResult == null) {
+                    return;
+                }
+
+                for(Location location: locationResult.getLocations()) {
+
+                    if(!Geocoder.isPresent()) {
+                        return;
+                    }
+
+                    startIntentService(location);
+                }
+            }
+        };
+
+        client.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    private void startIntentService(Location location) {
+        Intent intent = new Intent(this, FetchAddressService.class);
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+    }
+
+    private class AddressResultReceiver extends ResultReceiver {
+
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if(resultData == null) return;
+            else {
+                address = resultData.getString(Constants.RESULT_DATA_KEY);
+            }
+        }
     }
 
     @Override

@@ -13,11 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5feddf7-c6e1-4a50-8887-765b590c084f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/FetchAddressIntentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/FetchAddressService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/FetchAddressIntentService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/PostsPreview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/PostsPreview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
