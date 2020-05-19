@@ -438,7 +438,7 @@ public class CameraConnectionFragment extends Fragment {
     }
   }
 
-  private class ImageSaver implements Runnable {
+  /**private class ImageSaver implements Runnable {
     private final Image mImage;
 
     public ImageSaver(Image image) {
@@ -522,11 +522,10 @@ public class CameraConnectionFragment extends Fragment {
             captureStillBuilder.build(), captureCallback, null
     );
   }
+*/
 
   /** Creates a new {@link CameraCaptureSession} for camera preview. */
   private void createCameraPreviewSession() {
-
-    createImageFolder();
 
     try {
       final SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -551,7 +550,6 @@ public class CameraConnectionFragment extends Fragment {
 
       previewReader.setOnImageAvailableListener(imageListener, backgroundHandler);
       previewRequestBuilder.addTarget(previewReader.getSurface());
-      backgroundHandler.post(new ImageSaver(previewReader.acquireLatestImage()));
 
       // Here, we create a CameraCaptureSession for camera preview.
       cameraDevice.createCaptureSession(
