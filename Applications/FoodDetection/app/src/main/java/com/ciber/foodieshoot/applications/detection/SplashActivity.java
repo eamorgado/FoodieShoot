@@ -2,6 +2,7 @@ package com.ciber.foodieshoot.applications.detection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.ciber.foodieshoot.applications.detection.Auxiliar.LayoutAuxiliarMetho
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.NetworkManager;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Network.RestListener;
 import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +59,27 @@ public class SplashActivity extends Activity {
 
         layout_auxiliar = new LayoutAuxiliarMethods(this);
         checkAuthenticated();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int errorCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        switch (errorCode) {
+            case ConnectionResult.SERVICE_MISSING:
+            case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
+            case ConnectionResult.SERVICE_DISABLED:
+                GoogleApiAvailability.getInstance().getErrorDialog(this, errorCode,
+                        0, new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                finish();
+                            }
+                        }).show();
+                break;
+            case ConnectionResult.SUCCESS:
+                break;
+        }
     }
 
     /**
