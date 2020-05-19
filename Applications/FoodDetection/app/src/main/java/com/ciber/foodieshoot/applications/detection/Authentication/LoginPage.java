@@ -160,22 +160,24 @@ public class LoginPage extends AppCompatActivity {
                         if(keep_me_logged.isChecked()){
                             //NetworkManager.getInstance().saveProfileImage(true);
                             Configurations.USER_KEEP = true;
+                            Configurations.deleteToken();
                             Configurations.setToken(Configurations.USER.TOKEN.getValue());
                         }
                         NetworkManager.getInstance().setProfileImage();
                         Configurations.sendNotification(getString(R.string.login_login),getString(R.string.login_success), NotificationManager.IMPORTANCE_DEFAULT);
                         layout_auxiliar.openActivity(Logged_Home.class);
                     }
-
-                    //fail -> display errors
-                    JSONObject jsonobject = (JSONObject) response.get("error");
-                    Iterator<String> keys = jsonobject.keys();
-                    while(keys.hasNext()){
-                        String key = keys.next();
-                        switch (key){
-                            case "credentials":
-                                ((EditText) findViewById(R.id.input_password)).setError(getString(R.string.credential_error)); break;
-                            case "user": ((EditText) findViewById(R.id.input_email)).setError(getString(R.string.invalid_email)); break;
+                    else{
+                        //fail -> display errors
+                        JSONObject jsonobject = (JSONObject) response.get("error");
+                        Iterator<String> keys = jsonobject.keys();
+                        while(keys.hasNext()){
+                            String key = keys.next();
+                            switch (key){
+                                case "credentials":
+                                    ((EditText) findViewById(R.id.input_password)).setError(getString(R.string.credential_error)); break;
+                                case "user": ((EditText) findViewById(R.id.input_email)).setError(getString(R.string.invalid_email)); break;
+                            }
                         }
                     }
                 }catch(JSONException e){
