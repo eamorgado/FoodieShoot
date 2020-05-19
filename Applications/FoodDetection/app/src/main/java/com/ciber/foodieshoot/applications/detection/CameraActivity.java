@@ -72,19 +72,11 @@ import com.ciber.foodieshoot.applications.detection.env.ImageUtils;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-<<<<<<< HEAD
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-=======
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
->>>>>>> 6818928a5efcc331abf154de684fb12d01c2d187
 
 public abstract class CameraActivity extends AppCompatActivity
     implements OnImageAvailableListener,

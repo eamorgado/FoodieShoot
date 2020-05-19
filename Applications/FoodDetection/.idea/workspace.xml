@@ -13,46 +13,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5feddf7-c6e1-4a50-8887-765b590c084f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/AboutFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/PostsPreview.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/FoodAnalysisResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/FoodContents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/FoodPostAnalyse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/FoodPostList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/SavedPosts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/FoodDetection/FoodPosts/SingleFoodInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/arrow_down_post.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/arrow_up_post.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/default_profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/no_posts_cam.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/post_analysis_preview.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/single_food_posts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/single_post_colapsible.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_seperator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tensorflow_tensorflow_lite_0_0_0_nightly_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_tensorflow_tensorflow_lite_0_0_0_nightly_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Logged_Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Logged_Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/PostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/PostFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authentication/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/LayoutAuxiliarMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/LayoutAuxiliarMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/NetworkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Auxiliar/Network/NetworkManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/PostsPreview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Authenticated/Posts/PostsPreview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/CameraActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/CameraActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Configs/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/Configs/Configurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/DetectorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/DetectorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ciber/foodieshoot/applications/detection/SplashActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/menu_icon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/menu_icon.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/popup_backgroun.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/popup_backgroun.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_logged__home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_logged__home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Backend/foodieshoot_api/api/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
