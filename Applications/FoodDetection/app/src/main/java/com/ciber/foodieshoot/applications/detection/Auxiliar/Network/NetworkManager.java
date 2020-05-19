@@ -139,7 +139,7 @@ public class NetworkManager {
                 String token = "Token " + Configurations.USER.TOKEN.getValue();
                 Map<String,String> headers = new HashMap<>();
                 headers.put("Content-Type","application/json; charset=UTF-8");
-                headers.put("Authorization",token);
+                headers.put("Session-Token",token);
                 return headers;
             }
         };
@@ -225,7 +225,7 @@ public class NetworkManager {
                 String token = "Token " + Configurations.USER.TOKEN.getValue();
                 Map<String,String> headers = new HashMap<>();
                 headers.put("Content-Type","application/json; charset=UTF-8");
-                headers.put("Authorization",token);
+                headers.put("Session-Token",token);
                 return headers;
             }
         };

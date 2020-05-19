@@ -52,10 +52,10 @@ public class Configurations {
     public static final String REST_AUTH_FAIL = "Rest Authentication Fail";
     public static final String REST_AUTH_SUCCESS = "Rest Authentication Successful";
 
-    public static final String HOST = "192.168.1.78";
-    public static final int PORT = 8000;
+    public static final String HOST = "178.79.132.23";
+    public static final int PORT = 80;
 
-    public static final String SERVER_URL = "http://192.168.1.78:8000";
+    public static final String SERVER_URL = "http://178.79.132.23/";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
 
     public static final String REST_API = "/api/v1/";
