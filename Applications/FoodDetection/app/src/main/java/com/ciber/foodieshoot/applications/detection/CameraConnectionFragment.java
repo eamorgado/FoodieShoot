@@ -583,11 +583,6 @@ public class CameraConnectionFragment extends Fragment {
               } catch (final CameraAccessException e) {
                 LOGGER.e(e, "Exception!");
               }
-              try {
-                captureStillImage();
-              } catch (CameraAccessException e) {
-                e.printStackTrace();
-              }
             }
 
             @Override
