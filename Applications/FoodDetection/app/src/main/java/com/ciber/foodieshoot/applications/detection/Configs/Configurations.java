@@ -55,7 +55,7 @@ public class Configurations {
     public static final String HOST = "178.79.132.23";
     public static final int PORT = 80;
 
-    public static final String SERVER_URL = "http://178.79.132.23/";
+    public static final String SERVER_URL = "http://178.79.132.23";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
 
     public static final String REST_API = "/api/v1/";

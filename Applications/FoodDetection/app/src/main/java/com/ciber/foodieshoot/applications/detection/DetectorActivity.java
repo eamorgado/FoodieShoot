@@ -29,6 +29,7 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
+import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
@@ -58,7 +59,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   // Configuration values for the prepackaged SSD model.
   private static final int TF_OD_API_INPUT_SIZE = 300;
   private static final boolean TF_OD_API_IS_QUANTIZED = false;
-  private static final String TF_OD_API_MODEL_FILE = "detectx.tflite";
+  private static final String TF_OD_API_MODEL_FILE = "detect_v2.tflite";
   private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labelmap1.txt";
 
   private static final DetectorMode MODE = DetectorMode.TF_OD_API;
@@ -233,9 +234,11 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         }
                       });
             }catch(ArrayIndexOutOfBoundsException e){
-              /*Intent intent = new Intent(getApplicationContext(), DetectorActivity.class);
+              Log.e("DETECT",e.getStackTrace().toString());
+              Log.e("DETECT",e.getMessage());
+              Intent intent = new Intent(getApplicationContext(), DetectorActivity.class);
               startActivity(intent);
-              finish();*/
+              finish();
             }
           }
         });
