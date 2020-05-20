@@ -60,4 +60,21 @@
     <string name="server_timeout">Tempo esgotado</string>
     <string name="open_drawer">Gaveta aberta</string>
     <string name="close_drawer">" Fechar gaveta"</string>
+    <string name="unable_to">" Incapaz de"</string>
+    <string name="logout_confirm">Tem certeza que deseja sair? Os dados da sua sessão serão excluídos.</string>
+    <string name="logout_message">" Terminar sessão terminada"</string>
+    <string name="token_invalid_expired">" Token inválido ou expirado"</string>
+    <string name="about_par_1">Este aplicativo permite que você detecte diferentes tipos de alimentos no seu prato, além de encontrar suas calorias genéricas para descobrir o que está comendo e fazer escolhas mais saudáveis.</string>
+    <string name="about_par_2">Este aplicativo também é capaz de armazenar cada uma das suas análises de alimentos em uma coleção de postagens. Cada postagem não apenas armazena o título, a data e o local em que foi feita, para que você possa acompanhar o que comeu, mas também os detalhes de cada alimento.</string>
+    <string name="about_par_3">Você pode estar se perguntando como é capaz de reconhecer alimentos, usa algoritmos de aprendizado de máquina para detectar objetos, onde os objetos são alimentos, 88 alimentos possíveis, para criar a detecção de objetos. O aplicativo usa um modelo convertido em tflite criado com o TensorFlow, se desejar Para saber mais, confira nosso site.</string>
+    <string name="about_version">Versão: 1.0</string>
+    <string name="about_release">" Data de lançamento: 20-05-2020"</string>
+    <string name="posts_no_posts">Ainda não há postagens, tente atualizar</string>
+    <string name="posts_total">Total de postagens:</string>
+    <string name="title">" Título:"</string>
+    <string name="discard">" Descartar"</string>
+    <string name="save">" Salve"</string>
+    <string name="location">" Localização:"</string>
+    <string name="date">Data:</string>
+    <string name="delete">" Excluir"</string>
 </resources>

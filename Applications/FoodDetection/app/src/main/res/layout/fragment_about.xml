@@ -70,8 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="          This app allows you to detect different types of food in your plate, as well as find their generic calories so that you can discover what you are eating and making healthier choices."/>
-
+                    android:text="@string/about_par_1"/>
                 <TextView
                     android:id="@+id/about_posts_save"
                     android:layout_width="match_parent"
@@ -79,7 +78,7 @@
                     android:layout_marginTop="15dp"
                     android:textSize="20sp"
                     android:layout_below="@id/about_description"
-                    android:text="          This app is also able to store each of your food analysis into a collection of posts. Each post will not only store the tilte, data and location where it was made so that you can track what you have eaten but also store the details of each food."/>
+                    android:text="@string/about_par_2"/>
 
                 <TextView
                     android:id="@+id/about_tf"
@@ -88,7 +87,7 @@
                     android:layout_marginTop="15dp"
                     android:textSize="20sp"
                     android:layout_below="@id/about_posts_save"
-                    android:text="          You might be wondering how it is able to recognize foods, it uses machine learning algorithms to detect objects, where the objects are foods, 88 possible foods, to build the object detection the app uses a tflite converted model built with TensorFlow, if you want to know more check out our site"/>
+                    android:text="@string/about_par_3"/>
 
 
 
@@ -107,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Version: 1.0"
+                    android:text="@string/about_version"
                     android:layout_below="@id/about_tf"
                     android:textSize="20sp"/>
 
@@ -115,7 +114,7 @@
                     android:id="@+id/release"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date released: 20-05-2020"
+                    android:text="@string/about_release"
                     android:layout_marginTop="25dp"
                     android:layout_below="@+id/version"
                     android:textSize="20sp"/>

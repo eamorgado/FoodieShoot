@@ -60,4 +60,21 @@
     <string name="server_timeout">Se acabó el tiempo</string>
     <string name="open_drawer">" Cajón abierto"</string>
     <string name="close_drawer">Cerrar cajón</string>
+    <string name="unable_to">Incapaz de</string>
+    <string name="logout_confirm">¿Seguro que quieres cerrar sesión? Los datos de su sesión serán eliminados.</string>
+    <string name="logout_message">" Cerrar sesión"</string>
+    <string name="token_invalid_expired">" Token inválido o caducado"</string>
+    <string name="about_par_1">Esta aplicación le permite detectar diferentes tipos de alimentos en su plato, así como encontrar sus calorías genéricas para que pueda descubrir lo que está comiendo y tomar decisiones más saludables.</string>
+    <string name="about_par_2">Esta aplicación también puede almacenar cada uno de sus análisis de alimentos en una colección de publicaciones. Cada publicación no solo almacenará el título, la fecha y el lugar donde se hizo para que pueda rastrear lo que ha comido, sino que también almacenará los detalles de cada comida.</string>
+    <string name="about_par_3">Quizás se esté preguntando cómo es capaz de reconocer alimentos, utiliza algoritmos de aprendizaje automático para detectar objetos, donde los objetos son alimentos, 88 alimentos posibles, para construir la detección de objetos, la aplicación utiliza un modelo convertido por tflite construido con TensorFlow, si lo desea Para saber más, visite nuestro sitio.</string>
+    <string name="about_version">" Versión: 1.0"</string>
+    <string name="about_release">Fecha de lanzamiento: 20-05-2020</string>
+    <string name="posts_no_posts">" Aún no hay publicaciones, intenta actualizar"</string>
+    <string name="posts_total">" Publicaciones totales:"</string>
+    <string name="title">" Título:"</string>
+    <string name="discard">Descarte</string>
+    <string name="save">Salvar</string>
+    <string name="location">" Ubicación:"</string>
+    <string name="date">" Fecha:"</string>
+    <string name="delete">Eliminar</string>
 </resources>
