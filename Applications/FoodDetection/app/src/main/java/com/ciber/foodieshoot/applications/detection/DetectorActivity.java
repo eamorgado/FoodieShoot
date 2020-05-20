@@ -233,9 +233,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         }
                       });
             }catch(ArrayIndexOutOfBoundsException e){
-              Intent intent = new Intent(getApplicationContext(), DetectorActivity.class);
+              /*Intent intent = new Intent(getApplicationContext(), DetectorActivity.class);
               startActivity(intent);
-              finish();
+              finish();*/
             }
           }
         });
