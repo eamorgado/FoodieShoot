@@ -21,7 +21,7 @@ public class FetchAddressService extends IntentService {
 
     protected ResultReceiver receiver;
 
-    public FetchAddressService(String name) {
+    public FetchAddressService() {
         super("fetchAddressService");
     }
 

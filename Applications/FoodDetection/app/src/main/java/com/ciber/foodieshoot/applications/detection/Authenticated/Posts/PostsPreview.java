@@ -82,6 +82,80 @@ public class PostsPreview extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
         resultReceiver = new AddressResultReceiver(null);
 
+        if(ContextCompat.checkSelfPermission(
+                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    PostsPreview.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        }
+            client.getLastLocation()
+                    .addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if(location != null) {
+                                Log.i("Test", location.getLatitude() + " " + location.getLongitude());
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+        settingsClient.checkLocationSettings(builder.build())
+                .addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof ResolvableApiException) {
+                            try {
+                                ResolvableApiException resolvable = (ResolvableApiException) e;
+                                resolvable.startResolutionForResult(PostsPreview.this, 10);
+                            } catch (IntentSender.SendIntentException ex) {
+                            }
+                        }
+                    }
+                });
+
+        LocationCallback locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                if (locationResult == null) {
+                    return;
+                }
+
+                for(Location location: locationResult.getLocations()) {
+
+                    if(!Geocoder.isPresent()) {
+                        return;
+                    }
+
+                    startIntentService(location);
+                }
+            }
+        };
+
+        client.requestLocationUpdates(locationRequest, locationCallback, null);
+
         displayFoods();
         save();
         discard();
@@ -151,32 +225,6 @@ public class PostsPreview extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
-                if(ContextCompat.checkSelfPermission(
-                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(
-                            PostsPreview.this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_CODE_LOCATION_PERMISSION
-                    );
-                }else {
-                    client.getLastLocation()
-                            .addOnSuccessListener(new OnSuccessListener<Location>() {
-                                @Override
-                                public void onSuccess(Location location) {
-                                    if(location != null) {
-                                    }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                }
-                            });
-                    getCurrentLocation();
-                }
-
                 String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.POST_SAVE_PATH;
                 JSONObject request = new JSONObject();
                 //get title
@@ -225,57 +273,6 @@ public class PostsPreview extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void getCurrentLocation() {
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(locationRequest);
-
-        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-        settingsClient.checkLocationSettings(builder.build())
-                .addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e instanceof ResolvableApiException) {
-                            try {
-                                ResolvableApiException resolvable = (ResolvableApiException) e;
-                                resolvable.startResolutionForResult(PostsPreview.this, 10);
-                            } catch (IntentSender.SendIntentException ex) {
-                            }
-                        }
-                    }
-                });
-
-        LocationCallback locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                if (locationResult == null) {
-                    return;
-                }
-
-                for(Location location: locationResult.getLocations()) {
-
-                    if(!Geocoder.isPresent()) {
-                        return;
-                    }
-
-                    startIntentService(location);
-                }
-            }
-        };
-
-        client.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
     private void startIntentService(Location location) {
