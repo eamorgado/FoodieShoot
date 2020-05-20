@@ -13,6 +13,7 @@ Bread
 Broccoli
 Burrito
 Caesar salad
+Carrot
 Carrot cake
 Cheese
 Cheesecake
@@ -41,6 +42,7 @@ Honey
 Hot dog
 Ice cream
 Iced tea
+Iced tead
 Lasagna
 Lemonade
 Lettuce
