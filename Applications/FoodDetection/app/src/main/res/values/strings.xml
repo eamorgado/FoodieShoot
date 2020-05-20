@@ -102,6 +102,7 @@
 
     <string name="close_drawer">Close drawer</string>
     <string name="open_drawer">Open drawer</string>
+    <string name="picture">tirar foto</string>
 
 
     <string name="about_par_2">This app is also able to store each of your food analysis into a collection of posts. Each post will not only store the title, date and location where it was made so that you can track what you have eaten but also store the details of each food.</string>

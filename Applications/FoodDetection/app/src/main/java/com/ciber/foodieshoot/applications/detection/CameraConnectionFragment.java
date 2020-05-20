@@ -38,11 +38,14 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.Image;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -51,11 +54,20 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.ByteBuffer;
+import java.util.Date;
+
+import androidx.annotation.NonNull;
 
 import com.ciber.foodieshoot.applications.detection.customview.AutoFitTextureView;
 import com.ciber.foodieshoot.applications.detection.env.Logger;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -112,6 +124,11 @@ public class CameraConnectionFragment extends Fragment {
             final CaptureRequest request,
             final TotalCaptureResult result) {}
       };
+
+  private File mImageFolder;
+  private String mImageFileName;
+  private Button pictureButton;
+
   /** ID of the current {@link CameraDevice}. */
   private String cameraId;
   /** An {@link AutoFitTextureView} for camera preview. */
@@ -421,8 +438,95 @@ public class CameraConnectionFragment extends Fragment {
     }
   }
 
+  /**private class ImageSaver implements Runnable {
+    private final Image mImage;
+
+    public ImageSaver(Image image) {
+      mImage = image;
+    }
+    @Override
+    public void run() {
+      ByteBuffer byteBuffer = mImage.getPlanes()[0].getBuffer();
+      byte[] bytes = new byte[byteBuffer.remaining()];
+      byteBuffer.get(bytes);
+
+      FileOutputStream fileOutputStream = null;
+      try {
+        fileOutputStream = new FileOutputStream(mImageFileName);
+        fileOutputStream.write(bytes);
+      } catch (IOException e) {
+        e.printStackTrace();
+      } finally {
+        mImage.close();
+        if(fileOutputStream != null) {
+          try {
+            fileOutputStream.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+
+    }
+  }
+
+  private void createImageFolder() {
+    File imageFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+    mImageFolder = new File(imageFile, "FoodieShoot");
+    if(!mImageFolder.exists()) {
+      mImageFolder.mkdirs();
+    }
+  }
+
+  private File createImageFileName() throws IOException {
+    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    String prepend = "IMAGE_" + timestamp + "_";
+    File imageFile = File.createTempFile(prepend, ".jpg", mImageFolder);
+    mImageFileName = imageFile.getAbsolutePath();
+    return imageFile;
+  }
+
+  private void captureStillImage() throws CameraAccessException {
+
+    createImageFolder();
+    final SurfaceTexture texture = textureView.getSurfaceTexture();
+    assert texture != null;
+
+    // We configure the size of default buffer to be the size of camera preview we want.
+    texture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
+
+    // This is the output Surface we need to start preview.
+    final Surface surface = new Surface(texture);
+
+
+    CaptureRequest.Builder captureStillBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+    captureStillBuilder.addTarget(surface);
+    CameraCaptureSession.CaptureCallback captureCallback =
+            new CameraCaptureSession.CaptureCallback() {
+              @Override
+              public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
+                super.onCaptureCompleted(session, request, result);
+              }
+              @Override
+              public void onCaptureStarted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, long timestamp, long frameNumber) {
+                super.onCaptureStarted(session, request, timestamp, frameNumber);
+
+                try {
+                    createImageFileName();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+              }
+            };
+    captureSession.capture(
+            captureStillBuilder.build(), captureCallback, null
+    );
+  }
+*/
+
   /** Creates a new {@link CameraCaptureSession} for camera preview. */
   private void createCameraPreviewSession() {
+
     try {
       final SurfaceTexture texture = textureView.getSurfaceTexture();
       assert texture != null;
