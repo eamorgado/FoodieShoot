@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name" translatable="false">FoodieShoot</string>
+    <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <string name="tfe_ic_model">Model:</string>
+    <string-array name="tfe_ic_models" translatable="false">
+        <item>Float_MobileNet</item>
+    </string-array>
+
+    <string name="tfe_ic_device">Device:</string>
+    <string-array name="tfe_ic_devices">
+        <item>CPU</item>
+    </string-array>
+
+    <string name="open_camera">Open camera</string>
+
+    <!-- Text camera no account -->
+    <string name="no_account_camera_back_text">Back to Home</string>
+    <string name="no_account_camera_frame" translatable="false">Frame</string>
+    <string name="no_account_crop" translatable="false">Crop</string>
+    <string name="no_account_inference_time">Inference Time</string>
+    <string name="no_account_threads" translatable="false">Threads</string>
+
+    <!-- Login Page strings -->
+    <string name="login_hello">Hello</string>
+    <string name="login_there">There</string>
+    <string name="login_username">Username or email</string>
+    <string name="login_pass">Password</string>
+    <string name="login_forgot">Forgot password</string>
+    <string name="login_signup">Sign up</string>
+    <string name="login_login">Login</string>
+    <string name="login_continue_no_account">Continue with no account</string>
+    <string name="keep_me_logged">Keep me logged in</string>
+    <string name="login_success">Login was successful</string>
+
+    <!-- Sign up -->
+    <string name="signup">Sign Up</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_first_name">First Name</string>
+    <string name="signup_last_name">Last Name</string>
+    <string name="signup_confirm_password">Confirm Password</string>
+    <string name="signup_success">Registration was successful</string>
+
+
+    <!-- Logged Home  -->
+    <string name="point_shoot_and_eat">  Point shoot and eat</string>
+    <string name="calories_underneath">Find the calories underneath</string>
+    <string name="scroll_up_open">Scroll up to take shot</string>
+
+    <!-- ERRORS  -->
+    <string name="empty_field_error">This field cannot be empty</string>
+    <string name="credential_error">Invalid credentials</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="password_similar_user">The password is too similar to the username.</string>
+    <string name="password_short">This password is too short. It must contain at least 8 characters.</string>
+    <string name="password_common">This password is too common.</string>
+    <string name="password_match">Passwords must match.</string>
+    <string name="username_exists">A user with that username already exists.</string>
+    <string name="email_exists">Email already exists.</string>
+
+
+    <!-- Nav Bar -->
+    <string name="shots">See saved shots</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
+    <string name="social">Social</string>
+    <string name="visit_site">Visit site</string>
+    <string name="share">Share</string>
+
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_camera">Camera</string>
+    <string name="bottom_nav_posts">Posts</string>
+
+    <string name="unable_to">Unable to</string>
+    <string name="logout_message">Logout complete</string>
+    <string name="logout_confirm">Are you sure you want to logout? Your session data will be deleted.</string>
+
+    <string name="token_invalid_expired">Invalid or expired token</string>
+
+    <!-- Analyse -->
+    <string name="analyse">Analyse Image</string>
+    <string name="fail_no_account">Task failed, requires authentication</string>
+    <string name="analysing">Starting to analyse image</string>
+    <string name="error">Error</string>
+    <string name="error_wait">Please wait and try again</string>
+    <string name="requires_auth">Requires authentication</string>
+    <string name="join">Want to join?</string>
+
+
+    <!-- USER ACTIONS -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+
+
+    <!-- CONNECTION MESSAGES -->
+    <string name="server_connection">Connection status</string>
+    <string name="server_unavailable">Server is not available or internet is not enabled</string>
+    <string name="server_timeout">Timeout</string>
+
+
+    <string name="close_drawer">Close drawer</string>
+    <string name="open_drawer">Open drawer</string>
+
+
+    <string name="about_par_2">This app is also able to store each of your food analysis into a collection of posts. Each post will not only store the title, date and location where it was made so that you can track what you have eaten but also store the details of each food.</string>
+    <string name="about_par_3">You might be wondering how it is able to recognize foods, it uses machine learning algorithms to detect objects, where the objects are foods, 88 possible foods, to build the object detection the app uses a tflite converted model built with TensorFlow, if you want to know more check out our site.</string>
+    <string name="about_release">Date released: 20-05-2020</string>
+
+
+    <string name="posts_no_posts">No posts yet, try refreshing</string>
+    <string name="posts_total">Total posts:</string>
+    <string name="title">Title:</string>
+    <string name="discard">Discard</string>
+    <string name="location">Location:</string>
+    <string name="date">Date:</string>
+     <string name="about_par_1">This app allows you to detect different types of food in your plate, as well as find their generic calories so that you can discover what you are eating and making healthier choices.</string>
+    <string name="about_version">Version: 1.0</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+
+
+</resources>

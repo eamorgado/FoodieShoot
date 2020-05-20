@@ -1,0 +1,85 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen">
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.FullscreenGrey">
+        <item name="android:statusBarColor">#B9BAC9</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.ImageClassification" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/tfe_color_primary</item>
+        <item name="colorPrimaryDark">@color/tfe_color_primary_dark</item>
+        <item name="colorAccent">@color/tfe_color_accent</item>
+    </style>
+
+    <style name="AppTheme.FullscreenRed">
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- Switch style -->
+    <style name="SCBSwitch" parent="Theme.AppCompat">
+        <item name="android:textColorPrimaryDisableOnly">#C3C3C3</item>
+        <item name="colorAccent">@color/redBold</item>
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/redBold</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#C3C3C3
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f
+        </item>
+    </style>
+
+    <style name="Home" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Fade edge scroll -->
+    <style name="ScrollEdge">
+        <item name="colorAccent">@color/redBold</item>
+        <item name="android:color">@color/redBold</item>
+        <item name="colorPrimary">@color/redBold</item>
+        <item name="colorPrimaryDark">@color/redBold</item>
+    </style>
+    
+    
+    <!-- Popup style -->
+    <style name="AppTheme.Popup">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+</resources>
