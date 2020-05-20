@@ -96,7 +96,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
         user = User.objects.filter(email=email)
         if user.exists() and user.count() == 1:
             user = user.first()
-            if user.password != password:
+            if not user.check_password(password):
                 raise serializers.ValidationError({"credentials":"Invalid credentials"})
             token,_ = Token.objects.get_or_create(user=user)
             data['token'] = token.key
