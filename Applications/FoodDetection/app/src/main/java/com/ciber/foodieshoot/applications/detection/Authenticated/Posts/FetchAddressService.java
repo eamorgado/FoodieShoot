@@ -55,7 +55,9 @@ public class FetchAddressService extends IntentService {
             for(int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
                 addressF.add(address.getAddressLine(i));
             }
-
+            String r = "";
+            for(String l : addressF) r += l + " ";
+            Log.i("LOCATION: ",r);
             deliverResultToReceiver(Constants.SUCCESS_RESULT,
                     TextUtils.join("|", addressF));
         }
