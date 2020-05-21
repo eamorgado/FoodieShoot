@@ -85,6 +85,18 @@ public class PostsPreview extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
         resultReceiver = new AddressResultReceiver(null);
 
+        if(ContextCompat.checkSelfPermission(
+                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    PostsPreview.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        } else {
+            getCurrentLocation();
+        }
+
 
             client.getLastLocation()
                     .addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -173,18 +185,6 @@ public class PostsPreview extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
-                if(ContextCompat.checkSelfPermission(
-                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(
-                            PostsPreview.this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_CODE_LOCATION_PERMISSION
-                    );
-                } else {
-                    getCurrentLocation();
-                }
-
                 String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.POST_SAVE_PATH;
                 JSONObject request = new JSONObject();
                 //get title
@@ -247,7 +247,7 @@ public class PostsPreview extends AppCompatActivity {
         }
     }
 
-    private void getCurrentLocation() {
+    public void getCurrentLocation() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -265,14 +265,19 @@ public class PostsPreview extends AppCompatActivity {
                             int latestLocationIndex = locationResult.getLocations().size() -1;
                             double latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                             double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
-                            address = String.format("Latitude: %s\nLongitude: %s", latitude, longitude);
+
+                            Location location = new Location("providerNA");
+                            location.setLatitude(latitude);
+                            location.setLongitude(longitude);
+                            fetchAddressFromLatLong(location);
+
                         }
                     }
                 }, Looper.getMainLooper());
 
     }
 
-    private void startIntentService(Location location) {
+    private void fetchAddressFromLatLong(Location location) {
         Intent intent = new Intent(this, FetchAddressService.class);
         intent.putExtra(Constants.RECEIVER, resultReceiver);
         intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);

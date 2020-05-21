@@ -37,7 +37,7 @@ public class FetchAddressService extends IntentService {
         List<Address> addresses = null;
 
         try {
-            geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
         } catch (IOException e) {
             Log.e("Test", "service unavailable");
         }

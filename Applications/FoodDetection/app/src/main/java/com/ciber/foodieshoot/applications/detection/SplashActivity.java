@@ -1,16 +1,22 @@
 package com.ciber.foodieshoot.applications.detection;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.android.volley.NoConnectionError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.ciber.foodieshoot.applications.detection.Authenticated.Logged_Home;
+import com.ciber.foodieshoot.applications.detection.Authenticated.Posts.PostsPreview;
 import com.ciber.foodieshoot.applications.detection.Authentication.LoginPage;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.Alert;
 import com.ciber.foodieshoot.applications.detection.Auxiliar.CalorieParser.FoodCalories;
@@ -26,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SplashActivity extends Activity {
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private static Context application_context;
     private static LayoutAuxiliarMethods layout_auxiliar;
 
