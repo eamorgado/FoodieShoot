@@ -120,5 +120,11 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
 
+    <string name="instr_1">Open the camera, detect a food and analyse it.</string>
+    <string name="instr_2">Save the post, go to posts, refresh them and see it there.</string>
+    <string name="instr_3">Track your foods anywhere, eat healthy one shot at a time.</string>
+
+    <string name="terms">Terms of service</string>
+
 
 </resources>

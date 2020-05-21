@@ -77,4 +77,8 @@
     <string name="location">" Ubicación:"</string>
     <string name="date">" Fecha:"</string>
     <string name="delete">Eliminar</string>
+    <string name="instr_1">" Abra la cámara, detecte un alimento y analícelo."</string>
+    <string name="instr_2">" Guarde la publicación, vaya a las publicaciones, actualícelas y vea allí."</string>
+    <string name="instr_3">Haga un seguimiento de sus alimentos en cualquier lugar, coma saludablemente una publicación a la vez.</string>
+    <string name="terms">" Términos de servicio"</string>
 </resources>

@@ -24,9 +24,56 @@
         android:layout_marginBottom="30dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/point_shoot_eat"/>
+            android:id="@+id/home_image"
+            android:layout_width="match_parent"
+            android:layout_height="141dp"
+            app:srcCompat="@drawable/point_shoot_eat" />
+
+        <ScrollView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/home_image"
+            android:layout_weight="1"
+            android:fadingEdgeLength="25dp"
+            android:requiresFadingEdge="vertical"
+            android:scaleType="fitCenter"
+            android:theme="@style/ScrollEdge">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20sp"
+                    android:text="@string/instr_1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="@string/instr_2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="@string/instr_3"/>
+            </LinearLayout>
+
+
+        </ScrollView>
     </RelativeLayout>
 
 </RelativeLayout>

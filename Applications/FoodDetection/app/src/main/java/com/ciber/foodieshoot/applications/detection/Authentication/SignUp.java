@@ -22,6 +22,8 @@ import com.ciber.foodieshoot.applications.detection.SplashActivity;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.LinkMovementMethod;
@@ -71,14 +73,22 @@ public class SignUp extends AppCompatActivity {
         int[] ids = {R.id.join_us_signup};
         String texts[] = {  " <font color=#FF0000><big>.</big></font>"};
         layout_auxiliar.changeColor(ids,texts);
-        setFadeColor();
+        seeTerms();
         signButtonPressed();
     }
 
 
-    private void setFadeColor(){
-        ScrollView scroll = (ScrollView) findViewById(R.id.signup_scroll);
-
+    private void seeTerms(){
+        TextView terms = (TextView) findViewById(R.id.terms);
+        terms.setMovementMethod(LinkMovementMethod.getInstance());
+        terms.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.TERMS});
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.setData(Uri.parse(endpoint));
+                startActivity(browserIntent);
+            }
+        });
     }
 
 

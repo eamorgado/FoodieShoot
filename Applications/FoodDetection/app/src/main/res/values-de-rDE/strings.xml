@@ -77,4 +77,8 @@
     <string name="location">Standort:</string>
     <string name="date">Datum:</string>
     <string name="delete">" Löschen"</string>
+    <string name="instr_1">" Öffnen Sie die Kamera, erkennen Sie ein Lebensmittel und analysieren Sie es."</string>
+    <string name="instr_2">Speichern Sie den Beitrag, gehen Sie zu den Beiträgen, aktualisieren Sie sie und sehen Sie sie dort.</string>
+    <string name="instr_3">Verfolgen Sie Ihre Lebensmittel überall und essen Sie einen Beitrag nach dem anderen gesund.</string>
+    <string name="terms">" Nutzungsbedingungen"</string>
 </resources>

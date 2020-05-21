@@ -57,6 +57,7 @@ public class Configurations {
 
     public static final String SERVER_URL = "https://178.79.132.23";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
+    public static final String TERMS = "/terms/";
 
     public static final String REST_API = "/api/v1/";
     public static final String LOGIN_PATH = "account/login";
