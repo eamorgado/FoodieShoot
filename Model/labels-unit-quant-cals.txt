@@ -1,0 +1,90 @@
+Almond,almond,1,7.71
+Almond cake,slice,1,353.16
+Apple,apple,1,94.64
+Apple pie,slice,1,296.25
+Bacon,slice,3,161.46
+Bagel,bagel,1,277.2
+Banana,banana,1,105.02
+Beer,bottle,1,153.08
+Biscuits,biscuit,1,211.8
+Blueberry,berry,1,0.78
+Bread,slice,1,77.14
+Broccoli,spear,1,12.95
+Burrito,burrito,1,433.8
+Caesar salad,bowl,1,481.43
+Carrot,unit,1,16.1
+Carrot cake,slice,1,577.47
+Cheese,slice,1,113.12
+Cheesecake,slice,1,401.25
+Chicken wings,wing,1,87.74
+Chocolate,piece,1,37.45
+Chocolate cake,slice,1,424.01
+Chocolate mousse,cup,0.5,454.5
+Churros,churro,1,103.04
+Club sandwich,sandwich,1,816.84
+Coca cola,can,1,140
+Coconut,cup,1,387.6
+Coconut cake,slice,1,398.72
+Coffe,cup,1,2.37
+Coffee,cup,1,2.37
+Crepes,crepe,1,105.8
+Croissant,croissant,1,272.02
+Cupcake,cupcake,1,291.75
+Donut,donut,1,252.6
+Egg,egg,1,71.5
+French fries,serving,1,365.04
+Gelatin,spoon,1,23.45
+Grape,grape,1,33.81
+Grilled cheese sandwich,piece,1,365.76
+Hamburguer,sandwich,1,540.14
+Honey,spoon,1,63.84
+Hot dog,unit,1,154.56
+Ice cream,cup,1,273.24
+Iced tea,cup,1,2.37
+Iced tead,cup,1,2.37
+Lasagna,serving,1,602.49
+Lemonade,cup,1,98.8
+Lettuce,cup,2,15.98
+Lollipop,unit,1,23.64
+Macarons,unit,1,43.38
+Marshmallow,unit,1,22.9
+Meatballs,unit,4,324.32
+Melon,slice,1,60.18
+Milk,cup,1,124.95
+Milkshake,cup,1,454.4
+Muffin,unit,1,423.75
+Mushroom,unit,1,3.36
+Nachos,order,1,1233.77
+Olive,olive,1,4.37
+Omlete,3-egg,1,323.47
+Omelete,3-egg,1,323.47
+Onion,piece,1,41.36
+Orange,piece,1,68.6
+Oranje Juice,cup,1,111.6
+Orange juice,cup,1,111.6
+Pancakes,unit,1,90.8
+Pasta,cup,1,195.92
+Peanut,unit,1,5.87
+Peanut butter,spoon,2,188.16
+Pear,unit,1,101.46
+Pepperoni,slice,1,10.08
+Pickles,spear,1,4.2
+Pineapple,cup,0.5,41.25
+Pizza,slice,1,284.62
+Popcorn,cup,1,44
+Pretzel,unit,1,108.86
+Pudding,cup,0.5,143
+Raspberry,berry,1,1.04
+Rice,cup,1,205.4
+Shrimp,unit,1,5.95
+Spaghetti bolognese,serving,1,666.83
+Spaghetti carbonara,plate,1,1018.11
+Steak,unit,1,614.38
+Strawberry,berry,5,28.8
+Sushi,roll,8,348.54
+Tacos,taco,1,210.12
+Tea,cup,1,1.78
+Tomato,unit,1,22.14
+Waffle,unit,1,218.25
+Watermelon,slice,1,85.8
+Wine,glass,1,122.01
