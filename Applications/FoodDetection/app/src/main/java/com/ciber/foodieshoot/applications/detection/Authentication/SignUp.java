@@ -72,7 +72,6 @@ public class SignUp extends AppCompatActivity {
         String texts[] = {  " <font color=#FF0000><big>.</big></font>"};
         layout_auxiliar.changeColor(ids,texts);
         setFadeColor();
-        loginPress();
         signButtonPressed();
     }
 
@@ -81,15 +80,7 @@ public class SignUp extends AppCompatActivity {
         ScrollView scroll = (ScrollView) findViewById(R.id.signup_scroll);
 
     }
-    private void loginPress(){
-        TextView login = (TextView) findViewById(R.id.login);
-        login.setMovementMethod(LinkMovementMethod.getInstance());
-        login.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                layout_auxiliar.openActivity(LoginPage.class);
-            }
-        });
-    }
+
 
     /**
      * Method to initiate server rest register
