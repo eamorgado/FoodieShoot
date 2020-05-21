@@ -10,5 +10,5 @@ as such, after training the model we convert it to a tflite format.
 
 # Documentation
 1.  [The Server](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Server.md)
-2.  Request API
+2.  [Request API](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Request_API.md)
 3.  App
