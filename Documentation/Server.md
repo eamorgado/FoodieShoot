@@ -1,4 +1,4 @@
-[FoodieShoot](https://github.com/eamorgado/FoodieShoot/blob/master/README.md)->Documentation->Server
+[FoodieShoot](https://github.com/eamorgado/FoodieShoot/blob/master/README.md)->[Documentation](https://github.com/eamorgado/FoodieShoot/tree/master/Documentation)->Server
 
 
 # The Server
