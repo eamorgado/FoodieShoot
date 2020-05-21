@@ -2,8 +2,8 @@ package com.ciber.foodieshoot.applications.detection.Authenticated.Posts;
 
 public class Constants {
 
-    public static final int SUCCESS_RESULT = 0;
-    public static final int FAILURE_RESULT = 1;
+    public static final int SUCCESS_RESULT = 1;
+    public static final int FAILURE_RESULT = 0;
 
     public static final String PACKAGE_NAME =
             "com.google.android.gms.location.sample.locationaddress";
