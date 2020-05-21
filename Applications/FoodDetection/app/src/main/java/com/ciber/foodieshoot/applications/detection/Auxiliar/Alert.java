@@ -31,16 +31,18 @@ public class Alert {
     }
 
     public static void infoUser(Context c,String title,String message,String positive_s, Runnable positive){
-        new AlertDialog.Builder(c)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton(positive_s, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        new Handler().post(positive);
-                    }
-                })
-                .setIcon(c.getResources().getDrawable(R.drawable.logo))
-                .setCancelable(false)
-                .show();
+        try{
+            new AlertDialog.Builder(c)
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(positive_s, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            new Handler().post(positive);
+                        }
+                    })
+                    .setIcon(c.getResources().getDrawable(R.drawable.logo))
+                    .setCancelable(false)
+                    .show();
+        }catch (Exception e){}
     }
 }
