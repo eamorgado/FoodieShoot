@@ -8,8 +8,8 @@ To recognize the foods, it uses our custom built dataset with 90 classes of food
 as such, after training the model we convert it to a tflite format.
 
 
-# Contents
-1.  [The Server](#The-Server)
+# Documentation
+1.  [The Server](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Server.md)
 2.  Request API
 3.  App
 
