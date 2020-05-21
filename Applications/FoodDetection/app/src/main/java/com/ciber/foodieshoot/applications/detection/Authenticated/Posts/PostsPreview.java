@@ -196,7 +196,7 @@ public class PostsPreview extends AppCompatActivity {
                     request.put("save","True");
                     request.put("contents",new JSONObject(FoodPostAnalyse.getInstance().getServerResponse()));
                     if(!title.equals("")) request.put("title",title);
-                     request.put("location", address);
+                     request.put("location", "Tish " + address);
                     NetworkManager.getInstance().postRequestFromJson(endpoint, request, new RestListener() {
                         @Override
                         public void parseResponse(JSONObject response) {

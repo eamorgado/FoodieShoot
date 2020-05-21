@@ -79,5 +79,9 @@ def download_dataset(request):
         response = HttpResponse(fsock,content_type='application/gzip')
         response['Content-Disposition'] = 'attachment; filename=FoodieShoot_ImageBank.tar.gz'
         return response
+    
+def terms_and_conditions(request):
+    context = {'title': 'Terms and Conditions'}
+    return render(request,'foodieshoot/terms.html',context)
 
     

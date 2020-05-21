@@ -9,8 +9,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.android.volley.NoConnectionError;
 import com.android.volley.TimeoutError;
@@ -48,6 +47,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_splash);
 
         application_context = this;

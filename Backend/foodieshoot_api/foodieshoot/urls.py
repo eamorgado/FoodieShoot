@@ -10,6 +10,7 @@ urlpatterns = [
     path('download/',views.download,name='fs-download'),
     path('download/apk/',views.download_apk,name='fs-download-apk'),
     path('download/dataset/',views.download_dataset,name='fs-download-dataset'),
+    path('terms/',views.terms_and_conditions,name='fs-terms'),
 ]
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
