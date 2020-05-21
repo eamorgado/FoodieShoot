@@ -145,7 +145,7 @@ public class LoginPage extends AppCompatActivity {
     private void makeLoginRequest(){
         String endpoint = LayoutAuxiliarMethods.buildUrl(new String[]{Configurations.SERVER_URL,Configurations.REST_API,Configurations.LOGIN_PATH});
         Map<String,String> params = layout_auxiliar.buildParams(FIELD_KEYS,FIELD_IDS);
-
+        Log.e("TEST LOGIN ",endpoint);
         NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
             @Override
             public void parseResponse(JSONObject response) {
@@ -201,8 +201,10 @@ public class LoginPage extends AppCompatActivity {
                         Log.e(Configurations.REST_AUTH_FAIL,"Request timed out.");
                     }
                 };
-                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
-                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out. " + error.toString());
+                try{
+                    Alert.infoUser(LoginPage.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                }catch(Exception e){}
             }
         });
     }

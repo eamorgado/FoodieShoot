@@ -86,58 +86,59 @@ public class SplashActivity extends Activity {
                 }
             }, 1500);
         }
+        else{
+            //Token exists => validate
+            String token = Configurations.USER.TOKEN.getValue();
+            //Perform login request
+            String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.LOGIN_PATH;
+            Map<String,String> params = new HashMap<>();
+            params.put("token",token);
 
-        //Token exists => validate
-        String token = Configurations.USER.TOKEN.getValue();
-        //Perform login request
-        String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.LOGIN_PATH;
-        Map<String,String> params = new HashMap<>();
-        params.put("token",token);
+            NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
+                @Override
+                public void parseResponse(JSONObject response) {
+                    try{
+                        //Server is responsive => request auth
+                        String status = response.get("status").toString();
+                        if(status.equals("success")){
+                            Configurations.authenticate();
+                            layout_auxiliar.setUserVars(response);
+                            Configurations.setToken(Configurations.USER.TOKEN.getValue());
 
-        NetworkManager.getInstance().postRequest(endpoint, params, new RestListener() {
-            @Override
-            public void parseResponse(JSONObject response) {
-                try{
-                    //Server is responsive => request auth
-                    String status = response.get("status").toString();
-                    if(status.equals("success")){
-                        Configurations.authenticate();
-                        layout_auxiliar.setUserVars(response);
-                        Configurations.setToken(Configurations.USER.TOKEN.getValue());
-
-                        //NetworkManager.getInstance().saveProfileImage(true);
-                        NetworkManager.getInstance().setProfileImage();
-                        SplashActivity.layout_auxiliar.openActivity(Logged_Home.class);
-                    }
-                    else{
-                        //Status fail => go to login page
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
-                            }
-                        }, 1500);
-                    }
-                }catch(JSONException e){
-                    e.printStackTrace();
-                    SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
-                }
-            }
-            @Override
-            public void handleError(VolleyError error) {
-                //Server not connected
-                Log.e(Configurations.REST_AUTH_FAIL,error.toString());
-                Runnable dismiss = new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                            //NetworkManager.getInstance().saveProfileImage(true);
+                            NetworkManager.getInstance().setProfileImage();
+                            SplashActivity.layout_auxiliar.openActivity(Logged_Home.class);
+                        }
+                        else{
+                            //Status fail => go to login page
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
+                                }
+                            }, 1500);
+                        }
+                    }catch(JSONException e){
+                        e.printStackTrace();
                         SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
                     }
-                };
-                Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
-                Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
-            }
-        });
+                }
+                @Override
+                public void handleError(VolleyError error) {
+                    //Server not connected
+                    Log.e(Configurations.REST_AUTH_FAIL,error.toString());
+                    Runnable dismiss = new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out.");
+                            SplashActivity.layout_auxiliar.openActivity(LoginPage.class);
+                        }
+                    };
+                    Log.e(Configurations.REST_AUTH_FAIL,"Update Location Request timed out. " + error.toString());
+                    Alert.infoUser(SplashActivity.getContextOfApplication(),getString(R.string.server_connection),getString(R.string.server_unavailable),getString(R.string.ok),dismiss);
+                }
+            });
+        }
     }
 }

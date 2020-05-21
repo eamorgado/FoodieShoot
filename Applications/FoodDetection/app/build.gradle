@@ -5,11 +5,12 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "org.tensorflow.lite.examples.detection"
-        minSdkVersion 26
-        targetSdkVersion 26
+        applicationId 'com.ciber.foodieshoot.applications.detection'
+        minSdkVersion 28
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        applicationIdSuffix = 'FoodieShoot'
     }
     buildTypes {
         release {
@@ -98,7 +99,6 @@ dependencies {
 
     //Collapsible post
     implementation 'androidx.cardview:cardview:1.0.0'
-
     //Geolocation
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 

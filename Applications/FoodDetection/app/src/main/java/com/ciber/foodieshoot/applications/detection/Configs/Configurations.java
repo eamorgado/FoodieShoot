@@ -54,8 +54,8 @@ public class Configurations {
 
     public static final String HOST = "178.79.132.23";
     public static final int PORT = 80;
-
-    public static final String SERVER_URL = "http://178.79.132.23/";
+    private static final String HTTP = "http://";
+    public static final String SERVER_URL = "https://178.79.132.23";
     public static final String FORGOT_PASSWORD_PATH = "/password-reset/";
 
     public static final String REST_API = "/api/v1/";
@@ -192,7 +192,7 @@ public class Configurations {
                                 Configurations.sendNotification(logout,logout_message, NotificationManager.IMPORTANCE_DEFAULT);
 
                                 Intent intent = new Intent(SplashActivity.getContextOfApplication(),LoginPage.class);
-                                Logged_Home.getContextOfApplication().startActivity(intent);
+                                SplashActivity.getContextOfApplication().startActivity(intent);
                             }
                             else{
                                 //Fails Check detail and error

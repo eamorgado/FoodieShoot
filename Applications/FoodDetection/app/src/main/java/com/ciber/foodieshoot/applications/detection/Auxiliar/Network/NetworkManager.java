@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -27,12 +28,28 @@ import com.ciber.foodieshoot.applications.detection.SplashActivity;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
 
 public class NetworkManager {
     private static final String TAG = "NetworkManager";
@@ -40,7 +57,7 @@ public class NetworkManager {
     public RequestQueue request_queue;
 
     private NetworkManager(Context context){
-        request_queue = Volley.newRequestQueue(context.getApplicationContext());
+        request_queue = Volley.newRequestQueue(context.getApplicationContext(),new HurlStack(null, getSocketFactory()));
     }
 
     public static synchronized NetworkManager getInstance(Context context){
@@ -74,7 +91,7 @@ public class NetworkManager {
                     }
                 }
         );
-        int socketTimeout = 3000;
+        int socketTimeout = 30000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
@@ -105,8 +122,8 @@ public class NetworkManager {
                 }
         );
 
-        int socketTimeout = 3000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,4, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
     }
@@ -143,8 +160,8 @@ public class NetworkManager {
                 return headers;
             }
         };
-        int socketTimeout = 3000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
     }
@@ -201,7 +218,7 @@ public class NetworkManager {
             }
         };
         int socketTimeout = 3000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
     }
@@ -230,9 +247,78 @@ public class NetworkManager {
             }
         };
 
-        int socketTimeout = 3000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         request.setRetryPolicy(policy);
         request_queue.add(request);
+    }
+
+
+    private SSLSocketFactory getSocketFactory() {
+
+        CertificateFactory cf = null;
+        try {
+
+            cf = CertificateFactory.getInstance("X.509");
+            InputStream caInput = SplashActivity.getContextOfApplication().getResources().openRawResource(R.raw.foodieshoot_certificate);
+            Certificate ca;
+            try {
+
+                ca = cf.generateCertificate(caInput);
+                Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
+            } finally {
+                caInput.close();
+            }
+
+
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+
+
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+
+
+            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+
+                    Log.e("CipherUsed", session.getCipherSuite());
+                    return hostname.compareTo("178.79.132.23")==0; //The Hostname of your server.
+
+                }
+            };
+
+
+            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+            SSLContext context = null;
+            context = SSLContext.getInstance("TLS");
+
+            context.init(null, tmf.getTrustManagers(), null);
+            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+
+            SSLSocketFactory sf = context.getSocketFactory();
+
+
+            return sf;
+
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
+
+        return  null;
     }
 }
