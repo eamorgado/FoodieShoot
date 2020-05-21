@@ -99,4 +99,7 @@ dependencies {
 
     //Collapsible post
     implementation 'androidx.cardview:cardview:1.0.0'
+    //Geolocation
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
 }

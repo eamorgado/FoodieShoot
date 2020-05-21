@@ -1,11 +1,17 @@
 package com.ciber.foodieshoot.applications.detection.Authenticated.Posts;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
+import android.os.ResultReceiver;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +26,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.NoConnectionError;
 import com.android.volley.TimeoutError;
@@ -38,22 +47,119 @@ import com.ciber.foodieshoot.applications.detection.Configs.Configurations;
 import com.ciber.foodieshoot.applications.detection.DetectorActivity;
 import com.ciber.foodieshoot.applications.detection.R;
 import com.ciber.foodieshoot.applications.detection.SplashActivity;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
+
 public class PostsPreview extends AppCompatActivity {
+
     private LayoutAuxiliarMethods layout_auxiliar;
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+    FusedLocationProviderClient client;
+    AddressResultReceiver resultReceiver;
+    String address;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_preview);
         layout_auxiliar = new LayoutAuxiliarMethods(this);
+
+        client = LocationServices.getFusedLocationProviderClient(this);
+        resultReceiver = new AddressResultReceiver(null);
+
+        if(ContextCompat.checkSelfPermission(
+                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    PostsPreview.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        }
+            client.getLastLocation()
+                    .addOnSuccessListener(new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if(location != null) {
+                                Log.i("Test", location.getLatitude() + " " + location.getLongitude());
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+        settingsClient.checkLocationSettings(builder.build())
+                .addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof ResolvableApiException) {
+                            try {
+                                ResolvableApiException resolvable = (ResolvableApiException) e;
+                                resolvable.startResolutionForResult(PostsPreview.this, 10);
+                            } catch (IntentSender.SendIntentException ex) {
+                            }
+                        }
+                    }
+                });
+
+        LocationCallback locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                if (locationResult == null) {
+                    return;
+                }
+
+                for(Location location: locationResult.getLocations()) {
+
+                    if(!Geocoder.isPresent()) {
+                        return;
+                    }
+
+                    startIntentService(location);
+                }
+            }
+        };
+
+        client.requestLocationUpdates(locationRequest, locationCallback, null);
+
         displayFoods();
         save();
         discard();
+
     }
 
     private void generateRow(LayoutInflater inflater,LinearLayout parent, String description_message, String contents_message){
@@ -118,26 +224,19 @@ public class PostsPreview extends AppCompatActivity {
         save.setMovementMethod(LinkMovementMethod.getInstance());
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 String endpoint = Configurations.SERVER_URL + Configurations.REST_API + Configurations.POST_SAVE_PATH;
                 JSONObject request = new JSONObject();
                 //get title
                 LinearLayout ll = (LinearLayout) findViewById(R.id.preview_ll_1);
                 EditText text = (EditText) ll.findViewById(R.id.preview_title_save);
                 String title = text.getText().toString();
-                //get location
-                /**
-                 * PUT LOCATION HERE (COVERTED TO PLACE FROM LATITUDE AND LONG
-                 * String location = ....
-                 */
                 try {
                     request.put("token", Configurations.USER.TOKEN.getValue());
                     request.put("save","True");
                     request.put("contents",new JSONObject(FoodPostAnalyse.getInstance().getServerResponse()));
                     if(!title.equals("")) request.put("title",title);
-                    /**
-                     * Make check for location
-                     * if(location found) request.put("location",location);
-                     */
+                     request.put("location", address);
                     NetworkManager.getInstance().postRequestFromJson(endpoint, request, new RestListener() {
                         @Override
                         public void parseResponse(JSONObject response) {
@@ -175,6 +274,30 @@ public class PostsPreview extends AppCompatActivity {
             }
         });
     }
+
+    private void startIntentService(Location location) {
+        Intent intent = new Intent(this, FetchAddressService.class);
+        intent.putExtra(Constants.RECEIVER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+    }
+
+    private class AddressResultReceiver extends ResultReceiver {
+
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if(resultData != null) {
+                address = resultData.getString(Constants.RESULT_DATA_KEY);
+            }
+        }
+    }
+
+
 
     @Override
     public void onBackPressed() {
