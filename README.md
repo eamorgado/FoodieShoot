@@ -9,6 +9,9 @@ as such, after training the model we convert it to a tflite format.
 
 In case you want to download and test the app you can [download it in our website](https://178.79.132.23/download/) or in [this](https://github.com/eamorgado/FoodieShoot/tree/master/Apks) repositorty or even in our [Aptoide store](https://foodieshoot.en.aptoide.com/app?store_name=ciber-foodieshoot). Since the app is not deployed on PlayStore you will need to enable unknown sources and allow the installation on your device, you can find out how to use the application [here](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/App.md), to use the full features of the app you will need to authenticate, consenting to our [terms and conditions](https://178.79.132.23/terms/). If you want a better look into the development process you can check out our project [here](https://github.com/eamorgado/FoodieShoot/projects/1).
 
+
+If you are using this app as  reference, you can check our dependency gradle file [here](https://github.com/eamorgado/FoodieShoot/blob/master/Applications/FoodDetection/app/build.gradle) and the app graddle [here](https://github.com/eamorgado/FoodieShoot/blob/master/Applications/FoodDetection/build.gradle).
+
 # Documentation
 1.  [The Server](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Server.md)
 2.  [Request API](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Request_API.md)
