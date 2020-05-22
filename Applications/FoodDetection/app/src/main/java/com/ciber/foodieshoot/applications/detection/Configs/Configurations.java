@@ -71,6 +71,8 @@ public class Configurations {
     public static final String POST_LIST_PATH = "foods/posts/list";
     public static final String POST_DELETE_PATH = "foods/posts/delete";
 
+    public static final String STORE = "https://en.aptoide.com/store/ciber-foodieshoot";
+
 
     public static boolean USER_KEEP = false;
     public static Drawable USER_PROFILE = null;

@@ -183,6 +183,12 @@ public class Logged_Home extends AppCompatActivity implements NavigationView.OnN
                 browserIntent.setData(Uri.parse(endpoint));
                 startActivity(browserIntent);
                 break;
+            case R.id.nav_share:
+                flag = true;
+                unselectAllBottom();
+                Intent store_share = new Intent(Intent.ACTION_VIEW);
+                store_share.setData(Uri.parse(Configurations.STORE));
+                startActivity(store_share);
         }
         if(!flag)
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selected).commit();
