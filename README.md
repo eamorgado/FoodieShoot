@@ -16,3 +16,9 @@ If you are using this app as  reference, you can check our dependency gradle fil
 1.  [The Server](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Server.md)
 2.  [Request API](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Request_API.md)
 3.  [App](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/App.md)
+
+# Demo No authentication
+If you want to see the whole demo go [here](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/VideoDemo/Foodieshoot_VideoDemo.mp4).
+<p align="center">
+    <img src="https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/VideoDemo/FoodieShoot_NoUserDemo.gif" width=45%>
+</p>
