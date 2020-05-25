@@ -30,9 +30,9 @@ The app will need to interact with the user's camera, will have to perform json 
 + All the other java files and foldersare responsble for the integration of Tensorflow object detection api and model into our android app
 
 ## Instructions and Demo
-As we have already said the app is comprised of two modes, the mode with no authentication where the user has limite access to the application functionalities and thus,can only detect the food but not analyse or save it. We will show the instructions for [first time use](#First-Use) and for [authenticated use](#Authenticated-Use)
+As we have already said the app is comprised of two modes, the mode with no authentication where the user has limite access to the application functionalities and thus,can only detect the food but not analyse or save it. We will show the instructions for [first time use](#First-Use) and for [authenticated use](#Authenticated-Use) if you want to see the demo video go [here](#Video-Demo)
 
-**Important**: This demo will be in English as the phose used for the demo had an English system however, we have added support for four languages: English, German, Portuguese and Spanish, most of the app has translations for these languages except for the post response are the messages are given by the server. 
+**Important**: This demo will be in English as the phone used for the demo had an English system however, we have added support for four languages: English, German, Portuguese and Spanish, most of the app has translations for these languages except for the post response are the messages are given by the server. 
 
 ### First Use
 If you are using the app for the first time you will see the splash screen 
@@ -103,4 +103,13 @@ You can also visit the about page
 In the app you can also logout by opening the nav bar and clicking on logout, after that all your data saved in the device (the auth token) will be deleted and you will need to authentiate to access the full version of the app
 <p align="center">
     <img src="https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Images/logout.jpg" width=20%>
+</p>
+
+
+### Video Demo
+The next gif is the demo for the use of the application without authentication, if you want to see to full demo video go [here](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/VideoDemo/Foodieshoot_VideoDemo.mp4)
+
+For the no user demo:
+<p align="center">
+    <img src="https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/VideoDemo/FoodieShoot_NoUserDemo.gif" width=50%>
 </p>
