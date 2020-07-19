@@ -12,6 +12,9 @@ In case you want to download and test the app you can [download it in our websit
 
 If you are using this app as  reference, you can check our dependency gradle file [here](https://github.com/eamorgado/FoodieShoot/blob/master/Applications/FoodDetection/app/build.gradle) and the app graddle [here](https://github.com/eamorgado/FoodieShoot/blob/master/Applications/FoodDetection/build.gradle).
 
+**Note:** This project's server is no longer running, as such, all website links won't work. The REST interaction between the app and the server will also not work, meaning that, all actions that require server communication in the app (login, sign up, all operations insider logged session) will no longer be supported in the app, you will now **only have access to the no authentication functionality**.
+
+
 # Documentation
 1.  [The Server](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Server.md)
 2.  [Request API](https://github.com/eamorgado/FoodieShoot/blob/master/Documentation/Request_API.md)
